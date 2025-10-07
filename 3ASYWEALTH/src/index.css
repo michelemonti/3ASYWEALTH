@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3ASYAPP Template Design System (Light theme default) */
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 221 83% 46%;
+
+    --secondary: 262 83% 58%;
+    --secondary-foreground: 0 0% 100%;
+
+    --trust: 210 40% 96%;
+    --trust-foreground: 221 83% 44%;
+
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 262 83% 96%;
+    --accent-foreground: 262 83% 42%;
+
+    --success: 142 72% 35%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 17% 95%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 221 83% 53%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 221 83% 60%;
+    --primary-foreground: 0 0% 0%;
+    --primary-hover: 221 83% 55%;
+
+    --secondary: 262 83% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --trust: 0 0% 12%;
+    --trust-foreground: 221 83% 60%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 262 83% 20%;
+    --accent-foreground: 262 83% 60%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 28% 20%;
+    --input: 215 28% 20%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-subtle {
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+  }
+  .animate-fade-in { 
+    animation: fadeIn 0.6s ease-in-out; 
+  }
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
