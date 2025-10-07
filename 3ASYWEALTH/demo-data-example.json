@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0",
+  "description": "Example demo data for 3ASYWEALTH - Replace with your own data",
+  "assets": [
+    {
+      "name": "Startup Tech SRL",
+      "category": "Partecipazioni",
+      "ownership": "10%",
+      "value": 50000,
+      "source": "Valutazione 2025",
+      "notes": "Investimento angel round 2023"
+    },
+    {
+      "name": "Immobiliare Italia SPA",
+      "category": "Partecipazioni",
+      "ownership": "5%",
+      "value": 30000,
+      "source": "Valore di mercato",
+      "notes": "REIT quotato"
+    },
+    {
+      "name": "Casa Principale",
+      "category": "Immobili",
+      "ownership": "100%",
+      "value": 250000,
+      "source": "Perizia bancaria 2025",
+      "notes": "Acquistata nel 2020"
+    },
+    {
+      "name": "Appartamento Milano",
+      "category": "Immobili",
+      "ownership": "50%",
+      "value": 180000,
+      "source": "Valore di mercato",
+      "notes": "In comproprietà"
+    },
+    {
+      "name": "Portfolio Crypto",
+      "category": "Beni personali",
+      "ownership": "100%",
+      "value": 25000,
+      "source": "Valore attuale exchange",
+      "notes": "BTC, ETH, diversi altcoin"
+    },
+    {
+      "name": "Auto Collezione",
+      "category": "Beni personali",
+      "ownership": "100%",
+      "value": 45000,
+      "source": "Valutazione perito 2025",
+      "notes": "Classica anni '80"
+    },
+    {
+      "name": "Conto Corrente",
+      "category": "Liquidità",
+      "ownership": "100%",
+      "value": 35000,
+      "source": "Saldo attuale",
+      "notes": "Liquidità immediata"
+    },
+    {
+      "name": "Deposito Vincolato",
+      "category": "Liquidità",
+      "ownership": "100%",
+      "value": 50000,
+      "source": "Valore nominale + interessi",
+      "notes": "Scadenza 2026"
+    }
+  ],
+  "totalWealth": 665000,
+  "note": "Questo è solo un esempio. Crea il tuo file demo-data.json con i tuoi dati (è in gitignore)"
+}

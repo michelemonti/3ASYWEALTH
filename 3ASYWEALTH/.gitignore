@@ -38,6 +38,7 @@ out/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*:Zone.Identifier
 
 # Logs
 logs/
@@ -159,3 +160,8 @@ contracts/node_modules/
 *.key
 *.crt
 secrets.json
+
+# Personal data files
+demo-data.json
+demo-data-miky.json
+personal-data.json

@@ -176,7 +176,7 @@ export function AssetsTable() {
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="es. Studio Pedrini S.R.L."
+                      placeholder="es. Startup Tech SRL"
                     />
                   </div>
 

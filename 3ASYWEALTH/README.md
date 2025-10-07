@@ -20,7 +20,7 @@
 - 💾 **Persistenza Locale**: I dati vengono salvati automaticamente nel browser
 - 🎨 **UI Moderna**: Interfaccia pulita e intuitiva con Tailwind CSS + Shadcn/UI
 - 📱 **Responsive**: Funziona perfettamente su desktop, tablet e mobile
-- 🎭 **Dati Demo**: Dataset di esempio (Miky Monti) per testare l'app
+- 🎭 **Dati Demo**: Dataset generico d'esempio per testare l'app
 
 ---
 
@@ -76,11 +76,13 @@ npm run dev
 
 ### 4️⃣ Dati Demo
 
-Menu "⋮" → "Carica Dati Demo" per testare con il dataset di Miky Monti:
+Menu "⋮" → "Carica Dati Demo" per testare con dati d'esempio generici:
 - Partecipazioni societarie
 - Immobili
 - Beni personali (crypto, orologi, arte)
-- **Totale: €758,250**
+**Demo Dataset** incluso:
+- **Totale: €740,000** (example data)
+- 9 asset d'esempio (partecipazioni, immobili, beni personali, liquidità)
 
 ---
 

@@ -7,6 +7,7 @@
  * @version 1.0.0
  */
 
+import { useMemo } from 'react'
 import { useWealthStore } from '@/stores/wealthStore'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -41,7 +42,50 @@ const COLORS = {
 }
 
 export function WealthSummary() {
-  const summary = useWealthStore((state) => state.getSummary())
+  // Get assets from store
+  const assets = useWealthStore((state) => state.assets)
+  
+  // Calculate summary with useMemo to prevent infinite loops
+  const summary = useMemo(() => {
+    if (assets.length === 0) {
+      return {
+        totalWealth: 0,
+        categories: [],
+        lastUpdated: new Date(),
+        assetCount: 0,
+      }
+    }
+
+    const totalWealth = assets.reduce((sum, asset) => sum + asset.value, 0)
+
+    const categoryMap = new Map()
+    assets.forEach((asset) => {
+      const existing = categoryMap.get(asset.category) || { total: 0, count: 0 }
+      categoryMap.set(asset.category, {
+        total: existing.total + asset.value,
+        count: existing.count + 1,
+      })
+    })
+
+    const categories = Array.from(categoryMap.entries()).map(
+      ([category, data]: [any, any]) => ({
+        category,
+        total: data.total,
+        count: data.count,
+        percentage: totalWealth > 0 ? (data.total / totalWealth) * 100 : 0,
+      })
+    )
+
+    // Sort by total value descending
+    categories.sort((a, b) => b.total - a.total)
+
+    return {
+      totalWealth,
+      categories,
+      lastUpdated: new Date(),
+      assetCount: assets.length,
+    }
+  }, [assets])
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('it-IT', {

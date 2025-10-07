@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import { useWealthStore } from '@/stores/wealthStore'
 import { AssetsTable } from './AssetsTable'
 import { WealthSummary } from './WealthSummary'
@@ -44,10 +44,15 @@ import { downloadCSV, downloadJSON, importCSVFile, importJSONFile } from '@/lib/
 import { toast } from 'sonner'
 
 export function WealthDashboard() {
-  const { assets, importAssets, clearAssets, loadDemoData, getSummary } = useWealthStore()
+  const { assets, importAssets, clearAssets, loadDemoData } = useWealthStore()
   const [showClearDialog, setShowClearDialog] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [importFormat, setImportFormat] = useState<'csv' | 'json'>('csv')
+
+  // Calculate total wealth with useMemo
+  const totalWealth = useMemo(() => {
+    return assets.reduce((sum, asset) => sum + asset.value, 0)
+  }, [assets])
 
   const handleExportCSV = () => {
     if (assets.length === 0) {
@@ -65,7 +70,13 @@ export function WealthDashboard() {
       return
     }
 
-    const summary = getSummary()
+    // Calculate summary for export
+    const summary = {
+      totalWealth,
+      assetCount: assets.length,
+      categories: [],
+      lastUpdated: new Date(),
+    }
     downloadJSON(assets, summary, `wealth-${new Date().toISOString().split('T')[0]}.json`)
     toast.success('Dati esportati in JSON')
   }
@@ -215,7 +226,7 @@ export function WealthDashboard() {
                     style: 'currency',
                     currency: 'EUR',
                     minimumFractionDigits: 0,
-                  }).format(getSummary().totalWealth)}
+                  }).format(totalWealth)}
                 </strong>
                 {' '}patrimonio totale
               </span>
