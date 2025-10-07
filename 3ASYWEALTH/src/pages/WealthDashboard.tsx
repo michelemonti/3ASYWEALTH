@@ -47,7 +47,6 @@ export function WealthDashboard() {
   const { assets, importAssets, clearAssets, loadDemoData } = useWealthStore()
   const [showClearDialog, setShowClearDialog] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const [importFormat, setImportFormat] = useState<'csv' | 'json'>('csv')
 
   // Calculate total wealth with useMemo
   const totalWealth = useMemo(() => {
@@ -81,8 +80,7 @@ export function WealthDashboard() {
     toast.success('Dati esportati in JSON')
   }
 
-  const handleImportClick = (format: 'csv' | 'json') => {
-    setImportFormat(format)
+  const handleImportClick = () => {
     fileInputRef.current?.click()
   }
 
@@ -93,7 +91,11 @@ export function WealthDashboard() {
     try {
       let importedAssets
       
-      if (importFormat === 'csv') {
+      // Auto-detect format from file extension
+      const fileName = file.name.toLowerCase()
+      const actualFormat = fileName.endsWith('.json') ? 'json' : 'csv'
+      
+      if (actualFormat === 'csv') {
         importedAssets = await importCSVFile(file)
         toast.success(`${importedAssets.length} asset importati da CSV`)
       } else {
@@ -174,15 +176,11 @@ export function WealthDashboard() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Formato Import</DropdownMenuLabel>
+                  <DropdownMenuLabel>Seleziona File (CSV o JSON)</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => handleImportClick('csv')}>
-                    <FileText className="w-4 h-4 mr-2" />
-                    Importa da CSV
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleImportClick('json')}>
-                    <FileJson className="w-4 h-4 mr-2" />
-                    Importa da JSON
+                  <DropdownMenuItem onClick={handleImportClick}>
+                    <Upload className="w-4 h-4 mr-2" />
+                    Scegli File da Importare
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -261,7 +259,7 @@ export function WealthDashboard() {
       <input
         ref={fileInputRef}
         type="file"
-        accept={importFormat === 'csv' ? '.csv' : '.json'}
+        accept=".csv,.json"
         onChange={handleFileChange}
         className="hidden"
       />

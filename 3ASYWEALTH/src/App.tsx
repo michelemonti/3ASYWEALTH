@@ -19,6 +19,7 @@ import Subscribe from './pages/Subscribe'
 import { LoginPage } from './pages/LoginPage'
 import { Dashboard } from './pages/Dashboard'
 import { WealthDashboard } from './pages/WealthDashboard'
+import Landing from './pages/Landing'
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 // React Query Configuration
@@ -44,13 +45,13 @@ const App = () => (
         <BrowserRouter>
           <UnifiedAuthProvider>
             <Routes>
-              <Route path="/" element={<WealthDashboard />} />
-              <Route path="/wealth" element={<WealthDashboard />} />
+              <Route path="/" element={<Landing />} />
+              <Route path="/dashboard" element={<WealthDashboard />} />
               <Route path="/subscribe" element={<Subscribe />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/auth/callback" element={<LoginPage />} />
               <Route 
-                path="/dashboard" 
+                path="/protected" 
                 element={
                   <ProtectedRoute>
                     <Dashboard />

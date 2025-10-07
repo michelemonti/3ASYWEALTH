@@ -1,23 +1,36 @@
 # 💰 3ASYWEALTH
 
-> **Personal Wealth Tracking & Management Application**
+> **Personal Wealth Tracking - 100% Privacy**
 >
-> Gestisci e monitora il tuo patrimonio personale con semplicità e chiarezza
+> Gestisci il tuo patrimonio nel tuo browser. Nessun server. Nessun account. Nessuna registrazione.
 
-**Built with 3ASYAPP Template** | **React + TypeScript** | **Local-First**
+**Built with 3ASYAPP Template** | **React + TypeScript** | **Privacy-First**
 
 ---
 
 ## 🎯 Cos'è 3ASYWEALTH?
 
-**3ASYWEALTH** è un'applicazione web per tracciare e calcolare il tuo patrimonio personale ("wealth"). Permette di registrare asset di diverse categorie, visualizzare totali e ripartizioni, e gestire i dati tramite import/export.
+**3ASYWEALTH** è un'applicazione web per tracciare e calcolare il tuo patrimonio personale con la **massima privacy**.
+
+### 🔒 Privacy Assoluta
+
+Nessuno vuole condividere i propri dati finanziari. E avete ragione.
+
+Per questo **3ASYWEALTH funziona interamente nel tuo browser**:
+- ❌ **Nessun server riceve i tuoi dati**
+- ❌ **Nessun database esterno**
+- ❌ **Nessun account da creare**
+- ❌ **Nessuna registrazione**
+- ✅ **Tutto salvato in localStorage del browser**
+- ✅ **Esporta/Importa quando vuoi**
 
 ### ✨ Caratteristiche Principali
 
+- 🔐 **Privacy-First**: I tuoi dati non lasciano mai il tuo dispositivo
 - ✅ **CRUD Completo**: Aggiungi, modifica ed elimina asset con facilità
 - 📊 **Visualizzazioni Multiple**: Tabella dettagliata e sintesi con grafici
-- 📥 **Import/Export**: Importa ed esporta dati in CSV o JSON
-- 💾 **Persistenza Locale**: I dati vengono salvati automaticamente nel browser
+- 📥 **Import/Export**: Portabilità totale con CSV/JSON (Excel/Google Sheets compatibile)
+- 💾 **localStorage**: Salvataggio automatico nel browser, nessun dato condiviso
 - 🎨 **UI Moderna**: Interfaccia pulita e intuitiva con Tailwind CSS + Shadcn/UI
 - 📱 **Responsive**: Funziona perfettamente su desktop, tablet e mobile
 - 🎭 **Dati Demo**: Dataset generico d'esempio per testare l'app
