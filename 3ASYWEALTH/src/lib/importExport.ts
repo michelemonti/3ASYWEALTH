@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-import type { Asset, AssetCategory, ExportData } from '@/types/wealth'
+import type { Asset, AssetCategory, ExportData, WealthSummary } from '@/types/wealth'
 
 // =============================================================================
 // 📥 CSV IMPORT
@@ -136,33 +136,78 @@ export function downloadCSV(assets: Asset[], filename = 'wealth-export.csv') {
 /**
  * Parse JSON file to assets
  */
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null
+
+const parseCategory = (value: unknown): AssetCategory => {
+  if (typeof value === 'string') {
+    const normalized = value.toLowerCase()
+    const categories: AssetCategory[] = ['Partecipazioni', 'Immobili', 'Beni personali', 'Liquidità']
+    const match = categories.find((category) => category.toLowerCase() === normalized)
+    if (match) {
+      return match
+    }
+  }
+
+  return 'Beni personali'
+}
+
+const parseDate = (value: unknown): Date => {
+  if (value instanceof Date) {
+    return value
+  }
+
+  if (typeof value === 'string' || typeof value === 'number') {
+    const parsed = new Date(value)
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed
+    }
+  }
+
+  return new Date()
+}
+
+type RawAsset = Record<string, unknown>
+
 export function parseJSON(jsonText: string): Asset[] {
   try {
     const data = JSON.parse(jsonText)
     
     // Handle different JSON formats
-    let assets: any[] = []
-    
+    let assets: RawAsset[] = []
+
     if (Array.isArray(data)) {
-      assets = data
-    } else if (data.assets && Array.isArray(data.assets)) {
-      assets = data.assets
+      assets = data.filter((item): item is RawAsset => isRecord(item))
+    } else if (isRecord(data) && Array.isArray(data.assets)) {
+      assets = data.assets.filter((item): item is RawAsset => isRecord(item))
     } else {
       throw new Error('Formato JSON non valido')
     }
 
-    return assets.map(asset => ({
-      id: asset.id || crypto.randomUUID(),
-      name: asset.name || 'Asset senza nome',
-      category: asset.category || 'Beni personali',
-      ownership: asset.ownership || '-',
-      value: parseFloat(asset.value) || 0,
-      source: asset.source || '',
-      notes: asset.notes || '',
-      createdAt: asset.createdAt ? new Date(asset.createdAt) : new Date(),
-      updatedAt: asset.updatedAt ? new Date(asset.updatedAt) : new Date(),
-      userId: asset.userId,
-    }))
+    return assets.map((asset) => {
+      const id = typeof asset.id === 'string' && asset.id.length > 0 ? asset.id : crypto.randomUUID()
+      const name = typeof asset.name === 'string' && asset.name.trim().length > 0 ? asset.name : 'Asset senza nome'
+      const ownership = typeof asset.ownership === 'string' && asset.ownership.length > 0 ? asset.ownership : '-'
+      const source = typeof asset.source === 'string' ? asset.source : ''
+      const notes = typeof asset.notes === 'string' ? asset.notes : undefined
+      const userId = typeof asset.userId === 'string' ? asset.userId : undefined
+      const value = typeof asset.value === 'number'
+        ? asset.value
+        : parseFloat(String(asset.value ?? '0')) || 0
+
+      return {
+        id,
+        name,
+        category: parseCategory(asset.category),
+        ownership,
+        value,
+        source,
+        notes,
+        createdAt: parseDate(asset.createdAt),
+        updatedAt: parseDate(asset.updatedAt),
+        userId,
+      }
+    })
   } catch (error) {
     throw new Error('Errore nel parsing JSON: ' + (error as Error).message)
   }
@@ -197,7 +242,7 @@ export async function importJSONFile(file: File): Promise<Asset[]> {
 /**
  * Convert assets to JSON with metadata
  */
-export function assetsToJSON(assets: Asset[], summary: any): ExportData {
+export function assetsToJSON(assets: Asset[], summary: WealthSummary): ExportData {
   return {
     assets,
     summary,
@@ -209,7 +254,7 @@ export function assetsToJSON(assets: Asset[], summary: any): ExportData {
 /**
  * Download JSON file
  */
-export function downloadJSON(assets: Asset[], summary: any, filename = 'wealth-export.json') {
+export function downloadJSON(assets: Asset[], summary: WealthSummary, filename = 'wealth-export.json') {
   const data = assetsToJSON(assets, summary)
   const json = JSON.stringify(data, null, 2)
   const blob = new Blob([json], { type: 'application/json' })

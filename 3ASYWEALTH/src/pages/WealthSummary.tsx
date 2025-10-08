@@ -25,7 +25,7 @@ import {
   CartesianGrid,
 } from 'recharts'
 import { TrendingUp, Wallet, Building2, Home, Gem, Package } from 'lucide-react'
-import { CATEGORY_METADATA } from '@/types/wealth'
+import { CATEGORY_METADATA, type AssetCategory, type CategorySummary, type WealthSummary as SummaryData } from '@/types/wealth'
 
 const categoryIcons = {
   Building2,
@@ -46,7 +46,7 @@ export function WealthSummary() {
   const assets = useWealthStore((state) => state.assets)
   
   // Calculate summary with useMemo to prevent infinite loops
-  const summary = useMemo(() => {
+  const summary = useMemo<SummaryData>(() => {
     if (assets.length === 0) {
       return {
         totalWealth: 0,
@@ -58,17 +58,17 @@ export function WealthSummary() {
 
     const totalWealth = assets.reduce((sum, asset) => sum + asset.value, 0)
 
-    const categoryMap = new Map()
+    const categoryMap = new Map<AssetCategory, { total: number; count: number }>()
     assets.forEach((asset) => {
-      const existing = categoryMap.get(asset.category) || { total: 0, count: 0 }
+      const existing = categoryMap.get(asset.category) ?? { total: 0, count: 0 }
       categoryMap.set(asset.category, {
         total: existing.total + asset.value,
         count: existing.count + 1,
       })
     })
 
-    const categories = Array.from(categoryMap.entries()).map(
-      ([category, data]: [any, any]) => ({
+    const categories = Array.from(categoryMap.entries()).map<CategorySummary>(
+      ([category, data]) => ({
         category,
         total: data.total,
         count: data.count,
