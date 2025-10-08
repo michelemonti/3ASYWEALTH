@@ -96,6 +96,7 @@ const createReportHTML = (data: ReportData): string => {
   // Assets table HTML - diviso per pagine (inizia da pagina 2)
   const assetsPerPage = 15 // Numero di asset per pagina
   const assetPages: string[] = []
+  const totalAssetPages = Math.ceil(assets.length / assetsPerPage)
   
   for (let i = 0; i < assets.length; i += assetsPerPage) {
     const pageAssets = assets.slice(i, i + assetsPerPage)
@@ -114,8 +115,10 @@ const createReportHTML = (data: ReportData): string => {
     }).join('')
 
     const pageNumber = Math.floor(i / assetsPerPage) + 2 // Inizia da pagina 2
+    const isLastPage = (i + assetsPerPage) >= assets.length
+    
     assetPages.push(`
-      <div class="page" style="page-break-after: always;">
+      <div class="page"${isLastPage ? '' : ' style="page-break-after: always;"'}>
         <div class="page-header">
           <h2>${t('pdfReport.assets.title')} (${t('pdfReport.page')} ${pageNumber})</h2>
         </div>
@@ -134,6 +137,14 @@ const createReportHTML = (data: ReportData): string => {
             ${assetsHTML}
           </tbody>
         </table>
+        
+        ${isLastPage ? `
+        <!-- Footer (last page) -->
+        <div class="footer">
+          <p><strong>${t('pdfReport.footer.generated')} 3ASYWEALTH v1.0.0</strong></p>
+          <p>${t('pdfReport.footer.opensource')} | ${t('pdfReport.footer.privacy')}</p>
+        </div>
+        ` : ''}
       </div>
     `)
   }
@@ -346,12 +357,6 @@ const createReportHTML = (data: ReportData): string => {
 
       <!-- PAGES 2+: Asset Details -->
       ${assetPages.join('\n')}
-
-      <!-- Footer (last page) -->
-      <div class="footer">
-        <p><strong>${t('pdfReport.footer.generated')} 3ASYWEALTH v1.0.0</strong></p>
-        <p>${t('pdfReport.footer.opensource')} | ${t('pdfReport.footer.privacy')}</p>
-      </div>
     </body>
     </html>
   `
