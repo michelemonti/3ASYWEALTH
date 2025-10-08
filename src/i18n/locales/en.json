@@ -5,7 +5,8 @@
     "nav": {
       "home": "Home",
       "assets": "Assets",
-      "summary": "Summary"
+      "summary": "Summary",
+      "about": "About"
     }
   },
   "landing": {
@@ -288,5 +289,89 @@
     "back": "Back",
     "next": "Next",
     "confirm": "Confirm"
+  },
+  "about": {
+    "hero": {
+      "badge": "100% Privacy & Open Source",
+      "title": "Your Wealth, Your Privacy, Your Control",
+      "subtitle": "A modern wealth tracking application built with transparency, privacy, and trust at its core. No servers, no tracking, no compromises."
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privacy",
+        "description": "Your data never leaves your browser. Everything runs locally on your device with zero external servers."
+      },
+      "noAccount": {
+        "title": "No Registration",
+        "description": "No accounts, no passwords, no email required. Start tracking your wealth immediately."
+      },
+      "opensource": {
+        "title": "Open Source",
+        "description": "Full source code available on GitHub. Audit every line, suggest improvements, or fork it."
+      },
+      "free": {
+        "title": "Forever Free",
+        "description": "No hidden fees, no premium tiers, no subscriptions. Free today, free tomorrow, free forever."
+      }
+    },
+    "opensource": {
+      "title": "Transparency Through Open Source",
+      "description": "3ASYWEALTH is completely open source. Every line of code is publicly available for review, audit, and verification. This is not just about transparency—it's about building trust through verifiability.",
+      "challenge": {
+        "title": "🔍 We Challenge You",
+        "description": "Don't just trust us—verify for yourself! Review the code, check for any server calls, inspect the network traffic. We're confident you'll find exactly what we promise: a completely client-side application with zero data transmission."
+      },
+      "viewCode": "View Source Code",
+      "reportIssue": "Report an Issue",
+      "benefits": {
+        "transparent": "Fully Transparent",
+        "transparentDesc": "See exactly how your data is processed and stored",
+        "auditable": "Security Auditable",
+        "auditableDesc": "Anyone can verify there are no backdoors or tracking",
+        "community": "Community Driven",
+        "communityDesc": "Contributions and improvements from developers worldwide"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "dataSaving": {
+        "question": "💾 How does data saving work?",
+        "answer": "Your data is saved directly in your browser using localStorage. This means:\n\n✅ Data stays on your device only\n✅ No server uploads or cloud sync\n✅ Works completely offline\n✅ Instant save/load (no waiting)\n\n⚠️ Important: If you clear your browser data or use incognito mode, your data will be lost. Always export your data regularly as backup!"
+      },
+      "multiDevice": {
+        "question": "🔄 Can I use 3ASYWEALTH on multiple devices?",
+        "answer": "Since everything runs locally, your data doesn't automatically sync between devices. However, you can:\n\n📤 Export your data as JSON or CSV from one device\n📥 Import the same file on another device\n💾 Keep a backup file in your cloud storage (Dropbox, Google Drive, etc.)\n\nThis manual sync gives you full control over where your data goes!"
+      },
+      "safety": {
+        "question": "🔐 Is it really safe? How can I be sure?",
+        "answer": "Absolutely! Here's how you can verify:\n\n🔍 Open Source: Review all code on GitHub\n🌐 Network Inspector: Open browser DevTools (F12) → Network tab\n   You'll see ZERO requests to external servers\n📱 Offline Mode: Turn off your internet - it still works!\n🔒 No Tracking: No analytics, no cookies, no fingerprinting\n✅ Local Storage: Data never leaves localStorage\n\nWe encourage technical users to audit the code and report any concerns!"
+      },
+      "free": {
+        "question": "💰 Is it really free?",
+        "answer": "Yes, 100% free forever!\n\n✅ No hidden costs\n✅ No premium features locked behind paywall\n✅ No \"free trial\" that expires\n✅ No ads\n✅ No data selling\n\nWhy free? Because:\n• It's a passion project\n• Privacy should be accessible to everyone\n• Open source thrives on community, not profit\n• No servers = no hosting costs to pass on!"
+      },
+      "features": {
+        "question": "✨ What features are available?",
+        "answer": "Current features:\n\n📊 Asset Management: Track all your wealth in one place\n📈 Visual Summary: Charts and graphs of your portfolio\n📄 PDF Reports: Generate professional reports locally\n💾 Import/Export: CSV and JSON support\n🌍 Multi-language: English, Italian, Spanish\n🎨 Modern UI: Clean, intuitive interface\n\nComing soon (open to suggestions!):\n• More chart types\n• Advanced filtering and search\n• Historical tracking\n• More export formats"
+      },
+      "dataSecurity": {
+        "question": "🛡️ What if I lose my data?",
+        "answer": "Prevention is key:\n\n📤 Regular Exports: Use 'Export JSON' frequently\n☁️ Cloud Backup: Save exports to Google Drive, Dropbox, etc.\n💾 Multiple Copies: Keep backups on different devices\n📧 Email: Send yourself a copy via email\n\nRecovery:\n• If you have an export file → Import it back\n• If you cleared browser data → Lost (no server to recover from)\n• If you used demo data → Reload demo data\n\nRemember: Local-first means YOU control backups!"
+      }
+    },
+    "technical": {
+      "title": "Technical Stack",
+      "description": "Built with modern, trusted technologies for maximum performance and security:",
+      "frontend": "Frontend",
+      "storage": "Storage",
+      "export": "Export Formats",
+      "i18n": "Languages"
+    },
+    "cta": {
+      "title": "Ready to Take Control of Your Wealth?",
+      "subtitle": "Start tracking your assets today with complete privacy and transparency",
+      "start": "Start Now",
+      "github": "View on GitHub"
+    }
   }
 }

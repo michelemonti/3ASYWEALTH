@@ -288,5 +288,89 @@
     "back": "Atrás",
     "next": "Siguiente",
     "confirm": "Confirmar"
+  },
+  "about": {
+    "hero": {
+      "badge": "100% Privacidad y Open Source",
+      "title": "Tu Patrimonio, Tu Privacidad, Tu Control",
+      "subtitle": "Una aplicación moderna de seguimiento patrimonial construida con transparencia, privacidad y confianza en el centro. Sin servidores, sin rastreo, sin compromisos."
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privacidad",
+        "description": "Tus datos nunca salen del navegador. Todo funciona localmente en tu dispositivo sin servidores externos."
+      },
+      "noAccount": {
+        "title": "Sin Registro",
+        "description": "No requiere cuenta, contraseña ni email. Comienza a rastrear tu patrimonio de inmediato."
+      },
+      "opensource": {
+        "title": "Open Source",
+        "description": "Código fuente completo disponible en GitHub. Verifica cada línea, sugiere mejoras o haz fork."
+      },
+      "free": {
+        "title": "Gratis Para Siempre",
+        "description": "Sin costos ocultos, niveles premium o suscripciones. Gratis hoy, gratis mañana, gratis para siempre."
+      }
+    },
+    "opensource": {
+      "title": "Transparencia A Través del Open Source",
+      "description": "3ASYWEALTH es completamente open source. Cada línea de código está públicamente disponible para revisión, auditoría y verificación. No se trata solo de transparencia—se trata de construir confianza a través de la verificabilidad.",
+      "challenge": {
+        "title": "🔍 Te Retamos",
+        "description": "¡No confíes solo en nuestra palabra—verifica por ti mismo! Revisa el código, busca llamadas a servidores, inspecciona el tráfico de red. Estamos seguros de que encontrarás exactamente lo que prometemos: una aplicación completamente del lado del cliente con cero transmisión de datos."
+      },
+      "viewCode": "Ver Código Fuente",
+      "reportIssue": "Reportar un Problema",
+      "benefits": {
+        "transparent": "Totalmente Transparente",
+        "transparentDesc": "Ve exactamente cómo se procesan y guardan tus datos",
+        "auditable": "Seguridad Verificable",
+        "auditableDesc": "Cualquiera puede verificar que no hay backdoors ni rastreo",
+        "community": "Impulsado por la Comunidad",
+        "communityDesc": "Contribuciones y mejoras de desarrolladores alrededor del mundo"
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "dataSaving": {
+        "question": "💾 ¿Cómo funciona el guardado de datos?",
+        "answer": "Tus datos se guardan directamente en el navegador usando localStorage. Esto significa:\n\n✅ Los datos permanecen solo en tu dispositivo\n✅ Sin subida a servidores ni sincronización en la nube\n✅ Funciona completamente offline\n✅ Guardado/carga instantáneo\n\n⚠️ Importante: Si borras los datos del navegador o usas modo incógnito, los datos se perderán. ¡Exporta tus datos regularmente como respaldo!"
+      },
+      "multiDevice": {
+        "question": "🔄 ¿Puedo usar 3ASYWEALTH en múltiples dispositivos?",
+        "answer": "Como todo funciona localmente, los datos no se sincronizan automáticamente entre dispositivos. Sin embargo puedes:\n\n📤 Exportar datos como JSON o CSV desde un dispositivo\n📥 Importar el mismo archivo en otro dispositivo\n💾 Mantener un archivo de respaldo en tu almacenamiento en la nube (Dropbox, Google Drive, etc.)\n\n¡Esta sincronización manual te da control total sobre dónde van tus datos!"
+      },
+      "safety": {
+        "question": "🔐 ¿Es realmente seguro? ¿Cómo puedo estar seguro?",
+        "answer": "¡Absolutamente! Aquí está cómo puedes verificar:\n\n🔍 Open Source: Revisa todo el código en GitHub\n🌐 Network Inspector: Abre DevTools del navegador (F12) → pestaña Network\n   Verás CERO peticiones a servidores externos\n📱 Modo Offline: Desconecta internet - ¡sigue funcionando!\n🔒 Sin Rastreo: Sin analytics, cookies o fingerprinting\n✅ Storage Local: Los datos nunca salen del localStorage\n\n¡Animamos a los usuarios técnicos a verificar el código y reportar cualquier problema!"
+      },
+      "free": {
+        "question": "💰 ¿Es realmente gratis?",
+        "answer": "¡Sí, 100% gratis para siempre!\n\n✅ Sin costos ocultos\n✅ Sin funciones premium de pago\n✅ Sin \"prueba gratuita\" que expira\n✅ Sin publicidad\n✅ Sin venta de datos\n\n¿Por qué gratis?\n• Es un proyecto de pasión\n• La privacidad debería ser accesible para todos\n• El open source prospera con la comunidad, no con las ganancias\n• ¡Sin servidores = sin costos de hosting que transferir!"
+      },
+      "features": {
+        "question": "✨ ¿Qué funciones están disponibles?",
+        "answer": "Funciones actuales:\n\n📊 Gestión de Activos: Rastrea todo tu patrimonio en un lugar\n📈 Resumen Visual: Gráficos de tu portafolio\n📄 Reportes PDF: Genera reportes profesionales localmente\n💾 Importar/Exportar: Soporte CSV y JSON\n🌍 Multiidioma: Inglés, Italiano, Español\n🎨 UI Moderna: Interfaz limpia e intuitiva\n\nPróximamente (¡abiertos a sugerencias!):\n• Más tipos de gráficos\n• Filtros y búsqueda avanzada\n• Seguimiento histórico\n• Más formatos de exportación"
+      },
+      "dataSecurity": {
+        "question": "🛡️ ¿Qué pasa si pierdo mis datos?",
+        "answer": "La prevención es clave:\n\n📤 Exportaciones Regulares: Usa 'Exportar JSON' frecuentemente\n☁️ Respaldo en la Nube: Guarda las exportaciones en Google Drive, Dropbox, etc.\n💾 Copias Múltiples: Mantén respaldos en diferentes dispositivos\n📧 Email: Envíate una copia por email\n\nRecuperación:\n• Si tienes archivo de exportación → Reimporta\n• Si borraste datos del navegador → Perdidos (sin servidor para recuperación)\n• Si usaste datos demo → Recarga los datos demo\n\n¡Recuerda: Local-first significa que TÚ controlas los respaldos!"
+      }
+    },
+    "technical": {
+      "title": "Stack Técnico",
+      "description": "Construido con tecnologías modernas y confiables para máximo rendimiento y seguridad:",
+      "frontend": "Frontend",
+      "storage": "Almacenamiento",
+      "export": "Formatos de Exportación",
+      "i18n": "Idiomas"
+    },
+    "cta": {
+      "title": "¿Listo Para Tomar Control de Tu Patrimonio?",
+      "subtitle": "Comienza a rastrear tus activos hoy con completa privacidad y transparencia",
+      "start": "Comenzar Ahora",
+      "github": "Ver en GitHub"
+    }
   }
 }

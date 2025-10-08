@@ -1,0 +1,321 @@
+/**
+ * About Page
+ * 
+ * Information, FAQ, transparency, and trust-building content
+ * 
+ * @author Michele Miky Monti
+ * @version 1.0.0
+ */
+
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Navigation } from '@/components/Navigation'
+import { Footer } from '@/components/Footer'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Shield,
+  Lock,
+  Code,
+  Github,
+  Heart,
+  Zap,
+  Globe,
+  Database,
+  Eye,
+  CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+  Download,
+  Sparkles,
+  AlertCircle
+} from 'lucide-react'
+
+export default function About() {
+  const { t } = useTranslation()
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index)
+  }
+
+  const features = [
+    {
+      icon: Shield,
+      titleKey: 'about.features.privacy.title',
+      descKey: 'about.features.privacy.description',
+      color: 'from-green-500 to-emerald-600'
+    },
+    {
+      icon: Lock,
+      titleKey: 'about.features.noAccount.title',
+      descKey: 'about.features.noAccount.description',
+      color: 'from-blue-500 to-cyan-600'
+    },
+    {
+      icon: Code,
+      titleKey: 'about.features.opensource.title',
+      descKey: 'about.features.opensource.description',
+      color: 'from-purple-500 to-pink-600'
+    },
+    {
+      icon: Zap,
+      titleKey: 'about.features.free.title',
+      descKey: 'about.features.free.description',
+      color: 'from-amber-500 to-orange-600'
+    }
+  ]
+
+  const faqItems = [
+    {
+      question: 'about.faq.dataSaving.question',
+      answer: 'about.faq.dataSaving.answer',
+      icon: Database
+    },
+    {
+      question: 'about.faq.multiDevice.question',
+      answer: 'about.faq.multiDevice.answer',
+      icon: Globe
+    },
+    {
+      question: 'about.faq.safety.question',
+      answer: 'about.faq.safety.answer',
+      icon: Shield
+    },
+    {
+      question: 'about.faq.free.question',
+      answer: 'about.faq.free.answer',
+      icon: Heart
+    },
+    {
+      question: 'about.faq.features.question',
+      answer: 'about.faq.features.answer',
+      icon: Sparkles
+    },
+    {
+      question: 'about.faq.dataSecurity.question',
+      answer: 'about.faq.dataSecurity.answer',
+      icon: Lock
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <Navigation />
+      
+      <div className="container mx-auto px-4 py-12 max-w-6xl">
+        {/* Hero Section */}
+        <div className="text-center mb-16">
+          <Badge className="mb-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-4 py-2">
+            <Shield className="w-4 h-4 mr-2" />
+            {t('about.hero.badge')}
+          </Badge>
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+            {t('about.hero.title')}
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            {t('about.hero.subtitle')}
+          </p>
+        </div>
+
+        {/* Core Values */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {features.map((feature, index) => {
+            const Icon = feature.icon
+            return (
+              <Card key={index} className="border-2 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="pt-6">
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-lg`}>
+                    <Icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    {t(feature.titleKey)}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {t(feature.descKey)}
+                  </p>
+                </CardContent>
+              </Card>
+            )
+          })}
+        </div>
+
+        {/* Open Source Challenge */}
+        <Card className="mb-16 border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 shadow-xl">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                <Code className="w-6 h-6 text-white" />
+              </div>
+              <CardTitle className="text-2xl">{t('about.opensource.title')}</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <p className="text-lg text-gray-700 leading-relaxed">
+              {t('about.opensource.description')}
+            </p>
+            
+            <div className="bg-white rounded-lg p-6 border-2 border-purple-200">
+              <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <Eye className="w-5 h-5 text-purple-600" />
+                {t('about.opensource.challenge.title')}
+              </h4>
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                {t('about.opensource.challenge.description')}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Button 
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                  onClick={() => window.open('https://github.com/michelemonti/3asywealth', '_blank')}
+                >
+                  <Github className="w-5 h-5 mr-2" />
+                  {t('about.opensource.viewCode')}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-2 border-purple-300 hover:bg-purple-50"
+                  onClick={() => window.open('https://github.com/michelemonti/3asywealth/issues', '_blank')}
+                >
+                  <AlertCircle className="w-5 h-5 mr-2" />
+                  {t('about.opensource.reportIssue')}
+                  <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg p-4 border border-purple-100">
+                <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
+                <h5 className="font-semibold mb-1">{t('about.opensource.benefits.transparent')}</h5>
+                <p className="text-sm text-gray-600">{t('about.opensource.benefits.transparentDesc')}</p>
+              </div>
+              <div className="bg-white rounded-lg p-4 border border-purple-100">
+                <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
+                <h5 className="font-semibold mb-1">{t('about.opensource.benefits.auditable')}</h5>
+                <p className="text-sm text-gray-600">{t('about.opensource.benefits.auditableDesc')}</p>
+              </div>
+              <div className="bg-white rounded-lg p-4 border border-purple-100">
+                <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
+                <h5 className="font-semibold mb-1">{t('about.opensource.benefits.community')}</h5>
+                <p className="text-sm text-gray-600">{t('about.opensource.benefits.communityDesc')}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* FAQ Section */}
+        <Card className="mb-16 shadow-xl">
+          <CardHeader>
+            <CardTitle className="text-3xl flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+                <AlertCircle className="w-6 h-6 text-white" />
+              </div>
+              {t('about.faq.title')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {faqItems.map((item, index) => {
+                const Icon = item.icon
+                const isOpen = openFaq === index
+                return (
+                  <div key={index} className="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-purple-300 transition-colors">
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full px-6 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="flex items-center gap-3 text-left">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-5 h-5 text-white" />
+                        </div>
+                        <span className="font-semibold text-lg text-gray-900">
+                          {t(item.question)}
+                        </span>
+                      </div>
+                      {isOpen ? (
+                        <ChevronUp className="w-6 h-6 text-purple-600 flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-6 h-6 text-gray-400 flex-shrink-0" />
+                      )}
+                    </button>
+                    {isOpen && (
+                      <div className="px-6 py-4 bg-gradient-to-br from-blue-50 to-purple-50 border-t-2 border-gray-200">
+                        <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                          {t(item.answer)}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Technical Stack */}
+        <Card className="mb-16 border-2 border-blue-200 shadow-xl">
+          <CardHeader>
+            <CardTitle className="text-2xl flex items-center gap-3">
+              <Code className="w-8 h-8 text-blue-600" />
+              {t('about.technical.title')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              {t('about.technical.description')}
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <h5 className="font-semibold mb-2 text-blue-900">{t('about.technical.frontend')}</h5>
+                <p className="text-sm text-gray-700">React 18, TypeScript, Tailwind CSS, Recharts</p>
+              </div>
+              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                <h5 className="font-semibold mb-2 text-purple-900">{t('about.technical.storage')}</h5>
+                <p className="text-sm text-gray-700">Browser localStorage (100% local)</p>
+              </div>
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <h5 className="font-semibold mb-2 text-green-900">{t('about.technical.export')}</h5>
+                <p className="text-sm text-gray-700">CSV, JSON, PDF (jsPDF + html2canvas)</p>
+              </div>
+              <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                <h5 className="font-semibold mb-2 text-amber-900">{t('about.technical.i18n')}</h5>
+                <p className="text-sm text-gray-700">English, Italiano, Español</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* CTA */}
+        <div className="text-center bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl p-12 text-white shadow-2xl">
+          <h2 className="text-3xl font-bold mb-4">{t('about.cta.title')}</h2>
+          <p className="text-xl mb-8 opacity-90">{t('about.cta.subtitle')}</p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button 
+              size="lg"
+              className="bg-white text-purple-600 hover:bg-gray-100 shadow-lg"
+              onClick={() => window.location.href = '/assets'}
+            >
+              <Zap className="w-5 h-5 mr-2" />
+              {t('about.cta.start')}
+            </Button>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="bg-transparent border-2 border-white text-white hover:bg-white/10"
+              onClick={() => window.open('https://github.com/michelemonti/3asywealth', '_blank')}
+            >
+              <Github className="w-5 h-5 mr-2" />
+              {t('about.cta.github')}
+              <ExternalLink className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  )
+}

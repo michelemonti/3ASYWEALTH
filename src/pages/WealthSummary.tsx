@@ -201,7 +201,7 @@ export function WealthSummary() {
         </div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Total Wealth */}
           <Card>
             <CardHeader className="pb-2">
@@ -255,25 +255,6 @@ export function WealthSummary() {
               </p>
             </CardContent>
           </Card>
-
-          {/* Largest Category */}
-          {summary.categories.length > 0 && (
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">
-                  {t('summary.by_category')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Badge className="text-base px-3 py-1">
-                  {getCategoryLabel(summary.categories[0].category)}
-                </Badge>
-                <p className="text-sm text-gray-500 mt-2">
-                  {formatPercentage(summary.categories[0].percentage)}
-                </p>
-              </CardContent>
-            </Card>
-          )}
         </div>
 
         {/* Charts Section */}

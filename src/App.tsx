@@ -13,6 +13,7 @@ import Landing from './pages/Landing'
 
 import { AssetsTable } from './pages/AssetsTable'
 import { WealthSummary } from './pages/WealthSummary'
+import About from './pages/About'
 import NotFound from './pages/NotFound'
 
 // App Component
@@ -23,6 +24,7 @@ const App = () => (
         <Route path="/" element={<Landing />} />
         <Route path="/assets" element={<AssetsTable />} />
         <Route path="/summary" element={<WealthSummary />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

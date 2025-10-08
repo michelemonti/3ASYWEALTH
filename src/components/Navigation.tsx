@@ -11,7 +11,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
-import { Home, BarChart3, Table, PieChart } from 'lucide-react'
+import { Home, BarChart3, Table, PieChart, Info } from 'lucide-react'
 
 export function Navigation() {
   const navigate = useNavigate()
@@ -22,6 +22,7 @@ export function Navigation() {
     { path: '/', label: t('app.nav.home'), icon: Home },
     { path: '/assets', label: t('app.nav.assets'), icon: Table },
     { path: '/summary', label: t('app.nav.summary'), icon: PieChart },
+    { path: '/about', label: t('app.nav.about'), icon: Info },
   ]
 
   return (

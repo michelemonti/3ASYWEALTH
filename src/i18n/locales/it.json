@@ -5,7 +5,8 @@
     "nav": {
       "home": "Home",
       "assets": "Asset",
-      "summary": "Riepilogo"
+      "summary": "Riepilogo",
+      "about": "Info"
     }
   },
   "landing": {
@@ -288,5 +289,89 @@
     "back": "Indietro",
     "next": "Avanti",
     "confirm": "Conferma"
+  },
+  "about": {
+    "hero": {
+      "badge": "100% Privacy & Open Source",
+      "title": "Il Tuo Patrimonio, La Tua Privacy, Il Tuo Controllo",
+      "subtitle": "Un'applicazione moderna per il monitoraggio del patrimonio costruita con trasparenza, privacy e fiducia al centro. Nessun server, nessun tracciamento, nessun compromesso."
+    },
+    "features": {
+      "privacy": {
+        "title": "100% Privacy",
+        "description": "I tuoi dati non lasciano mai il browser. Tutto funziona localmente sul tuo dispositivo senza server esterni."
+      },
+      "noAccount": {
+        "title": "Nessuna Registrazione",
+        "description": "Nessun account, password o email richiesta. Inizia a monitorare il tuo patrimonio immediatamente."
+      },
+      "opensource": {
+        "title": "Open Source",
+        "description": "Codice sorgente completo disponibile su GitHub. Verifica ogni riga, suggerisci miglioramenti o fai il fork."
+      },
+      "free": {
+        "title": "Gratis Per Sempre",
+        "description": "Nessun costo nascosto, livelli premium o abbonamenti. Gratis oggi, gratis domani, gratis per sempre."
+      }
+    },
+    "opensource": {
+      "title": "Trasparenza Attraverso l'Open Source",
+      "description": "3ASYWEALTH è completamente open source. Ogni riga di codice è pubblicamente disponibile per revisione, audit e verifica. Non si tratta solo di trasparenza—si tratta di costruire fiducia attraverso la verificabilità.",
+      "challenge": {
+        "title": "🔍 Ti Sfidiamo",
+        "description": "Non fidarti solo di noi—verifica tu stesso! Rivedi il codice, controlla eventuali chiamate ai server, ispeziona il traffico di rete. Siamo sicuri che troverai esattamente ciò che promettiamo: un'applicazione completamente client-side con zero trasmissione dati."
+      },
+      "viewCode": "Vedi Codice Sorgente",
+      "reportIssue": "Segnala un Problema",
+      "benefits": {
+        "transparent": "Completamente Trasparente",
+        "transparentDesc": "Vedi esattamente come i tuoi dati vengono elaborati e salvati",
+        "auditable": "Sicurezza Verificabile",
+        "auditableDesc": "Chiunque può verificare l'assenza di backdoor o tracciamenti",
+        "community": "Guidato dalla Community",
+        "communityDesc": "Contributi e miglioramenti da sviluppatori in tutto il mondo"
+      }
+    },
+    "faq": {
+      "title": "Domande Frequenti",
+      "dataSaving": {
+        "question": "💾 Come funziona il salvataggio dei dati?",
+        "answer": "I tuoi dati vengono salvati direttamente nel browser usando localStorage. Questo significa:\n\n✅ I dati rimangono solo sul tuo dispositivo\n✅ Nessun caricamento su server o sync cloud\n✅ Funziona completamente offline\n✅ Salvataggio/caricamento istantaneo\n\n⚠️ Importante: Se cancelli i dati del browser o usi la modalità incognito, i dati verranno persi. Esporta sempre i dati regolarmente come backup!"
+      },
+      "multiDevice": {
+        "question": "🔄 Posso usare 3ASYWEALTH su più dispositivi?",
+        "answer": "Poiché tutto funziona localmente, i dati non si sincronizzano automaticamente tra dispositivi. Tuttavia puoi:\n\n📤 Esportare i dati come JSON o CSV da un dispositivo\n📥 Importare lo stesso file su un altro dispositivo\n💾 Mantenere un file di backup nel tuo cloud storage (Dropbox, Google Drive, etc.)\n\nQuesta sincronizzazione manuale ti dà il pieno controllo su dove vanno i tuoi dati!"
+      },
+      "safety": {
+        "question": "🔐 È davvero sicuro? Come posso esserne certo?",
+        "answer": "Assolutamente! Ecco come puoi verificare:\n\n🔍 Open Source: Rivedi tutto il codice su GitHub\n🌐 Network Inspector: Apri DevTools del browser (F12) → scheda Network\n   Vedrai ZERO richieste a server esterni\n📱 Modalità Offline: Disattiva internet - funziona ancora!\n🔒 Nessun Tracciamento: Niente analytics, cookie o fingerprinting\n✅ Storage Locale: I dati non lasciano mai il localStorage\n\nIncoraggiamo gli utenti tecnici a verificare il codice e segnalare qualsiasi problema!"
+      },
+      "free": {
+        "question": "💰 È davvero gratis?",
+        "answer": "Sì, 100% gratis per sempre!\n\n✅ Nessun costo nascosto\n✅ Nessuna funzione premium a pagamento\n✅ Nessuna \"prova gratuita\" che scade\n✅ Nessuna pubblicità\n✅ Nessuna vendita di dati\n\nPerché gratis?\n• È un progetto passionale\n• La privacy dovrebbe essere accessibile a tutti\n• L'open source prospera sulla community, non sul profitto\n• Nessun server = nessun costo di hosting da trasferire!"
+      },
+      "features": {
+        "question": "✨ Quali funzionalità sono disponibili?",
+        "answer": "Funzionalità attuali:\n\n📊 Gestione Asset: Traccia tutto il tuo patrimonio in un posto\n📈 Riepilogo Visivo: Grafici del tuo portafoglio\n📄 Report PDF: Genera report professionali localmente\n💾 Importa/Esporta: Supporto CSV e JSON\n🌍 Multilingua: Inglese, Italiano, Spagnolo\n🎨 UI Moderna: Interfaccia pulita e intuitiva\n\nProssimamente (aperti a suggerimenti!):\n• Altri tipi di grafici\n• Filtri e ricerca avanzata\n• Tracciamento storico\n• Altri formati di export"
+      },
+      "dataSecurity": {
+        "question": "🛡️ Cosa succede se perdo i miei dati?",
+        "answer": "La prevenzione è fondamentale:\n\n📤 Export Regolari: Usa 'Esporta JSON' frequentemente\n☁️ Backup Cloud: Salva gli export su Google Drive, Dropbox, etc.\n💾 Copie Multiple: Mantieni backup su dispositivi diversi\n📧 Email: Inviati una copia via email\n\nRecupero:\n• Se hai un file di export → Reimportalo\n• Se hai cancellato i dati del browser → Persi (nessun server per il recupero)\n• Se hai usato dati demo → Ricarica i dati demo\n\nRicorda: Local-first significa che TU controlli i backup!"
+      }
+    },
+    "technical": {
+      "title": "Stack Tecnico",
+      "description": "Costruito con tecnologie moderne e affidabili per massime prestazioni e sicurezza:",
+      "frontend": "Frontend",
+      "storage": "Storage",
+      "export": "Formati Export",
+      "i18n": "Lingue"
+    },
+    "cta": {
+      "title": "Pronto a Prendere il Controllo del Tuo Patrimonio?",
+      "subtitle": "Inizia a monitorare i tuoi asset oggi con privacy e trasparenza complete",
+      "start": "Inizia Ora",
+      "github": "Vedi su GitHub"
+    }
   }
 }
