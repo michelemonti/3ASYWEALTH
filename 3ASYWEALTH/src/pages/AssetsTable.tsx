@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWealthStore } from '@/stores/wealthStore'
 import { Navigation } from '@/components/Navigation'
+import { Footer } from '@/components/Footer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -360,6 +361,8 @@ export function AssetsTable() {
           )}
         </CardContent>
       </Card>
+      
+      <Footer />
     </div>
     </div>
   )

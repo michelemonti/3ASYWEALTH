@@ -47,7 +47,7 @@ export function Navigation() {
                     variant={isActive ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => navigate(tab.path)}
-                    className={isActive ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700' : ''}
+                    className={isActive ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700' : 'text-gray-800 hover:text-gray-900 hover:bg-gray-100'}
                   >
                     <Icon className="w-4 h-4 mr-2" />
                     {tab.label}
@@ -74,7 +74,7 @@ export function Navigation() {
                 variant={isActive ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => navigate(tab.path)}
-                className={`flex-shrink-0 ${isActive ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700' : ''}`}
+                className={`flex-shrink-0 ${isActive ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700' : 'text-gray-800 hover:text-gray-900 hover:bg-gray-100'}`}
               >
                 <Icon className="w-4 h-4 mr-2" />
                 {tab.label}

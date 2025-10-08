@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useWealthStore } from '@/stores/wealthStore'
 import { Navigation } from '@/components/Navigation'
+import { Footer } from '@/components/Footer'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -274,13 +275,13 @@ export function WealthSummary() {
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ name, percentage }) => `\${name} (\${percentage.toFixed(1)}%)`}
+                      label={({ name, percentage }) => `${name} (${percentage.toFixed(1)}%)`}
                       outerRadius={100}
                       fill="#8884d8"
                       dataKey="value"
                     >
                       {pieData.map((entry, index) => (
-                        <Cell key={`cell-\${index}`} fill={entry.color} />
+                        <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
                     <Tooltip
@@ -308,7 +309,7 @@ export function WealthSummary() {
                   <BarChart data={barData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
-                    <YAxis tickFormatter={(value) => `€\${(value / 1000).toFixed(0)}K`} />
+                    <YAxis tickFormatter={(value) => `€${(value / 1000).toFixed(0)}K`} />
                     <Tooltip
                       formatter={(value: number) => formatCurrency(value)}
                       contentStyle={{
@@ -347,7 +348,7 @@ export function WealthSummary() {
                         <div className="flex items-center gap-3">
                           <div
                             className="w-10 h-10 rounded-lg flex items-center justify-center"
-                            style={{ backgroundColor: `\${color}20` }}
+                            style={{ backgroundColor: `${color}20` }}
                           >
                             <IconComponent className="w-5 h-5" style={{ color }} />
                           </div>
@@ -373,7 +374,7 @@ export function WealthSummary() {
                         <div
                           className="h-2 rounded-full"
                           style={{
-                            width: `\${category.percentage}%`,
+                            width: `${category.percentage}%`,
                             backgroundColor: color,
                           }}
                         />
@@ -385,6 +386,8 @@ export function WealthSummary() {
             </CardContent>
           </Card>
         )}
+        
+        <Footer />
       </div>
     </div>
   )
