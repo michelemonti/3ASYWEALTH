@@ -2,213 +2,302 @@
 
 > **Personal Wealth Tracking - 100% Privacy**
 >
-> Gestisci il tuo patrimonio nel tuo browser. Nessun server. Nessun account. Nessuna registrazione.
+> Manage your wealth in your browser. No server. No account. No registration.
 
 **Open Source** | **React + TypeScript** | **Privacy-First**
 
+> 📢 **Based on [3ASYAPP template](https://github.com/michelemonti/3asyapp) by Miky**
+> 
+> - ✅ Free for personal & open source use
+> - 💰 Commercial use requires license
+
 ---
 
-## 🎯 Cos'è 3ASYWEALTH?
+## 🎯 What is 3ASYWEALTH?
 
-**3ASYWEALTH** è un'applicazione web per tracciare e calcolare il tuo patrimonio personale con la **massima privacy**.
+**3ASYWEALTH** is a web application to track and calculate your personal wealth with **maximum privacy**.
 
-### 🔒 Privacy Assoluta
+### 🔒 Absolute Privacy
 
-Nessuno vuole condividere i propri dati finanziari. E avete ragione.
+Nobody wants to share their financial data. And you're right.
 
-Per questo **3ASYWEALTH funziona interamente nel tuo browser**:
-- ❌ **Nessun server riceve i tuoi dati**
-- ❌ **Nessun database esterno**
-- ❌ **Nessun account da creare**
-- ❌ **Nessuna registrazione**
-- ✅ **Tutto salvato in localStorage del browser**
-- ✅ **Esporta/Importa quando vuoi**
+That's why **3ASYWEALTH runs entirely in your browser**:
+- ❌ **No server receives your data**
+- ❌ **No external database**
+- ❌ **No account to create**
+- ❌ **No registration**
+- ✅ **Everything saved in browser localStorage**
+- ✅ **Export/Import whenever you want**
 
-### ✨ Caratteristiche Principali
+### ✨ Key Features
 
-- 🔐 **Privacy-First**: I tuoi dati non lasciano mai il tuo dispositivo
-- ✅ **CRUD Completo**: Aggiungi, modifica ed elimina asset con facilità
-- 📊 **Visualizzazioni Multiple**: Tabella dettagliata e sintesi con grafici
-- 📥 **Import/Export**: Portabilità totale con CSV/JSON (Excel/Google Sheets compatibile)
-- 💾 **localStorage**: Salvataggio automatico nel browser, nessun dato condiviso
-- 🎨 **UI Moderna**: Interfaccia pulita e intuitiva con Tailwind CSS + Shadcn/UI
-- 📱 **Responsive**: Funziona perfettamente su desktop, tablet e mobile
-- 🎭 **Dati Demo**: Dataset generico d'esempio per testare l'app
+- 🔐 **Privacy-First**: Your data never leaves your device
+- ✅ **Full CRUD**: Add, edit, and delete assets with ease
+- 📊 **Multiple Views**: Detailed table and summary with charts
+- � **PDF Reports**: Generate professional wealth reports with charts
+- �📥 **Import/Export**: Total portability with CSV/JSON (Excel/Google Sheets compatible)
+- 🎭 **Demo Data**: Generic sample dataset to test the app
+- 💾 **localStorage**: Automatic browser save, no data shared
+- 🎨 **Modern UI**: Clean, intuitive interface with Tailwind CSS + Shadcn/UI
+- 🌍 **Multilingual**: English, Italian, and Spanish support
+- 📱 **Responsive**: Works perfectly on desktop, tablet, and mobile
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisiti
+### Prerequisites
 
-- **Node.js** 18+ e npm
-- Un browser moderno
+- **Node.js** 18+ and npm
+- A modern browser
 
-### Installazione
+### Installation
 
 \`\`\`bash
-# 1. Naviga nella cartella del progetto
-cd 3ASYWEALTH
+# 1. Navigate to project folder
+cd 3asywealth
 
-# 2. Installa le dipendenze
+# 2. Install dependencies
 npm install
 
-# 3. Avvia il server di sviluppo
+# 3. Start development server
 npm run dev
 
-# 4. Apri il browser su http://localhost:8080
+# 4. Open browser at http://localhost:8080
 \`\`\`
 
-**Fatto!** L'applicazione è pronta all'uso in modalità locale.
+**Done!** The application is ready to use locally.
 
 ---
 
-## 📖 Come Usare
+## 📖 How to Use
 
-### 1️⃣ Vista Tabella (CRUD)
+### 1️⃣ Assets Table
 
-- **Aggiungi asset**: Click "Aggiungi Asset" e compila il form
-- **Modifica/Elimina**: Usa le icone nella tabella
-- **Filtra**: Seleziona una categoria dal dropdown
+- **Add assets**: Click "Add Asset" and fill the form
+- **Edit/Delete**: Use icons in the table
+- **Filter**: Select a category from dropdown
+- **Import/Export**: Use the menu (⋮) to import/export CSV or JSON
+- **Demo Data**: Load sample data to test the app
+- **Clear All**: Remove all data (with confirmation)
 
-### 2️⃣ Vista Sintesi
+### 2️⃣ Summary View
 
-- Visualizza patrimonio totale
-- Grafici a torta e barre per categoria
-- Dettaglio breakdown percentuali
+- View total wealth and key metrics
+- Pie and bar charts by category
+- Detailed percentage breakdown
+- **Generate PDF Report**: Export a professional report with all your data and charts
 
-### 3️⃣ Import/Export
+### 3️⃣ About Page
 
-**Import:**
-- CSV o JSON tramite pulsante "Importa"
-- Formato CSV: `Asset / Società, Quota, Valore (€), Fonte, Note, Categoria`
-
-**Export:**
-- CSV: compatibile con Excel
-- JSON: include metadata completi
-
-### 4️⃣ Dati Demo
-
-Menu "⋮" → "Carica Dati Demo" per testare con dati d'esempio generici:
-- Partecipazioni societarie
-- Immobili
-- Beni personali (crypto, orologi, arte)
-**Demo Dataset** incluso:
-- **Totale: €740,000** (example data)
-- 9 asset d'esempio (partecipazioni, immobili, beni personali, liquidità)
+- Frequently asked questions
+- Privacy guarantees
+- Open source information
+- Technical details
 
 ---
 
-## 🗂️ Categorie Asset
+## 🗂️ Asset Categories
 
-| Categoria | Descrizione | Esempi |
+| Category | Description | Examples |
 |-----------|-------------|--------|
-| **Partecipazioni** 🏢 | Quote societarie | Azioni, quote SRL |
-| **Immobili** 🏠 | Proprietà immobiliari | Case, appartamenti |
-| **Beni Personali** 💎 | Asset di valore | Crypto, orologi, arte |
-| **Liquidità** 💰 | Cash e liquidi | Conti, depositi |
+| **Shares** 🏢 | Corporate holdings | Stocks, company shares |
+| **Real Estate** 🏠 | Property | Houses, apartments |
+| **Personal Assets** 💎 | Valuable assets | Crypto, watches, art |
+| **Cash** 💰 | Liquid assets | Accounts, deposits |
 
 ---
 
-## 🛠️ Stack Tecnologico
+## 🌍 Languages
+
+3ASYWEALTH supports three languages:
+- 🇬🇧 **English**
+- 🇮🇹 **Italian** (Italiano)
+- 🇪🇸 **Spanish** (Español)
+
+Switch languages using the dropdown in the top navigation bar.
+
+---
+
+## 🛠️ Tech Stack
 
 - ⚛️ **React 18** + **TypeScript**
-- ⚡ **Vite** per build e sviluppo
-- 🎨 **Tailwind CSS** + componenti **Shadcn/UI**
-- 🐻 **Zustand** con persistenza su localStorage
-- 📊 **Recharts** per la visualizzazione dei dati
+- ⚡ **Vite** for build and development
+- 🎨 **Tailwind CSS** + **Shadcn/UI** components
+- 🐻 **Zustand** with localStorage persistence
+- 📊 **Recharts** for data visualization
+- 🌍 **i18next** for internationalization (EN/IT/ES)
+- 📄 **jsPDF** + **html2canvas** for PDF report generation
 
 ---
 
-## 📁 Struttura Progetto
+## 📁 Project Structure
 
 \`\`\`
 src/
 ├── pages/
-│   ├── WealthDashboard.tsx    # Dashboard principale
-│   ├── AssetsTable.tsx         # Tabella CRUD
-│   └── WealthSummary.tsx       # Sintesi + grafici
+│   ├── Landing.tsx            # Landing page
+│   ├── AssetsTable.tsx        # Assets CRUD table
+│   ├── WealthSummary.tsx      # Summary + charts + PDF export
+│   ├── About.tsx              # FAQ and information
+│   └── NotFound.tsx           # 404 page
+├── components/
+│   ├── Navigation.tsx         # Top navigation bar
+│   ├── DataActions.tsx        # Import/Export/Demo/Clear menu
+│   ├── PDFReportButton.tsx    # PDF generation button
+│   ├── PrivacyBadge.tsx       # Privacy reassurance badges
+│   └── LanguageSwitcher.tsx   # Language selector
 ├── stores/
-│   └── wealthStore.ts          # Zustand store
+│   └── wealthStore.ts         # Zustand store with persistence
 ├── types/
-│   └── wealth.ts               # TypeScript types
-└── lib/
-    └── importExport.ts         # Import/Export logic
+│   └── wealth.ts              # TypeScript type definitions
+├── lib/
+│   ├── importExport.ts        # CSV/JSON import/export logic
+│   ├── pdfReport.ts           # PDF report generation
+│   └── utils.ts               # Utility functions
+└── i18n/
+    ├── config.ts              # i18next configuration
+    └── locales/
+        ├── en.json            # English translations
+        ├── it.json            # Italian translations
+        └── es.json            # Spanish translations
 \`\`\`
 
 ---
 
-## 💾 Gestione Dati
+## 💾 Data Management
 
-I dati vengono salvati nel **localStorage del browser**:
+Data is saved in the browser's **localStorage**:
 
-✅ **Vantaggi**
-- Sempre disponibili offline
-- Nessun server necessario
-- Privacy totale
-- Zero costi
+✅ **Advantages**
+- Always available offline
+- No server needed
+- Total privacy
+- Zero costs
 
-⚠️ **Importante**
-- Esporta regolarmente i dati come backup
-- I dati sono legati al browser specifico
-- Per usare un altro dispositivo: importa il file esportato
-
----
-
-## 🎨 Personalizzazione
-
-- Categorie: modifica `src/types/wealth.ts`
-- Colori/Tema: aggiorna `tailwind.config.cjs` e `src/index.css`
-- Testo landing page: `src/pages/Landing.tsx`
+⚠️ **Important**
+- Export data regularly as backup
+- Data is tied to specific browser
+- To use another device: import the exported file
 
 ---
 
-## 🚀 Deploy trasparente (GitHub Pages)
+## 🎨 Customization
 
-> Tutto il codice e i dati rimangono pubblici e verificabili. Nessun backend coinvolto.
+Want to customize this app for your needs? Check out the [Customization Guide](docs/CUSTOMIZATION.md) for detailed instructions on:
 
-### 1. Build statica
+- Changing app name and branding
+- Modifying colors and theme
+- Adding/removing asset categories
+- Changing currency and number formats
+- Adding new languages
+- Customizing PDF reports
+- And much more!
+
+Quick customization paths:
+- **Categories**: modify `src/types/wealth.ts`
+- **Colors/Theme**: update `tailwind.config.cjs` and `src/index.css`
+- **Translations**: edit files in `src/i18n/locales/`
+- **Landing page**: edit `src/pages/Landing.tsx`
+
+---
+
+## 🚀 Transparent Deploy (GitHub Pages)
+
+> All code and data remain public and verifiable. No backend involved.
+
+### 1. Static build
 
 ```bash
 npm run build
 ```
 
-Il contenuto pronto per la pubblicazione si trova in `dist/`.
+Ready-to-publish content is in `dist/`.
 
-### 2. Pubblicazione manuale (branch `gh-pages`)
+### 2. Manual publishing (branch `gh-pages`)
 
 ```bash
 git subtree push --prefix dist origin gh-pages
 ```
 
-oppure usa GitHub Actions con uno workflow tipo `actions/deploy-pages` che esegue:
+or use GitHub Actions with a workflow like `actions/deploy-pages` that runs:
 
 ```bash
 npm ci
 npm run build
 ```
 
-e pubblica la cartella `dist/` su GitHub Pages. Nessun segreto richiesto.
+and publishes the `dist/` folder to GitHub Pages. No secrets required.
 
 ---
 
-## 🔧 Comandi
+## 🔧 Commands
 
 ```bash
-npm run dev       # Server di sviluppo con HMR
-npm run build     # Build produzione (cartella dist/)
-npm run preview   # Serve la build locale
-npm run lint      # Controllo qualità TypeScript/ESLint
+npm run dev       # Development server with HMR
+npm run build     # Production build (dist/ folder)
+npm run preview   # Serve local build
+npm run lint      # TypeScript/ESLint quality check
 ```
 
 ---
 
-## 📄 License
+## 📄 License & Credits
 
-Codice rilasciato sotto licenza **MIT**. Consulta il file `LICENSE` per i dettagli.
+### License
+
+This project is based on the **3ASYAPP** template which uses a **commercial license**. See the `LICENSE` file for complete details.
+
+**In brief**: 
+- 🆓 **Personal use**: completely free
+- 🆓 **Portfolio/Demo**: completely free
+- 🆓 **Learning/Study**: completely free
+- 💰 **Commercial use**: **requires paid license**
+
+### What is considered "Commercial Use"?
+
+**Requires commercial license** 💰:
+- ❌ Selling the software or derivative versions
+- ❌ Offering paid services based on this code
+- ❌ Using in business/enterprise applications
+- ❌ Monetizing via ads, subscriptions, or fees
+- ❌ White-labeling for clients
+- ❌ SaaS (Software as a Service)
+
+**Free use allowed** ✅:
+- ✅ Personal projects (managing your own wealth)
+- ✅ Personal portfolio / demo projects
+- ✅ Educational projects / research
+- ✅ Non-profit organizations
+- ✅ Open source (with attribution)
+
+### How to obtain a commercial license
+
+If your use case is commercial, contact the template creator:
+
+**Michele Miky Monti**
+- 📧 Email: michele.monti@me.com
+- 🌐 Website: https://michelemonti.me
+- 💻 GitHub: https://github.com/michelemonti
+- 📦 Template: [3ASYAPP](https://github.com/michelemonti/3asyapp)
+
+**Available license options**:
+- 💼 **Professional License**: For single commercial project
+- 🏢 **Enterprise License**: For unlimited business use
+
+### Credits & Attribution
+
+This project is built using the **3ASYAPP** template by Michele Miky Monti.
+
+**Attribution requirements**:
+- ✅ Keep the copyright notice in the code
+- ✅ Include credit: "Based on 3ASYAPP by Michele Miky Monti"
+- ✅ Link to original template in documentation
+
+**Original template**: [3ASYAPP by Miky](https://github.com/michelemonti/3asyapp)
 
 ---
 
-**Made with ❤️ for wealth tracking**
+**Made with ❤️ for wealth tracking by Miky**
 
-*Ottobre 2025*
+*October 2025*
