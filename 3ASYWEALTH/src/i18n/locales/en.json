@@ -1,0 +1,221 @@
+{
+  "app": {
+    "name": "3ASYWEALTH",
+    "tagline": "Your Wealth, Only Yours",
+    "nav": {
+      "home": "Home",
+      "assets": "Assets",
+      "summary": "Summary"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "100% Privacy - Zero Data Collection",
+      "title": "Your Wealth, Only Yours",
+      "subtitle": "Manage your financial assets with maximum privacy.<br />No server. No account. No registration.<br /><strong>Your data stays in your browser.</strong>",
+      "cta_primary": "Start Now (Free)",
+      "cta_secondary": "How It Works",
+      "badge_privacy": "100% Privacy",
+      "badge_opensource": "Open Source",
+      "badge_free": "Always Free"
+    },
+    "privacy": {
+      "title": "Why No Registration?",
+      "text1": "We know: <strong>nobody wants to share their financial data</strong>. And you're right. Your wealth is your business.",
+      "text2": "That's why 3ASYWEALTH works <strong>entirely in your browser</strong>. There's no server receiving your data. No database. No account. No registration.<br /><span class=\"text-green-700 font-bold\">Zero shared data. Zero tracking. Zero compromises.</span>"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "1. Add Your Assets",
+        "description": "Add holdings, real estate, personal assets and liquidity. Everything is saved <strong>only in your browser</strong> (localStorage)."
+      },
+      "step2": {
+        "title": "2. View & Analyze",
+        "description": "See the total, breakdown by category and interactive charts. Understand where your wealth is concentrated."
+      },
+      "step3": {
+        "title": "3. Export Anytime",
+        "description": "Download your data in CSV or JSON. Keep it on your PC, personal cloud, or USB drive. <strong>They're yours, forever.</strong>"
+      }
+    },
+    "importExport": {
+      "title": "Come Back Anytime",
+      "text": "Did you export your data 6 months ago? No problem.<br /><strong>Import the CSV or JSON file and pick up where you left off.</strong><br /><br />Switching devices? Export on one PC and import on another.<br />Want a backup? Save the file to your personal cloud (Google Drive, Dropbox, iCloud...).<br /><span class=\"text-blue-700 font-bold\">Your data travels with you, not through our servers.</span>"
+    },
+    "features": {
+      "title": "Key Features",
+      "asset_management": {
+        "title": "Complete Asset Management",
+        "description": "Full CRUD for Holdings, Real Estate, Personal Assets and Liquidity"
+      },
+      "charts": {
+        "title": "Interactive Charts",
+        "description": "Visualize breakdown with pie and bar charts"
+      },
+      "import_export": {
+        "title": "Import/Export CSV/JSON",
+        "description": "Total data portability, compatible with Excel/Google Sheets"
+      },
+      "privacy": {
+        "title": "Absolute Privacy",
+        "description": "Everything in browser localStorage, no data leaves your device"
+      },
+      "views": {
+        "title": "Table & Summary View",
+        "description": "Dual visualization: row-by-row detail or overview with totals"
+      },
+      "demo": {
+        "title": "Demo Data Included",
+        "description": "Load sample dataset to try the app immediately"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "💡 How does data saving work?",
+        "answer": "Everything is saved in your browser's <strong>localStorage</strong>. It's like a local mini-database that works only on your device. Data remains even if you close the browser, but is <strong>accessible only to you</strong>."
+      },
+      "q2": {
+        "question": "🔄 Can I use 3ASYWEALTH on multiple devices?",
+        "answer": "Yes! Export your data in CSV or JSON on one device, then import it on another. You can also save the file to a personal cloud (Google Drive, iCloud, Dropbox) to have it always synced."
+      },
+      "q3": {
+        "question": "🗑️ What happens if I clear my browser data?",
+        "answer": "If you clear your browsing data (cache, localStorage), <strong>you'll lose your assets</strong>. That's why it's important to <strong class=\"text-green-600\">export regularly</strong> a backup in CSV or JSON and save it in a safe place."
+      },
+      "q4": {
+        "question": "📊 Can I use Excel with exported files?",
+        "answer": "Absolutely! The CSV format is perfectly compatible with Excel, Google Sheets, Numbers and any other spreadsheet. You can do advanced analysis, custom charts or simply keep a readable backup."
+      },
+      "q5": {
+        "question": "🔐 Is it really safe? How can I be sure?",
+        "answer": "3ASYWEALTH is <strong>open source</strong>! You can check the code on <a href=\"https://github.com/michelemonti/3asywealth\" class=\"text-blue-600 hover:underline\">GitHub</a>. There are no calls to external servers. You can open the browser tools (F12) and see in the Network tab that <strong>no requests are sent</strong> when you enter your data."
+      },
+      "q6": {
+        "question": "💰 Is it really free?",
+        "answer": "Yes, completely free. No hidden costs, no premium plans, no credit card required. It's an <strong>open source project (MIT License)</strong> created for those who want privacy and simplicity."
+      }
+    },
+    "cta": {
+      "title": "Ready to Take Control?",
+      "subtitle": "No account. No credit card. No data shared.<br /><span class=\"text-green-400 font-semibold\">Just you and your wealth.</span>",
+      "button": "Start Now - It's Free",
+      "note": "Works on Chrome, Firefox, Safari, Edge - No installation required"
+    },
+    "footer": "Open Source • MIT License •"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your wealth",
+    "total_wealth": "Total Wealth",
+    "asset_count": "Total Assets",
+    "quick_actions": "Quick Actions",
+    "view_assets": "Manage Assets",
+    "view_summary": "View Summary",
+    "tabs": {
+      "assets": "Assets",
+      "summary": "Summary"
+    },
+    "menu": {
+      "import": "Import",
+      "export_csv": "Export CSV",
+      "export_json": "Export JSON",
+      "demo": "Load Demo Data",
+      "clear": "Clear All"
+    }
+  },
+  "assetsTable": {
+    "title": "Asset Management",
+    "filter": {
+      "all": "All Categories",
+      "shareholdings": "Holdings",
+      "realestate": "Real Estate",
+      "personalassets": "Personal Assets",
+      "cash": "Liquidity"
+    },
+    "add": "Add Asset",
+    "table": {
+      "name": "Asset / Company",
+      "category": "Category",
+      "ownership": "Ownership",
+      "value": "Value (€)",
+      "source": "Source",
+      "notes": "Notes",
+      "actions": "Actions"
+    },
+    "form": {
+      "title_add": "Add New Asset",
+      "title_edit": "Edit Asset",
+      "name": "Asset / Company Name",
+      "name_placeholder": "e.g., Company XYZ, Main House, Bitcoin",
+      "category": "Category",
+      "category_placeholder": "Select a category",
+      "ownership": "Ownership / Quantity",
+      "ownership_placeholder": "e.g., 10%, 100%, 2.5 BTC",
+      "value": "Value (€)",
+      "value_placeholder": "e.g., 50000",
+      "source": "Valuation Source",
+      "source_placeholder": "e.g., 2025 Valuation, Market price",
+      "notes": "Notes",
+      "notes_placeholder": "Additional information...",
+      "cancel": "Cancel",
+      "add": "Add Asset",
+      "save": "Save Changes"
+    },
+    "empty": {
+      "title": "No Assets Yet",
+      "subtitle": "Add your first asset or import data from CSV/JSON",
+      "button": "Add First Asset"
+    },
+    "delete": {
+      "confirm": "Are you sure you want to delete this asset?",
+      "success": "Asset deleted successfully",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "notifications": {
+      "added": "Asset added successfully!",
+      "updated": "Asset updated successfully!",
+      "deleted": "Asset deleted successfully!",
+      "import_success": "{{count}} assets imported successfully!",
+      "import_error": "Error importing file. Make sure the format is correct.",
+      "demo_loaded": "Demo data loaded successfully!",
+      "clear_confirm": "Are you sure you want to delete ALL assets? This action cannot be undone.",
+      "clear_success": "All assets have been cleared."
+    }
+  },
+  "summary": {
+    "title": "Wealth Summary",
+    "total": "Total Wealth",
+    "by_category": "Breakdown by Category",
+    "asset_count": "Total Assets",
+    "category_distribution": "Category Distribution",
+    "category_comparison": "Comparison by Category",
+    "empty": {
+      "title": "No Data to Display",
+      "message": "This page shows an overview of your assets, but you haven't added any yet.",
+      "cta": "Go to Dashboard to add your first asset or import data from CSV/JSON files."
+    }
+  },
+  "categories": {
+    "shareholdings": "Holdings",
+    "realestate": "Real Estate",
+    "personalassets": "Personal Assets",
+    "cash": "Liquidity"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "back": "Back",
+    "next": "Next",
+    "confirm": "Confirm"
+  }
+}

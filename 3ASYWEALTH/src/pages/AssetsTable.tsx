@@ -1,5 +1,5 @@
 /**
- * 📊 Assets Table Page
+ * Assets Table Page
  * 
  * CRUD interface for managing wealth assets
  * 
@@ -8,7 +8,9 @@
  */
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useWealthStore } from '@/stores/wealthStore'
+import { Navigation } from '@/components/Navigation'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -50,15 +52,19 @@ const categoryIcons = {
 }
 
 export function AssetsTable() {
+  const { t } = useTranslation()
   const { assets, addAsset, updateAsset, deleteAsset } = useWealthStore()
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [editingAsset, setEditingAsset] = useState<string | null>(null)
   const [filterCategory, setFilterCategory] = useState<AssetCategory | 'all'>('all')
 
+  // Helper to get translated category label
+  const getCategoryLabel = (category: AssetCategory) => t(`categories.${category}`)
+
   // Form state
   const [formData, setFormData] = useState({
     name: '',
-    category: 'Partecipazioni' as AssetCategory,
+    category: 'shareholdings' as AssetCategory,
     ownership: '',
     value: '',
     source: '',
@@ -67,7 +73,7 @@ export function AssetsTable() {
 
   const handleSubmit = () => {
     if (!formData.name || !formData.value) {
-      alert('Nome e Valore sono obbligatori')
+      alert(t('assetsTable.form.name') + ' and ' + t('assetsTable.form.value'))
       return
     }
 
@@ -108,7 +114,7 @@ export function AssetsTable() {
   }
 
   const handleDelete = (assetId: string) => {
-    if (confirm('Sei sicuro di voler eliminare questo asset?')) {
+    if (confirm(t('assetsTable.delete.confirm'))) {
       deleteAsset(assetId)
     }
   }
@@ -116,7 +122,7 @@ export function AssetsTable() {
   const resetForm = () => {
     setFormData({
       name: '',
-      category: 'Partecipazioni',
+      category: 'shareholdings',
       ownership: '',
       value: '',
       source: '',
@@ -139,14 +145,17 @@ export function AssetsTable() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Card>
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      
+      <div className="container mx-auto px-4 py-8">
+        <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-2xl">I Tuoi Asset</CardTitle>
+              <CardTitle className="text-2xl">{t('assetsTable.title')}</CardTitle>
               <CardDescription>
-                Gestisci il tuo patrimonio: aggiungi, modifica ed elimina asset
+                {t('assetsTable.empty.subtitle')}
               </CardDescription>
             </div>
             <Dialog open={isAddDialogOpen} onOpenChange={(open) => {
@@ -156,33 +165,33 @@ export function AssetsTable() {
               <DialogTrigger asChild>
                 <Button>
                   <Plus className="w-4 h-4 mr-2" />
-                  Aggiungi Asset
+                  {t('assetsTable.add')}
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl">
                 <DialogHeader>
                   <DialogTitle>
-                    {editingAsset ? 'Modifica Asset' : 'Nuovo Asset'}
+                    {editingAsset ? t('assetsTable.form.title_edit') : t('assetsTable.form.title_add')}
                   </DialogTitle>
                   <DialogDescription>
-                    Inserisci i dettagli dell'asset
+                    {t('assetsTable.form.name_placeholder')}
                   </DialogDescription>
                 </DialogHeader>
 
                 <div className="grid gap-4 py-4">
                   <div className="grid gap-2">
-                    <Label htmlFor="name">Nome Asset / Società *</Label>
+                    <Label htmlFor="name">{t('assetsTable.form.name')} *</Label>
                     <Input
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="es. Startup Tech SRL"
+                      placeholder={t('assetsTable.form.name_placeholder')}
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="grid gap-2">
-                      <Label htmlFor="category">Categoria *</Label>
+                      <Label htmlFor="category">{t('assetsTable.form.category')} *</Label>
                       <Select
                         value={formData.category}
                         onValueChange={(value) =>
@@ -193,9 +202,9 @@ export function AssetsTable() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {Object.entries(CATEGORY_METADATA).map(([key, meta]) => (
+                          {Object.keys(CATEGORY_METADATA).map((key) => (
                             <SelectItem key={key} value={key}>
-                              {meta.label}
+                              {getCategoryLabel(key as AssetCategory)}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -203,44 +212,44 @@ export function AssetsTable() {
                     </div>
 
                     <div className="grid gap-2">
-                      <Label htmlFor="ownership">Quota / Quantità</Label>
+                      <Label htmlFor="ownership">{t('assetsTable.form.ownership')}</Label>
                       <Input
                         id="ownership"
                         value={formData.ownership}
                         onChange={(e) => setFormData({ ...formData, ownership: e.target.value })}
-                        placeholder="es. 25% o 100%"
+                        placeholder={t('assetsTable.form.ownership_placeholder')}
                       />
                     </div>
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="value">Valore (€) *</Label>
+                    <Label htmlFor="value">{t('assetsTable.form.value')} *</Label>
                     <Input
                       id="value"
                       type="number"
                       value={formData.value}
                       onChange={(e) => setFormData({ ...formData, value: e.target.value })}
-                      placeholder="es. 100000"
+                      placeholder={t('assetsTable.form.value_placeholder')}
                     />
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="source">Fonte / Base di Stima</Label>
+                    <Label htmlFor="source">{t('assetsTable.form.source')}</Label>
                     <Input
                       id="source"
                       value={formData.source}
                       onChange={(e) => setFormData({ ...formData, source: e.target.value })}
-                      placeholder="es. Perizia, Valutazione di mercato"
+                      placeholder={t('assetsTable.form.source_placeholder')}
                     />
                   </div>
 
                   <div className="grid gap-2">
-                    <Label htmlFor="notes">Note / Compensi</Label>
+                    <Label htmlFor="notes">{t('assetsTable.form.notes')}</Label>
                     <Textarea
                       id="notes"
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      placeholder="Note aggiuntive..."
+                      placeholder={t('assetsTable.form.notes_placeholder')}
                       rows={3}
                     />
                   </div>
@@ -251,10 +260,10 @@ export function AssetsTable() {
                     setIsAddDialogOpen(false)
                     resetForm()
                   }}>
-                    Annulla
+                    {t('common.cancel')}
                   </Button>
                   <Button onClick={handleSubmit}>
-                    {editingAsset ? 'Salva Modifiche' : 'Aggiungi'}
+                    {editingAsset ? t('assetsTable.form.save') : t('assetsTable.form.add')}
                   </Button>
                 </DialogFooter>
               </DialogContent>
@@ -270,13 +279,13 @@ export function AssetsTable() {
               onValueChange={(value) => setFilterCategory(value as AssetCategory | 'all')}
             >
               <SelectTrigger className="w-[200px]">
-                <SelectValue placeholder="Filtra per categoria" />
+                <SelectValue placeholder={t('assetsTable.filter.all')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Tutte le categorie</SelectItem>
-                {Object.entries(CATEGORY_METADATA).map(([key, meta]) => (
+                <SelectItem value="all">{t('assetsTable.filter.all')}</SelectItem>
+                {Object.keys(CATEGORY_METADATA).map((key) => (
                   <SelectItem key={key} value={key}>
-                    {meta.label}
+                    {getCategoryLabel(key as AssetCategory)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -286,25 +295,26 @@ export function AssetsTable() {
           {/* Table */}
           {filteredAssets.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
-              <p className="text-lg mb-2">Nessun asset trovato</p>
-              <p className="text-sm">Aggiungi il tuo primo asset per iniziare</p>
+              <p className="text-lg mb-2">{t('assetsTable.empty.title')}</p>
+              <p className="text-sm">{t('assetsTable.empty.button')}</p>
             </div>
           ) : (
             <div className="rounded-md border">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Asset / Società</TableHead>
-                    <TableHead>Categoria</TableHead>
-                    <TableHead>Quota</TableHead>
-                    <TableHead className="text-right">Valore</TableHead>
-                    <TableHead>Fonte</TableHead>
-                    <TableHead className="w-[100px]">Azioni</TableHead>
+                    <TableHead>{t('assetsTable.table.name')}</TableHead>
+                    <TableHead>{t('assetsTable.table.category')}</TableHead>
+                    <TableHead>{t('assetsTable.table.ownership')}</TableHead>
+                    <TableHead className="text-right">{t('assetsTable.table.value')}</TableHead>
+                    <TableHead>{t('assetsTable.table.source')}</TableHead>
+                    <TableHead className="w-[100px]">{t('assetsTable.table.actions')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredAssets.map((asset) => {
                     const metadata = CATEGORY_METADATA[asset.category]
+                    if (!metadata) return null // Skip invalid categories
                     const IconComponent = categoryIcons[metadata.icon as keyof typeof categoryIcons]
                     
                     return (
@@ -313,7 +323,7 @@ export function AssetsTable() {
                         <TableCell>
                           <Badge variant="secondary" className="flex items-center gap-1 w-fit">
                             <IconComponent className="w-3 h-3" />
-                            {metadata.label}
+                            {getCategoryLabel(asset.category)}
                           </Badge>
                         </TableCell>
                         <TableCell>{asset.ownership}</TableCell>
@@ -350,6 +360,7 @@ export function AssetsTable() {
           )}
         </CardContent>
       </Card>
+    </div>
     </div>
   )
 }

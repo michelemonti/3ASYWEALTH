@@ -1,5 +1,5 @@
 /**
- * 💰 Wealth Dashboard
+ * Wealth Dashboard
  * 
  * Main dashboard for wealth tracking with tabs for table and summary views
  * 
@@ -8,11 +8,11 @@
  */
 
 import { useState, useRef, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useWealthStore } from '@/stores/wealthStore'
-import { AssetsTable } from './AssetsTable'
-import { WealthSummary } from './WealthSummary'
 import { Button } from '@/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Navigation } from '@/components/Navigation'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,6 +44,8 @@ import { downloadCSV, downloadJSON, importCSVFile, importJSONFile } from '@/lib/
 import { toast } from 'sonner'
 
 export function WealthDashboard() {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
   const { assets, importAssets, clearAssets, loadDemoData } = useWealthStore()
   const [showClearDialog, setShowClearDialog] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -55,17 +57,17 @@ export function WealthDashboard() {
 
   const handleExportCSV = () => {
     if (assets.length === 0) {
-      toast.error('Nessun asset da esportare')
+      toast.error(t('assetsTable.notifications.import_error'))
       return
     }
 
     downloadCSV(assets, `wealth-${new Date().toISOString().split('T')[0]}.csv`)
-    toast.success('Dati esportati in CSV')
+    toast.success(t('assetsTable.notifications.added'))
   }
 
   const handleExportJSON = () => {
     if (assets.length === 0) {
-      toast.error('Nessun asset da esportare')
+      toast.error(t('assetsTable.notifications.import_error'))
       return
     }
 
@@ -77,7 +79,7 @@ export function WealthDashboard() {
       lastUpdated: new Date(),
     }
     downloadJSON(assets, summary, `wealth-${new Date().toISOString().split('T')[0]}.json`)
-    toast.success('Dati esportati in JSON')
+    toast.success(t('assetsTable.notifications.added'))
   }
 
   const handleImportClick = () => {
@@ -97,19 +99,19 @@ export function WealthDashboard() {
       
       if (actualFormat === 'csv') {
         importedAssets = await importCSVFile(file)
-        toast.success(`${importedAssets.length} asset importati da CSV`)
+        toast.success(t('assetsTable.notifications.import_success', { count: importedAssets.length }))
       } else {
         importedAssets = await importJSONFile(file)
-        toast.success(`${importedAssets.length} asset importati da JSON`)
+        toast.success(t('assetsTable.notifications.import_success', { count: importedAssets.length }))
       }
 
       if (importedAssets.length > 0) {
         importAssets(importedAssets)
       } else {
-        toast.warning('Nessun asset trovato nel file')
+        toast.warning(t('assetsTable.notifications.import_error'))
       }
     } catch (error) {
-      toast.error('Errore durante l\'importazione: ' + (error as Error).message)
+      toast.error(t('assetsTable.notifications.import_error'))
     }
 
     // Reset input
@@ -120,49 +122,51 @@ export function WealthDashboard() {
 
   const handleLoadDemo = () => {
     loadDemoData()
-    toast.success('Dati demo caricati (Miky Monti)')
+    toast.success(t('assetsTable.notifications.demo_loaded'))
   }
 
   const handleClearData = () => {
     clearAssets()
     setShowClearDialog(false)
-    toast.success('Tutti i dati sono stati cancellati')
+    toast.success(t('assetsTable.notifications.clear_success'))
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                💰 3ASYWEALTH
-              </h1>
-              <p className="text-gray-600 mt-1">
-                Gestione e monitoraggio del patrimonio personale
-              </p>
-            </div>
+      {/* Navigation */}
+      <Navigation />
 
-            <div className="flex items-center gap-3">
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">
+              {t('dashboard.title')}
+            </h1>
+            <p className="text-gray-600 text-sm mt-1">
+              {t('dashboard.subtitle')}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
               {/* Export Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline">
                     <Download className="w-4 h-4 mr-2" />
-                    Esporta
+                    {t('dashboard.menu.export_csv').split(' ')[0]}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Formato Export</DropdownMenuLabel>
+                  <DropdownMenuLabel>{t('dashboard.menu.export_csv').split(' ')[0]}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleExportCSV}>
                     <FileText className="w-4 h-4 mr-2" />
-                    Esporta CSV
+                    {t('dashboard.menu.export_csv')}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleExportJSON}>
                     <FileJson className="w-4 h-4 mr-2" />
-                    Esporta JSON
+                    {t('dashboard.menu.export_json')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -172,15 +176,15 @@ export function WealthDashboard() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline">
                     <Upload className="w-4 h-4 mr-2" />
-                    Importa
+                    {t('dashboard.menu.import')}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Seleziona File (CSV o JSON)</DropdownMenuLabel>
+                  <DropdownMenuLabel>{t('dashboard.menu.import')}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleImportClick}>
                     <Upload className="w-4 h-4 mr-2" />
-                    Scegli File da Importare
+                    {t('dashboard.menu.import')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -193,11 +197,11 @@ export function WealthDashboard() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Azioni</DropdownMenuLabel>
+                  <DropdownMenuLabel>{t('common.add')}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLoadDemo}>
                     <Database className="w-4 h-4 mr-2" />
-                    Carica Dati Demo
+                    {t('dashboard.menu.demo')}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem 
@@ -205,55 +209,55 @@ export function WealthDashboard() {
                     className="text-red-600"
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
-                    Cancella Tutti i Dati
+                    {t('dashboard.menu.clear')}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </div>
 
-          {/* Stats Bar */}
-          {assets.length > 0 && (
-            <div className="mt-4 flex items-center gap-6 text-sm text-gray-600">
-              <span>
-                <strong>{assets.length}</strong> asset totali
-              </span>
-              <span>
-                <strong>
-                  {new Intl.NumberFormat('it-IT', {
-                    style: 'currency',
-                    currency: 'EUR',
-                    minimumFractionDigits: 0,
-                  }).format(totalWealth)}
-                </strong>
-                {' '}patrimonio totale
-              </span>
+          {/* Dashboard Overview Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            {/* Total Wealth Card */}
+            <div className="bg-white rounded-lg p-6 shadow-sm border">
+              <h3 className="text-sm font-medium text-gray-500 mb-2">
+                {t('dashboard.total_wealth')}
+              </h3>
+              <p className="text-3xl font-bold text-gray-900">
+                {new Intl.NumberFormat('it-IT', {
+                  style: 'currency',
+                  currency: 'EUR',
+                  minimumFractionDigits: 0,
+                }).format(totalWealth)}
+              </p>
             </div>
-          )}
+
+            {/* Asset Count Card */}
+            <div className="bg-white rounded-lg p-6 shadow-sm border">
+              <h3 className="text-sm font-medium text-gray-500 mb-2">
+                {t('dashboard.asset_count')}
+              </h3>
+              <p className="text-3xl font-bold text-gray-900">
+                {assets.length}
+              </p>
+            </div>
+
+            {/* Quick Actions Card */}
+            <div className="bg-white rounded-lg p-6 shadow-sm border">
+              <h3 className="text-sm font-medium text-gray-500 mb-4">
+                {t('dashboard.quick_actions')}
+              </h3>
+              <div className="flex flex-col gap-2">
+                <Button onClick={() => navigate('/assets')} className="w-full">
+                  {t('dashboard.view_assets')}
+                </Button>
+                <Button variant="outline" onClick={() => navigate('/summary')} className="w-full">
+                  {t('dashboard.view_summary')}
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <Tabs defaultValue="table" className="py-6">
-        <div className="container mx-auto px-4">
-          <TabsList className="mb-6">
-            <TabsTrigger value="table" className="px-6">
-              📋 Tabella Asset
-            </TabsTrigger>
-            <TabsTrigger value="summary" className="px-6">
-              📊 Sintesi & Grafici
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="table" className="mt-0">
-            <AssetsTable />
-          </TabsContent>
-
-          <TabsContent value="summary" className="mt-0">
-            <WealthSummary />
-          </TabsContent>
-        </div>
-      </Tabs>
 
       {/* Hidden File Input */}
       <input
@@ -268,21 +272,18 @@ export function WealthDashboard() {
       <AlertDialog open={showClearDialog} onOpenChange={setShowClearDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Sei sicuro?</AlertDialogTitle>
+            <AlertDialogTitle>{t('assetsTable.delete.confirm')}</AlertDialogTitle>
             <AlertDialogDescription>
-              Questa azione cancellerà permanentemente tutti i tuoi asset.
-              Questa operazione non può essere annullata.
-              <br /><br />
-              <strong>Consiglio:</strong> Esporta i tuoi dati prima di procedere.
+              {t('assetsTable.notifications.clear_confirm')}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Annulla</AlertDialogCancel>
+            <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
             <AlertDialogAction 
               onClick={handleClearData}
               className="bg-red-600 hover:bg-red-700"
             >
-              Cancella Tutto
+              {t('dashboard.menu.clear')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

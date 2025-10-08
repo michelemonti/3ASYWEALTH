@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
+import { Navigation } from '@/components/Navigation';
 import { 
   Shield, 
   Download, 
@@ -19,6 +20,9 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Navigation */}
+      <Navigation />
+      
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto mb-16">
@@ -44,7 +48,7 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
             <Button 
               size="lg" 
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/assets')}
               className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
             >
               <Sparkles className="mr-2 h-5 w-5" />
@@ -347,7 +351,7 @@ export default function Landing() {
             </p>
             <Button 
               size="lg"
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/assets')}
               className="text-lg px-12 py-6 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white"
             >
               <Sparkles className="mr-2 h-5 w-5" />

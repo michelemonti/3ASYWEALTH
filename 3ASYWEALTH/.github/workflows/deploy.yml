@@ -32,15 +32,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_AUTH_MODE: supabase
-          VITE_AZURE_CLIENT_ID: ""
-          VITE_AZURE_TENANT_ID: ""
-          VITE_AZURE_REDIRECT_URI: ""
-          VITE_ENABLE_BLOCKCHAIN: "false"
-          VITE_AI_ENABLED: "false"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,5 +1,5 @@
 /**
- * 💰 Wealth Types
+ * Wealth Types
  * 
  * Type definitions for wealth tracking features
  * 
@@ -8,17 +8,17 @@
  */
 
 // =============================================================================
-// 📊 ASSET CATEGORIES
+// ASSET CATEGORIES
 // =============================================================================
 
 export type AssetCategory = 
-  | 'Partecipazioni'      // Shareholdings/Equity
-  | 'Immobili'            // Real Estate
-  | 'Beni personali'      // Personal Assets
-  | 'Liquidità'           // Cash/Liquidity
+  | 'shareholdings'       // Shareholdings/Equity/Partecipazioni
+  | 'realestate'          // Real Estate/Immobili
+  | 'personalassets'      // Personal Assets/Beni personali
+  | 'cash'                // Cash/Liquidity/Liquidità
 
 // =============================================================================
-// 💼 ASSET INTERFACE
+// ASSET INTERFACE
 // =============================================================================
 
 export interface Asset {
@@ -31,11 +31,11 @@ export interface Asset {
   notes?: string                  // Additional notes/compensation
   createdAt: Date
   updatedAt: Date
-  userId?: string                 // For multi-user support
+  userId?: string                 // For multi-user support (optional)
 }
 
 // =============================================================================
-// 📈 SUMMARY INTERFACES
+// SUMMARY INTERFACES
 // =============================================================================
 
 export interface CategorySummary {
@@ -53,7 +53,7 @@ export interface WealthSummary {
 }
 
 // =============================================================================
-// 📥 IMPORT/EXPORT INTERFACES
+// IMPORT/EXPORT INTERFACES
 // =============================================================================
 
 export interface ImportRow {
@@ -73,7 +73,7 @@ export interface ExportData {
 }
 
 // =============================================================================
-// 🎨 CATEGORY METADATA
+// CATEGORY METADATA
 // =============================================================================
 
 export interface CategoryMetadata {
@@ -84,26 +84,26 @@ export interface CategoryMetadata {
 }
 
 export const CATEGORY_METADATA: Record<AssetCategory, CategoryMetadata> = {
-  'Partecipazioni': {
-    label: 'Partecipazioni',
+  'shareholdings': {
+    label: 'Holdings',
     icon: 'Building2',
     color: 'blue',
     description: 'Shares and equity holdings'
   },
-  'Immobili': {
-    label: 'Immobili',
+  'realestate': {
+    label: 'Real Estate',
     icon: 'Home',
     color: 'green',
     description: 'Real estate properties'
   },
-  'Beni personali': {
-    label: 'Beni Personali',
+  'personalassets': {
+    label: 'Personal Assets',
     icon: 'Gem',
     color: 'purple',
     description: 'Personal valuable assets'
   },
-  'Liquidità': {
-    label: 'Liquidità',
+  'cash': {
+    label: 'Liquidity',
     icon: 'Wallet',
     color: 'amber',
     description: 'Cash and liquid assets'

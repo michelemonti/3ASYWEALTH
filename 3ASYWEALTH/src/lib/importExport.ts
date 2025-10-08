@@ -1,5 +1,5 @@
 /**
- * 📥 Import/Export Utilities
+ * Import/Export Utilities
  * 
  * Helpers for importing and exporting wealth data
  * 
@@ -10,8 +10,45 @@
 import type { Asset, AssetCategory, ExportData, WealthSummary } from '@/types/wealth'
 
 // =============================================================================
-// 📥 CSV IMPORT
+// CSV IMPORT
 // =============================================================================
+
+/**
+ * Parse category string to AssetCategory (supports multiple languages)
+ */
+export const parseCategory = (value: string): AssetCategory => {
+  const normalized = value.toLowerCase().trim()
+  
+  // Map multilingual category names to English keys
+  const categoryMap: Record<string, AssetCategory> = {
+    // English
+    'shareholdings': 'shareholdings',
+    'holdings': 'shareholdings',
+    'shares': 'shareholdings',
+    'equity': 'shareholdings',
+    'realestate': 'realestate',
+    'real estate': 'realestate',
+    'property': 'realestate',
+    'personalassets': 'personalassets',
+    'personal assets': 'personalassets',
+    'assets': 'personalassets',
+    'cash': 'cash',
+    'liquidity': 'cash',
+    'liquid': 'cash',
+    // Italian
+    'partecipazioni': 'shareholdings',
+    'immobili': 'realestate',
+    'beni personali': 'personalassets',
+    'liquidità': 'cash',
+    // Spanish
+    'participaciones': 'shareholdings',
+    'bienes raíces': 'realestate',
+    'activos personales': 'personalassets',
+    'liquidez': 'cash',
+  }
+  
+  return categoryMap[normalized] || 'personalassets'
+}
 
 /**
  * Parse CSV file to assets
@@ -35,13 +72,12 @@ export function parseCSV(csvText: string): Asset[] {
     // Parse value
     const value = parseFloat(valueStr.replace(/[^\d.-]/g, '')) || 0
 
-    // Validate category
-    const validCategories: AssetCategory[] = ['Partecipazioni', 'Immobili', 'Beni personali', 'Liquidità']
-    const assetCategory = validCategories.find(c => c.toLowerCase() === category.toLowerCase()) || 'Beni personali'
+    // Parse category with multilingual support
+    const assetCategory = parseCategory(category)
 
     assets.push({
       id: crypto.randomUUID(),
-      name: name || 'Asset senza nome',
+      name: name || 'Unnamed Asset',
       category: assetCategory,
       ownership: ownership || '-',
       value,
@@ -72,13 +108,13 @@ export async function importCSVFile(file: File): Promise<Asset[]> {
       }
     }
     
-    reader.onerror = () => reject(new Error('Errore nella lettura del file'))
+    reader.onerror = () => reject(new Error('Error reading file'))
     reader.readAsText(file)
   })
 }
 
 // =============================================================================
-// 📤 CSV EXPORT
+// CSV EXPORT
 // =============================================================================
 
 /**
@@ -130,27 +166,11 @@ export function downloadCSV(assets: Asset[], filename = 'wealth-export.csv') {
 }
 
 // =============================================================================
-// 📥 JSON IMPORT
+// JSON IMPORT
 // =============================================================================
 
-/**
- * Parse JSON file to assets
- */
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null
-
-const parseCategory = (value: unknown): AssetCategory => {
-  if (typeof value === 'string') {
-    const normalized = value.toLowerCase()
-    const categories: AssetCategory[] = ['Partecipazioni', 'Immobili', 'Beni personali', 'Liquidità']
-    const match = categories.find((category) => category.toLowerCase() === normalized)
-    if (match) {
-      return match
-    }
-  }
-
-  return 'Beni personali'
-}
 
 const parseDate = (value: unknown): Date => {
   if (value instanceof Date) {
@@ -169,6 +189,9 @@ const parseDate = (value: unknown): Date => {
 
 type RawAsset = Record<string, unknown>
 
+/**
+ * Parse JSON file to assets
+ */
 export function parseJSON(jsonText: string): Asset[] {
   try {
     const data = JSON.parse(jsonText)
@@ -181,12 +204,12 @@ export function parseJSON(jsonText: string): Asset[] {
     } else if (isRecord(data) && Array.isArray(data.assets)) {
       assets = data.assets.filter((item): item is RawAsset => isRecord(item))
     } else {
-      throw new Error('Formato JSON non valido')
+      throw new Error('Invalid JSON format')
     }
 
     return assets.map((asset) => {
       const id = typeof asset.id === 'string' && asset.id.length > 0 ? asset.id : crypto.randomUUID()
-      const name = typeof asset.name === 'string' && asset.name.trim().length > 0 ? asset.name : 'Asset senza nome'
+      const name = typeof asset.name === 'string' && asset.name.trim().length > 0 ? asset.name : 'Unnamed Asset'
       const ownership = typeof asset.ownership === 'string' && asset.ownership.length > 0 ? asset.ownership : '-'
       const source = typeof asset.source === 'string' ? asset.source : ''
       const notes = typeof asset.notes === 'string' ? asset.notes : undefined
@@ -195,10 +218,14 @@ export function parseJSON(jsonText: string): Asset[] {
         ? asset.value
         : parseFloat(String(asset.value ?? '0')) || 0
 
+      // Parse category with type safety
+      const categoryValue = typeof asset.category === 'string' ? asset.category : ''
+      const category = parseCategory(categoryValue)
+
       return {
         id,
         name,
-        category: parseCategory(asset.category),
+        category,
         ownership,
         value,
         source,
@@ -209,7 +236,7 @@ export function parseJSON(jsonText: string): Asset[] {
       }
     })
   } catch (error) {
-    throw new Error('Errore nel parsing JSON: ' + (error as Error).message)
+    throw new Error('JSON parsing error: ' + (error as Error).message)
   }
 }
 
@@ -230,13 +257,13 @@ export async function importJSONFile(file: File): Promise<Asset[]> {
       }
     }
     
-    reader.onerror = () => reject(new Error('Errore nella lettura del file'))
+    reader.onerror = () => reject(new Error('Error reading file'))
     reader.readAsText(file)
   })
 }
 
 // =============================================================================
-// 📤 JSON EXPORT
+// JSON EXPORT
 // =============================================================================
 
 /**

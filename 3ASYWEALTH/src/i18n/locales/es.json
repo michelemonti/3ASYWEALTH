@@ -1,0 +1,221 @@
+{
+  "app": {
+    "name": "3ASYWEALTH",
+    "tagline": "Tu Patrimonio, Solo Tuyo",
+    "nav": {
+      "home": "Inicio",
+      "assets": "Activos",
+      "summary": "Resumen"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "100% Privacidad - Cero Recopilación de Datos",
+      "title": "Tu Patrimonio, Solo Tuyo",
+      "subtitle": "Gestiona tus activos financieros con máxima privacidad.<br />Sin servidor. Sin cuenta. Sin registro.<br /><strong>Tus datos permanecen en tu navegador.</strong>",
+      "cta_primary": "Comenzar Ahora (Gratis)",
+      "cta_secondary": "Cómo Funciona",
+      "badge_privacy": "100% Privacidad",
+      "badge_opensource": "Código Abierto",
+      "badge_free": "Siempre Gratis"
+    },
+    "privacy": {
+      "title": "¿Por Qué Sin Registro?",
+      "text1": "Lo sabemos: <strong>nadie quiere compartir sus datos financieros</strong>. Y tienes razón. Tu patrimonio es asunto tuyo.",
+      "text2": "Por eso 3ASYWEALTH funciona <strong>completamente en tu navegador</strong>. No hay ningún servidor que reciba tus datos. No hay base de datos. No hay cuenta. No hay registro.<br /><span class=\"text-green-700 font-bold\">Cero datos compartidos. Cero rastreo. Cero compromisos.</span>"
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona",
+      "step1": {
+        "title": "1. Agrega Tus Activos",
+        "description": "Agrega participaciones, bienes raíces, activos personales y liquidez. Todo se guarda <strong>solo en tu navegador</strong> (localStorage)."
+      },
+      "step2": {
+        "title": "2. Visualiza y Analiza",
+        "description": "Ve el total, desglose por categoría y gráficos interactivos. Entiende dónde está concentrada tu riqueza."
+      },
+      "step3": {
+        "title": "3. Exporta Cuando Quieras",
+        "description": "Descarga tus datos en CSV o JSON. Manténlos en tu PC, nube personal, o memoria USB. <strong>Son tuyos, para siempre.</strong>"
+      }
+    },
+    "importExport": {
+      "title": "Regresa Cuando Quieras",
+      "text": "¿Exportaste tus datos hace 6 meses? No hay problema.<br /><strong>Importa el archivo CSV o JSON y continúa donde lo dejaste.</strong><br /><br />¿Cambias de dispositivo? Exporta en una PC e importa en otra.<br />¿Quieres un respaldo? Guarda el archivo en tu nube personal (Google Drive, Dropbox, iCloud...).<br /><span class=\"text-blue-700 font-bold\">Tus datos viajan contigo, no a través de nuestros servidores.</span>"
+    },
+    "features": {
+      "title": "Características Principales",
+      "asset_management": {
+        "title": "Gestión Completa de Activos",
+        "description": "CRUD completo para Participaciones, Bienes Raíces, Activos Personales y Liquidez"
+      },
+      "charts": {
+        "title": "Gráficos Interactivos",
+        "description": "Visualiza desglose con gráficos de pastel y barras"
+      },
+      "import_export": {
+        "title": "Importar/Exportar CSV/JSON",
+        "description": "Portabilidad total de datos, compatible con Excel/Google Sheets"
+      },
+      "privacy": {
+        "title": "Privacidad Absoluta",
+        "description": "Todo en localStorage del navegador, ningún dato sale de tu dispositivo"
+      },
+      "views": {
+        "title": "Vista Tabla y Resumen",
+        "description": "Visualización dual: detalle fila por fila o vista general con totales"
+      },
+      "demo": {
+        "title": "Datos Demo Incluidos",
+        "description": "Carga conjunto de datos de muestra para probar la app inmediatamente"
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": {
+        "question": "💡 ¿Cómo funciona el guardado de datos?",
+        "answer": "Todo se guarda en el <strong>localStorage de tu navegador</strong>. Es como una mini-base de datos local que funciona solo en tu dispositivo. Los datos permanecen aunque cierres el navegador, pero son <strong>accesibles solo para ti</strong>."
+      },
+      "q2": {
+        "question": "🔄 ¿Puedo usar 3ASYWEALTH en múltiples dispositivos?",
+        "answer": "¡Sí! Exporta tus datos en CSV o JSON en un dispositivo, luego impórtalos en otro. También puedes guardar el archivo en una nube personal (Google Drive, iCloud, Dropbox) para tenerlo siempre sincronizado."
+      },
+      "q3": {
+        "question": "🗑️ ¿Qué pasa si borro los datos del navegador?",
+        "answer": "Si borras los datos de navegación (caché, localStorage), <strong>perderás tus activos</strong>. Por eso es importante <strong class=\"text-green-600\">exportar regularmente</strong> un respaldo en CSV o JSON y guardarlo en un lugar seguro."
+      },
+      "q4": {
+        "question": "📊 ¿Puedo usar Excel con los archivos exportados?",
+        "answer": "¡Por supuesto! El formato CSV es perfectamente compatible con Excel, Google Sheets, Numbers y cualquier otra hoja de cálculo. Puedes hacer análisis avanzados, gráficos personalizados o simplemente mantener un respaldo legible."
+      },
+      "q5": {
+        "question": "🔐 ¿Es realmente seguro? ¿Cómo puedo estar seguro?",
+        "answer": "¡3ASYWEALTH es <strong>código abierto</strong>! Puedes revisar el código en <a href=\"https://github.com/michelemonti/3asywealth\" class=\"text-blue-600 hover:underline\">GitHub</a>. No hay llamadas a servidores externos. Puedes abrir las herramientas del navegador (F12) y ver en la pestaña Network que <strong>no se envían solicitudes</strong> cuando ingresas tus datos."
+      },
+      "q6": {
+        "question": "💰 ¿Es realmente gratis?",
+        "answer": "Sí, completamente gratis. Sin costos ocultos, sin planes premium, sin tarjeta de crédito requerida. Es un proyecto de <strong>código abierto (Licencia MIT)</strong> creado para quienes quieren privacidad y simplicidad."
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Tomar Control?",
+      "subtitle": "Sin cuenta. Sin tarjeta de crédito. Sin datos compartidos.<br /><span class=\"text-green-400 font-semibold\">Solo tú y tu patrimonio.</span>",
+      "button": "Comenzar Ahora - Es Gratis",
+      "note": "Funciona en Chrome, Firefox, Safari, Edge - No requiere instalación"
+    },
+    "footer": "Código Abierto • Licencia MIT •"
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "subtitle": "Resumen de tu patrimonio",
+    "total_wealth": "Patrimonio Total",
+    "asset_count": "Activos Totales",
+    "quick_actions": "Acciones Rápidas",
+    "view_assets": "Gestionar Activos",
+    "view_summary": "Ver Resumen",
+    "tabs": {
+      "assets": "Activos",
+      "summary": "Resumen"
+    },
+    "menu": {
+      "import": "Importar",
+      "export_csv": "Exportar CSV",
+      "export_json": "Exportar JSON",
+      "demo": "Cargar Datos Demo",
+      "clear": "Limpiar Todo"
+    }
+  },
+  "assetsTable": {
+    "title": "Gestión de Activos",
+    "filter": {
+      "all": "Todas las Categorías",
+      "shareholdings": "Participaciones",
+      "realestate": "Bienes Raíces",
+      "personalassets": "Activos Personales",
+      "cash": "Liquidez"
+    },
+    "add": "Agregar Activo",
+    "table": {
+      "name": "Activo / Empresa",
+      "category": "Categoría",
+      "ownership": "Propiedad",
+      "value": "Valor (€)",
+      "source": "Fuente",
+      "notes": "Notas",
+      "actions": "Acciones"
+    },
+    "form": {
+      "title_add": "Agregar Nuevo Activo",
+      "title_edit": "Editar Activo",
+      "name": "Nombre del Activo / Empresa",
+      "name_placeholder": "ej. Empresa XYZ, Casa Principal, Bitcoin",
+      "category": "Categoría",
+      "category_placeholder": "Selecciona una categoría",
+      "ownership": "Propiedad / Cantidad",
+      "ownership_placeholder": "ej. 10%, 100%, 2.5 BTC",
+      "value": "Valor (€)",
+      "value_placeholder": "ej. 50000",
+      "source": "Fuente de Valoración",
+      "source_placeholder": "ej. Valoración 2025, Precio de mercado",
+      "notes": "Notas",
+      "notes_placeholder": "Información adicional...",
+      "cancel": "Cancelar",
+      "add": "Agregar Activo",
+      "save": "Guardar Cambios"
+    },
+    "empty": {
+      "title": "Aún No Hay Activos",
+      "subtitle": "Agrega tu primer activo o importa datos desde CSV/JSON",
+      "button": "Agregar Primer Activo"
+    },
+    "delete": {
+      "confirm": "¿Estás seguro de que quieres eliminar este activo?",
+      "success": "Activo eliminado exitosamente",
+      "cancel": "Cancelar",
+      "delete": "Eliminar"
+    },
+    "notifications": {
+      "added": "¡Activo agregado exitosamente!",
+      "updated": "¡Activo actualizado exitosamente!",
+      "deleted": "¡Activo eliminado exitosamente!",
+      "import_success": "¡{{count}} activos importados exitosamente!",
+      "import_error": "Error al importar archivo. Asegúrate de que el formato sea correcto.",
+      "demo_loaded": "¡Datos demo cargados exitosamente!",
+      "clear_confirm": "¿Estás seguro de que quieres eliminar TODOS los activos? Esta acción no se puede deshacer.",
+      "clear_success": "Todos los activos han sido eliminados."
+    }
+  },
+  "summary": {
+    "title": "Resumen de Patrimonio",
+    "total": "Patrimonio Total",
+    "by_category": "Desglose por Categoría",
+    "asset_count": "Activos Totales",
+    "category_distribution": "Distribución por Categoría",
+    "category_comparison": "Comparación por Categoría",
+    "empty": {
+      "title": "No Hay Datos para Mostrar",
+      "message": "Esta página muestra un resumen de tus activos, pero aún no has agregado ninguno.",
+      "cta": "Ve al Panel de Control para agregar tu primer activo o importar datos desde archivos CSV/JSON."
+    }
+  },
+  "categories": {
+    "shareholdings": "Participaciones",
+    "realestate": "Bienes Raíces",
+    "personalassets": "Activos Personales",
+    "cash": "Liquidez"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "confirm": "Confirmar"
+  }
+}

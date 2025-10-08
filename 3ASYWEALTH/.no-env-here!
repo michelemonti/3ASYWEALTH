@@ -1,0 +1,8 @@
+# 3ASYWEALTH Environment Settings
+# --------------------------------
+# The app runs entirely in the browser and does not require keys or external services.
+# This file is intentionally left empty: you can add optional variables
+# only if you decide to extend the project with personal integrations.
+
+# Example (optional):
+# VITE_APP_NAME="3ASYWEALTH"

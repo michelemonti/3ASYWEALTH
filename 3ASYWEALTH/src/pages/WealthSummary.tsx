@@ -1,5 +1,5 @@
 /**
- * 📈 Wealth Summary Page
+ * Wealth Summary Page
  * 
  * Dashboard with wealth overview and category breakdown
  * 
@@ -8,8 +8,12 @@
  */
 
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { useWealthStore } from '@/stores/wealthStore'
+import { Navigation } from '@/components/Navigation'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
   PieChart,
@@ -24,7 +28,7 @@ import {
   YAxis,
   CartesianGrid,
 } from 'recharts'
-import { TrendingUp, Wallet, Building2, Home, Gem, Package } from 'lucide-react'
+import { TrendingUp, Wallet, Building2, Home, Gem, Package, AlertCircle } from 'lucide-react'
 import { CATEGORY_METADATA, type AssetCategory, type CategorySummary, type WealthSummary as SummaryData } from '@/types/wealth'
 
 const categoryIcons = {
@@ -42,8 +46,14 @@ const COLORS = {
 }
 
 export function WealthSummary() {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  
   // Get assets from store
   const assets = useWealthStore((state) => state.assets)
+  
+  // Helper to get translated category label
+  const getCategoryLabel = (category: AssetCategory) => t(`categories.${category}`)
   
   // Calculate summary with useMemo to prevent infinite loops
   const summary = useMemo<SummaryData>(() => {
@@ -102,7 +112,7 @@ export function WealthSummary() {
 
   // Data for pie chart
   const pieData = summary.categories.map((cat) => ({
-    name: CATEGORY_METADATA[cat.category].label,
+    name: getCategoryLabel(cat.category),
     value: cat.total,
     percentage: cat.percentage,
     color: COLORS[CATEGORY_METADATA[cat.category].color as keyof typeof COLORS],
@@ -110,230 +120,272 @@ export function WealthSummary() {
 
   // Data for bar chart
   const barData = summary.categories.map((cat) => ({
-    name: CATEGORY_METADATA[cat.category].label,
+    name: getCategoryLabel(cat.category),
     value: cat.total,
     color: COLORS[CATEGORY_METADATA[cat.category].color as keyof typeof COLORS],
   }))
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          Sintesi Patrimonio
-        </h1>
-        <p className="text-gray-600">
-          Panoramica completa del tuo wealth personale
-        </p>
+  // Empty state
+  if (assets.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        
+        <div className="container mx-auto px-4 py-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              {t('summary.title')}
+            </h1>
+            <p className="text-gray-600">
+              {t('summary.by_category')}
+            </p>
+          </div>
+
+          <Card className="border-2 border-dashed">
+            <CardContent className="flex flex-col items-center justify-center py-16 px-4">
+              <AlertCircle className="w-16 h-16 text-gray-400 mb-4" />
+              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                {t('summary.empty.title')}
+              </h3>
+              <p className="text-gray-600 text-center mb-6 max-w-md">
+                {t('summary.empty.message')}
+              </p>
+              <p className="text-gray-500 text-sm text-center mb-6 max-w-lg">
+                {t('summary.empty.cta')}
+              </p>
+              <Button 
+                onClick={() => navigate('/dashboard')}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                <TrendingUp className="w-4 h-4 mr-2" />
+                {t('app.nav.dashboard')}
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
+    )
+  }
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {/* Total Wealth */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
-              <TrendingUp className="w-4 h-4" />
-              Patrimonio Totale
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-gray-900">
-              {formatCurrency(summary.totalWealth)}
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Aggiornato: {summary.lastUpdated.toLocaleDateString('it-IT')}
-            </p>
-          </CardContent>
-        </Card>
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {t('summary.title')}
+          </h1>
+          <p className="text-gray-600">
+            {t('summary.by_category')}
+          </p>
+        </div>
 
-        {/* Asset Count */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
-              <Package className="w-4 h-4" />
-              Numero Asset
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-gray-900">
-              {summary.assetCount}
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Asset totali registrati
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Categories */}
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
-              <Wallet className="w-4 h-4" />
-              Categorie
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-gray-900">
-              {summary.categories.length}
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Categorie con asset
-            </p>
-          </CardContent>
-        </Card>
-
-        {/* Largest Category */}
-        {summary.categories.length > 0 && (
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          {/* Total Wealth */}
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
-                Categoria Principale
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <TrendingUp className="w-4 h-4" />
+                {t('summary.total')}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <Badge className="text-base px-3 py-1">
-                {CATEGORY_METADATA[summary.categories[0].category].label}
-              </Badge>
-              <p className="text-sm text-gray-500 mt-2">
-                {formatPercentage(summary.categories[0].percentage)} del totale
+              <div className="text-3xl font-bold text-gray-900">
+                {formatCurrency(summary.totalWealth)}
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                {summary.lastUpdated.toLocaleDateString()}
               </p>
+            </CardContent>
+          </Card>
+
+          {/* Asset Count */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <Package className="w-4 h-4" />
+                {t('summary.asset_count')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-gray-900">
+                {summary.assetCount}
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                {t('summary.asset_count')}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Categories */}
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
+                <Wallet className="w-4 h-4" />
+                {t('assetsTable.table.category')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-gray-900">
+                {summary.categories.length}
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                {t('summary.category_distribution')}
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Largest Category */}
+          {summary.categories.length > 0 && (
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">
+                  {t('summary.by_category')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Badge className="text-base px-3 py-1">
+                  {getCategoryLabel(summary.categories[0].category)}
+                </Badge>
+                <p className="text-sm text-gray-500 mt-2">
+                  {formatPercentage(summary.categories[0].percentage)}
+                </p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+
+        {/* Charts Section */}
+        {summary.categories.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            {/* Pie Chart */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('summary.category_distribution')}</CardTitle>
+                <CardDescription>{t('summary.by_category')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={pieData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percentage }) => `\${name} (\${percentage.toFixed(1)}%)`}
+                      outerRadius={100}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {pieData.map((entry, index) => (
+                        <Cell key={`cell-\${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value: number) => formatCurrency(value)}
+                      contentStyle={{
+                        backgroundColor: 'white',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                      }}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
+            {/* Bar Chart */}
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('summary.category_comparison')}</CardTitle>
+                <CardDescription>{t('summary.by_category')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={barData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis tickFormatter={(value) => `€\${(value / 1000).toFixed(0)}K`} />
+                    <Tooltip
+                      formatter={(value: number) => formatCurrency(value)}
+                      contentStyle={{
+                        backgroundColor: 'white',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                      }}
+                    />
+                    <Bar dataKey="value" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Category Breakdown */}
+        {summary.categories.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('summary.by_category')}</CardTitle>
+              <CardDescription>
+                {t('summary.category_distribution')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {summary.categories.map((category) => {
+                  const metadata = CATEGORY_METADATA[category.category]
+                  const IconComponent = categoryIcons[metadata.icon as keyof typeof categoryIcons]
+                  const color = COLORS[metadata.color as keyof typeof COLORS]
+
+                  return (
+                    <div key={category.category} className="border rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="w-10 h-10 rounded-lg flex items-center justify-center"
+                            style={{ backgroundColor: `\${color}20` }}
+                          >
+                            <IconComponent className="w-5 h-5" style={{ color }} />
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">
+                              {getCategoryLabel(category.category)}
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              {category.count} {t('summary.asset_count')}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xl font-bold text-gray-900">
+                            {formatCurrency(category.total)}
+                          </p>
+                          <p className="text-sm text-gray-500">
+                            {formatPercentage(category.percentage)}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div
+                          className="h-2 rounded-full"
+                          style={{
+                            width: `\${category.percentage}%`,
+                            backgroundColor: color,
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </CardContent>
           </Card>
         )}
       </div>
-
-      {/* Charts Section */}
-      {summary.categories.length > 0 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {/* Pie Chart */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Ripartizione per Categoria</CardTitle>
-              <CardDescription>Distribuzione percentuale del patrimonio</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <PieChart>
-                  <Pie
-                    data={pieData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={({ name, percentage }) => `${name}: ${formatPercentage(percentage)}`}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {pieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    formatter={(value: number) => formatCurrency(value)}
-                  />
-                  <Legend />
-                </PieChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-
-          {/* Bar Chart */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Valore per Categoria</CardTitle>
-              <CardDescription>Confronto valori assoluti</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={barData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`} />
-                  <Tooltip
-                    formatter={(value: number) => formatCurrency(value)}
-                  />
-                  <Bar dataKey="value" radius={[8, 8, 0, 0]}>
-                    {barData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </div>
-      ) : (
-        <Card className="mb-8">
-          <CardContent className="text-center py-12">
-            <Wallet className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Nessun dato disponibile
-            </h3>
-            <p className="text-gray-600">
-              Aggiungi i tuoi asset per visualizzare la sintesi del patrimonio
-            </p>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Category Details */}
-      {summary.categories.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Dettaglio Categorie</CardTitle>
-            <CardDescription>Analisi dettagliata per categoria</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {summary.categories.map((category) => {
-                const metadata = CATEGORY_METADATA[category.category]
-                const IconComponent = categoryIcons[metadata.icon as keyof typeof categoryIcons]
-                const color = COLORS[metadata.color as keyof typeof COLORS]
-
-                return (
-                  <div key={category.category} className="border rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <div
-                          className="w-10 h-10 rounded-lg flex items-center justify-center"
-                          style={{ backgroundColor: `${color}20` }}
-                        >
-                          <IconComponent className="w-5 h-5" style={{ color }} />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-gray-900">
-                            {metadata.label}
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {category.count} asset
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xl font-bold text-gray-900">
-                          {formatCurrency(category.total)}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {formatPercentage(category.percentage)}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                      <div
-                        className="h-2 rounded-full"
-                        style={{
-                          width: `${category.percentage}%`,
-                          backgroundColor: color,
-                        }}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   )
 }

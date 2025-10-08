@@ -4,7 +4,7 @@
 >
 > Gestisci il tuo patrimonio nel tuo browser. Nessun server. Nessun account. Nessuna registrazione.
 
-**Built with 3ASYAPP Template** | **React + TypeScript** | **Privacy-First**
+**Open Source** | **React + TypeScript** | **Privacy-First**
 
 ---
 
@@ -113,11 +113,10 @@ Menu "⋮" → "Carica Dati Demo" per testare con dati d'esempio generici:
 ## 🛠️ Stack Tecnologico
 
 - ⚛️ **React 18** + **TypeScript**
-- ⚡ **Vite** - Build tool
-- 🎨 **Tailwind CSS** + **Shadcn/UI**
-- 🐻 **Zustand** - State management
-- 📊 **Recharts** - Grafici
-- 💾 **localStorage** - Persistenza
+- ⚡ **Vite** per build e sviluppo
+- 🎨 **Tailwind CSS** + componenti **Shadcn/UI**
+- 🐻 **Zustand** con persistenza su localStorage
+- 📊 **Recharts** per la visualizzazione dei dati
 
 ---
 
@@ -141,102 +140,72 @@ src/
 
 ## 💾 Gestione Dati
 
-### Dove vengono salvati?
-
 I dati vengono salvati nel **localStorage del browser**:
 
-✅ **Pro:**
+✅ **Vantaggi**
 - Sempre disponibili offline
 - Nessun server necessario
 - Privacy totale
 - Zero costi
 
-⚠️ **Importante:**
+⚠️ **Importante**
 - Esporta regolarmente i dati come backup
 - I dati sono legati al browser specifico
-- Per multi-device: importa il file esportato
-
-### Modalità Multi-Utente (Opzionale)
-
-Il template supporta **Supabase o Azure AD** per:
-- Salvataggio cloud
-- Sync tra dispositivi
-- Accesso multi-utente
-
-Vedi `docs/AUTHENTICATION_GUIDE.md` per configurazione (opzionale).
+- Per usare un altro dispositivo: importa il file esportato
 
 ---
 
 ## 🎨 Personalizzazione
 
-### Modificare Categorie
-
-Edita `src/types/wealth.ts`:
-
-\`\`\`typescript
-export type AssetCategory = 
-  | 'Partecipazioni'
-  | 'Immobili'
-  | 'La Tua Categoria'  // Aggiungi qui
-\`\`\`
-
-### Cambiare Tema
-
-- Colori: `tailwind.config.cjs`
-- CSS Variables: `src/index.css`
+- Categorie: modifica `src/types/wealth.ts`
+- Colori/Tema: aggiorna `tailwind.config.cjs` e `src/index.css`
+- Testo landing page: `src/pages/Landing.tsx`
 
 ---
 
-## 🚀 Deploy
+## 🚀 Deploy trasparente (GitHub Pages)
 
-### Vercel (Raccomandato)
+> Tutto il codice e i dati rimangono pubblici e verificabili. Nessun backend coinvolto.
 
-\`\`\`bash
-npm i -g vercel
-vercel --prod
-\`\`\`
+### 1. Build statica
 
-### Netlify
-
-\`\`\`bash
+```bash
 npm run build
-# Upload cartella dist/
-\`\`\`
+```
 
-Vedi `docs/DEPLOYMENT.md` per dettagli.
+Il contenuto pronto per la pubblicazione si trova in `dist/`.
+
+### 2. Pubblicazione manuale (branch `gh-pages`)
+
+```bash
+git subtree push --prefix dist origin gh-pages
+```
+
+oppure usa GitHub Actions con uno workflow tipo `actions/deploy-pages` che esegue:
+
+```bash
+npm ci
+npm run build
+```
+
+e pubblica la cartella `dist/` su GitHub Pages. Nessun segreto richiesto.
 
 ---
 
 ## 🔧 Comandi
 
-\`\`\`bash
-npm run dev              # Dev server
-npm run build            # Build produzione
-npm run preview          # Preview build
-npm run lint             # Linting
-npm test                 # Tests
-\`\`\`
-
----
-
-## 🆘 Supporto
-
-- 📧 **Email**: michele.monti@me.com
-- 💼 **GitHub**: [@michelemonti](https://github.com/michelemonti)
-- 🌐 **Website**: [michelemonti.me](https://michelemonti.me)
-
-### Documentazione Template
-
-- `docs/README.md` - Indice completo
-- `docs/TEMPLATE_USAGE.md` - Guida template
-- `docs/QUICKSTART.md` - Setup rapido
+```bash
+npm run dev       # Server di sviluppo con HMR
+npm run build     # Build produzione (cartella dist/)
+npm run preview   # Serve la build locale
+npm run lint      # Controllo qualità TypeScript/ESLint
+```
 
 ---
 
 ## 📄 License
 
-Basato sul **3ASYAPP Template** di Michele Miky Monti.  
-Vedi file `LICENSE` per dettagli.
+Codice rilasciato sotto licenza **MIT**. Consulta il file `LICENSE` per i dettagli.
 
 ---
 

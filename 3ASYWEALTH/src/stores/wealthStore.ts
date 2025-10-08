@@ -1,5 +1,5 @@
 /**
- * 💰 Wealth Store (Zustand)
+ * Wealth Store (Zustand)
  * 
  * Global state management for wealth tracking.
  * Persists assets and calculations across page reloads.
@@ -13,7 +13,7 @@ import { devtools, persist } from 'zustand/middleware'
 import type { Asset, AssetCategory, WealthSummary, CategorySummary } from '../types/wealth'
 
 // =============================================================================
-// 🔧 STORE INTERFACE
+// STORE INTERFACE
 // =============================================================================
 
 interface WealthStore {
@@ -41,22 +41,22 @@ interface WealthStore {
 }
 
 // =============================================================================
-// 🎯 STORE IMPLEMENTATION
+// STORE IMPLEMENTATION
 // =============================================================================
 
 export const useWealthStore = create<WealthStore>()(
   devtools(
     persist(
       (set, get) => ({
-        // ====== INITIAL STATE ======
+        // Initial state
         assets: [],
         isLoading: false,
         error: null,
 
-        // ====== CRUD ACTIONS ======
+        // CRUD actions
 
         /**
-         * ➕ Add new asset
+         * Add new asset
          */
         addAsset: (assetData) => {
           const newAsset: Asset = {
@@ -73,7 +73,7 @@ export const useWealthStore = create<WealthStore>()(
         },
 
         /**
-         * ✏️ Update existing asset
+         * Update existing asset
          */
         updateAsset: (id, updates) => {
           set((state) => ({
@@ -87,7 +87,7 @@ export const useWealthStore = create<WealthStore>()(
         },
 
         /**
-         * 🗑️ Delete asset
+         * Delete asset
          */
         deleteAsset: (id) => {
           set((state) => ({
@@ -97,122 +97,122 @@ export const useWealthStore = create<WealthStore>()(
         },
 
         /**
-         * 🧹 Clear all assets
+         * Clear all assets
          */
         clearAssets: () => {
           set({ assets: [], error: null })
         },
 
-        // ====== IMPORT/EXPORT ACTIONS ======
+        // Import/Export actions
 
         /**
-         * 📥 Import assets (replaces existing)
+         * Import assets (replaces existing)
          */
         importAssets: (assets) => {
           set({ assets, error: null })
         },
 
         /**
-         * 🎭 Load demo data (Generic example dataset)
+         * Load demo data (Generic example dataset)
          */
         loadDemoData: () => {
           const demoAssets: Asset[] = [
             {
               id: crypto.randomUUID(),
-              name: 'Startup Tech SRL',
-              category: 'Partecipazioni',
+              name: 'Tech Startup SRL',
+              category: 'shareholdings',
               ownership: '10%',
               value: 50000,
-              source: 'Valutazione 2025',
-              notes: 'Investimento angel round 2023',
+              source: '2025 Valuation',
+              notes: 'Angel round investment 2023',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Immobiliare Italia SPA',
-              category: 'Partecipazioni',
+              name: 'Real Estate Fund',
+              category: 'shareholdings',
               ownership: '5%',
               value: 30000,
-              source: 'Valore di mercato',
-              notes: 'REIT quotato',
+              source: 'Market value',
+              notes: 'Publicly traded REIT',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Fondo Investimento',
-              category: 'Partecipazioni',
+              name: 'Investment Fund',
+              category: 'shareholdings',
               ownership: '100%',
               value: 75000,
-              source: 'NAV attuale',
-              notes: 'Fondo azionario bilanciato',
+              source: 'Current NAV',
+              notes: 'Balanced equity fund',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Casa Principale',
-              category: 'Immobili',
+              name: 'Main Residence',
+              category: 'realestate',
               ownership: '100%',
               value: 250000,
-              source: 'Perizia bancaria 2025',
-              notes: 'Acquistata nel 2020',
+              source: 'Bank appraisal 2025',
+              notes: 'Purchased in 2020',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Appartamento Milano',
-              category: 'Immobili',
+              name: 'City Apartment',
+              category: 'realestate',
               ownership: '50%',
               value: 180000,
-              source: 'Valore di mercato',
-              notes: 'In comproprietà',
+              source: 'Market value',
+              notes: 'Co-ownership',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Portfolio Crypto',
-              category: 'Beni personali',
+              name: 'Crypto Portfolio',
+              category: 'personalassets',
               ownership: '100%',
               value: 25000,
-              source: 'Valore attuale exchange',
-              notes: 'BTC, ETH, diversi altcoin',
+              source: 'Current exchange value',
+              notes: 'BTC, ETH, various altcoins',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Auto Collezione',
-              category: 'Beni personali',
+              name: 'Collectible Car',
+              category: 'personalassets',
               ownership: '100%',
               value: 45000,
-              source: 'Valutazione perito 2025',
-              notes: "Classica anni '80",
+              source: 'Expert appraisal 2025',
+              notes: "Classic 1980s",
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Conto Corrente',
-              category: 'Liquidità',
+              name: 'Checking Account',
+              category: 'cash',
               ownership: '100%',
               value: 35000,
-              source: 'Saldo attuale',
-              notes: 'Liquidità immediata',
+              source: 'Current balance',
+              notes: 'Immediate liquidity',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
               id: crypto.randomUUID(),
-              name: 'Deposito Vincolato',
-              category: 'Liquidità',
+              name: 'Time Deposit',
+              category: 'cash',
               ownership: '100%',
               value: 50000,
-              source: 'Valore nominale + interessi',
-              notes: 'Scadenza 2026',
+              source: 'Face value + interest',
+              notes: 'Maturity 2026',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
@@ -221,10 +221,10 @@ export const useWealthStore = create<WealthStore>()(
           set({ assets: demoAssets, error: null })
         },
 
-        // ====== COMPUTED GETTERS ======
+        // Computed getters
 
         /**
-         * 📊 Get wealth summary with categories
+         * Get wealth summary with categories
          */
         getSummary: () => {
           const { assets } = get()
@@ -271,14 +271,14 @@ export const useWealthStore = create<WealthStore>()(
         },
 
         /**
-         * 🏷️ Get assets filtered by category
+         * Get assets filtered by category
          */
         getAssetsByCategory: (category) => {
           return get().assets.filter((asset) => asset.category === category)
         },
 
         /**
-         * ⚠️ Set error message
+         * Set error message
          */
         setError: (error) => {
           set({ error })
@@ -299,7 +299,7 @@ export const useWealthStore = create<WealthStore>()(
 )
 
 // =============================================================================
-// 🎣 CONVENIENCE SELECTORS
+// CONVENIENCE SELECTORS
 // =============================================================================
 
 export const useAssets = () => useWealthStore((state) => state.assets)
