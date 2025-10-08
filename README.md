@@ -6,6 +6,8 @@
 
 **Open Source** | **React + TypeScript** | **Privacy-First**
 
+🌐 **Live Demo**: [wealth.3asy.app](https://wealth.3asy.app)
+
 > 📢 **Based on [3ASYAPP template](https://github.com/michelemonti/3asyapp) by Miky**
 > 
 > - ✅ Free for personal & open source use
