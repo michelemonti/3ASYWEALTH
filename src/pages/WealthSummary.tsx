@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom'
 import { useWealthStore } from '@/stores/wealthStore'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
+import { PDFReportButton } from '@/components/PDFReportButton'
+import { PDFPrivacyBadge } from '@/components/PDFPrivacyBadge'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -134,12 +136,20 @@ export function WealthSummary() {
         
         <div className="container mx-auto px-4 py-8">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {t('summary.title')}
-            </h1>
-            <p className="text-gray-600">
-              {t('summary.by_category')}
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                  {t('summary.title')}
+                </h1>
+                <p className="text-gray-600">
+                  {t('summary.by_category')}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                <PDFPrivacyBadge />
+                <PDFReportButton />
+              </div>
+            </div>
           </div>
 
           <Card className="border-2 border-dashed">
@@ -174,12 +184,20 @@ export function WealthSummary() {
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {t('summary.title')}
-          </h1>
-          <p className="text-gray-600">
-            {t('summary.by_category')}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                {t('summary.title')}
+              </h1>
+              <p className="text-gray-600">
+                {t('summary.by_category')}
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+              <PDFPrivacyBadge />
+              <PDFReportButton />
+            </div>
+          </div>
         </div>
 
         {/* Summary Cards */}

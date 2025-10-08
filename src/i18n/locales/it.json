@@ -204,6 +204,77 @@
     "personalassets": "Beni Personali",
     "cash": "Liquidità"
   },
+  "dataActions": {
+    "title": "Azioni Dati",
+    "import": {
+      "csv": "Importa CSV",
+      "json": "Importa JSON",
+      "success": "{{count}} asset importati con successo!",
+      "error": "Errore nell'importazione del file. Controlla il formato."
+    },
+    "export": {
+      "csv": "Esporta CSV",
+      "json": "Esporta JSON"
+    },
+    "demo": {
+      "load": "Carica Dati Demo",
+      "confirm": "Questo sostituirà tutti i dati esistenti. Continuare?",
+      "success": "Dati demo caricati con successo!"
+    },
+    "clear": {
+      "title": "Cancella Tutti i Dati",
+      "confirm": "⚠️ ATTENZIONE: Questo cancellerà PERMANENTEMENTE TUTTI i tuoi asset e dati.\n\nQuesta azione è IRREVERSIBILE e non può essere annullata.\n\nSei assolutamente sicuro di voler continuare?",
+      "success": "Tutti i dati sono stati cancellati con successo."
+    },
+    "pdf": {
+      "generate": "Genera Report PDF",
+      "generating": "Generazione PDF...",
+      "success": "Report PDF generato con successo!",
+      "error": "Errore nella generazione del PDF."
+    }
+  },
+  "pdfReport": {
+    "title": "Report Patrimonio",
+    "generatedOn": "Generato il",
+    "page": "Pagina",
+    "privacy": {
+      "title": "100% Privacy Garantita",
+      "message": "Questo report è stato generato interamente nel tuo browser. Nessun dato è stato inviato a server esterni. Le tue informazioni finanziarie rimangono completamente private e sicure solo sul tuo dispositivo."
+    },
+    "summary": {
+      "title": "Riepilogo Patrimonio",
+      "totalWealth": "Patrimonio Totale",
+      "totalAssets": "Asset Totali",
+      "categories": "Categorie"
+    },
+    "categoryBreakdown": "Ripartizione per Categoria",
+    "visualBreakdown": "Distribuzione Visiva per Categoria",
+    "assets": {
+      "title": "Dettaglio Asset"
+    },
+    "table": {
+      "category": "Categoria",
+      "assets": "Asset",
+      "value": "Valore",
+      "percentage": "Percentuale",
+      "assetName": "Nome Asset",
+      "ownership": "Quota"
+    },
+    "footer": {
+      "generated": "Generato da",
+      "opensource": "Software Open Source",
+      "privacy": "100% Privacy"
+    },
+    "error": "Errore nella generazione del report PDF"
+  },
+  "privacyBadge": {
+    "title": "100% Elaborazione Browser",
+    "subtitle": "Nessun server. Nessun tracciamento. I dati restano qui."
+  },
+  "pdfPrivacyBadge": {
+    "title": "PDF Generato Localmente",
+    "subtitle": "Zero upload server. I dati restano privati."
+  },
   "common": {
     "loading": "Caricamento...",
     "error": "Errore",

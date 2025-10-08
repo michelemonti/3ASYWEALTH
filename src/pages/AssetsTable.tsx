@@ -42,6 +42,8 @@ import {
 } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { DataActions } from '@/components/DataActions'
+import { PrivacyBadge } from '@/components/PrivacyBadge'
 import { Plus, Pencil, Trash2, Building2, Home, Gem, Wallet } from 'lucide-react'
 import { CATEGORY_METADATA, type AssetCategory } from '@/types/wealth'
 
@@ -159,16 +161,19 @@ export function AssetsTable() {
                 {t('assetsTable.empty.subtitle')}
               </CardDescription>
             </div>
-            <Dialog open={isAddDialogOpen} onOpenChange={(open) => {
-              setIsAddDialogOpen(open)
-              if (!open) resetForm()
-            }}>
-              <DialogTrigger asChild>
-                <Button>
-                  <Plus className="w-4 h-4 mr-2" />
-                  {t('assetsTable.add')}
-                </Button>
-              </DialogTrigger>
+            <div className="flex items-center gap-3 flex-wrap">
+              <PrivacyBadge />
+              <DataActions />
+              <Dialog open={isAddDialogOpen} onOpenChange={(open) => {
+                setIsAddDialogOpen(open)
+                if (!open) resetForm()
+              }}>
+                <DialogTrigger asChild>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    {t('assetsTable.add')}
+                  </Button>
+                </DialogTrigger>
               <DialogContent className="max-w-2xl">
                 <DialogHeader>
                   <DialogTitle>
@@ -269,6 +274,7 @@ export function AssetsTable() {
                 </DialogFooter>
               </DialogContent>
             </Dialog>
+            </div>
           </div>
         </CardHeader>
 

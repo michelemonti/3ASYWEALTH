@@ -204,6 +204,77 @@
     "personalassets": "Activos Personales",
     "cash": "Liquidez"
   },
+  "dataActions": {
+    "title": "Acciones de Datos",
+    "import": {
+      "csv": "Importar CSV",
+      "json": "Importar JSON",
+      "success": "¡{{count}} activos importados exitosamente!",
+      "error": "Error al importar archivo. Por favor verifica el formato."
+    },
+    "export": {
+      "csv": "Exportar CSV",
+      "json": "Exportar JSON"
+    },
+    "demo": {
+      "load": "Cargar Datos Demo",
+      "confirm": "Esto reemplazará todos los datos existentes. ¿Continuar?",
+      "success": "¡Datos demo cargados exitosamente!"
+    },
+    "clear": {
+      "title": "Borrar Todos los Datos",
+      "confirm": "⚠️ ADVERTENCIA: Esto eliminará PERMANENTEMENTE TODOS tus activos y datos.\n\nEsta acción es IRREVERSIBLE y no se puede deshacer.\n\n¿Estás absolutamente seguro de que quieres continuar?",
+      "success": "Todos los datos han sido eliminados exitosamente."
+    },
+    "pdf": {
+      "generate": "Generar Reporte PDF",
+      "generating": "Generando PDF...",
+      "success": "¡Reporte PDF generado exitosamente!",
+      "error": "Error al generar el reporte PDF."
+    }
+  },
+  "pdfReport": {
+    "title": "Reporte de Patrimonio",
+    "generatedOn": "Generado el",
+    "page": "Página",
+    "privacy": {
+      "title": "100% Privacidad Garantizada",
+      "message": "Este reporte fue generado completamente en tu navegador. No se enviaron datos a ningún servidor. Tu información financiera permanece completamente privada y segura solo en tu dispositivo."
+    },
+    "summary": {
+      "title": "Resumen de Patrimonio",
+      "totalWealth": "Patrimonio Total",
+      "totalAssets": "Activos Totales",
+      "categories": "Categorías"
+    },
+    "categoryBreakdown": "Desglose por Categoría",
+    "visualBreakdown": "Distribución Visual por Categoría",
+    "assets": {
+      "title": "Detalle de Activos"
+    },
+    "table": {
+      "category": "Categoría",
+      "assets": "Activos",
+      "value": "Valor",
+      "percentage": "Porcentaje",
+      "assetName": "Nombre del Activo",
+      "ownership": "Propiedad"
+    },
+    "footer": {
+      "generated": "Generado por",
+      "opensource": "Software de Código Abierto",
+      "privacy": "100% Privacidad"
+    },
+    "error": "Error al generar el reporte PDF"
+  },
+  "privacyBadge": {
+    "title": "100% Procesamiento en Navegador",
+    "subtitle": "Sin servidores. Sin rastreo. Tus datos se quedan aquí."
+  },
+  "pdfPrivacyBadge": {
+    "title": "PDF Generado Localmente",
+    "subtitle": "Cero subida a servidores. Datos privados."
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",
