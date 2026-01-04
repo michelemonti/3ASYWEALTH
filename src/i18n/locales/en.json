@@ -150,19 +150,24 @@
       "title_edit": "Edit Asset",
       "name": "Asset / Company Name",
       "name_placeholder": "e.g., Company XYZ, Main House, Bitcoin",
+      "name_required": "Name is required",
       "category": "Category",
       "category_placeholder": "Select a category",
       "ownership": "Ownership / Quantity",
       "ownership_placeholder": "e.g., 10%, 100%, 2.5 BTC",
       "value": "Value (€)",
       "value_placeholder": "e.g., 50000",
+      "value_required": "Value must be greater than zero",
       "source": "Valuation Source",
       "source_placeholder": "e.g., 2025 Valuation, Market price",
       "notes": "Notes",
       "notes_placeholder": "Additional information...",
       "cancel": "Cancel",
       "add": "Add Asset",
-      "save": "Save Changes"
+      "save": "Save Changes",
+      "validation_error": "Please fill in all required fields",
+      "added": "Asset added successfully",
+      "updated": "Asset updated successfully"
     },
     "empty": {
       "title": "No Assets Yet",
@@ -170,8 +175,9 @@
       "button": "Add First Asset"
     },
     "delete": {
-      "confirm": "Are you sure you want to delete this asset?",
-      "success": "Asset deleted successfully",
+      "title": "Delete Asset",
+      "confirm": "Are you sure you want to delete this asset? This action cannot be undone.",
+      "success": "Asset deleted",
       "cancel": "Cancel",
       "delete": "Delete"
     },
@@ -210,22 +216,30 @@
     "import": {
       "csv": "Import CSV",
       "json": "Import JSON",
+      "loading": "Importing...",
+      "empty": "No valid assets found in file",
       "success": "{{count}} assets imported successfully!",
       "error": "Error importing file. Please check the format."
     },
     "export": {
       "csv": "Export CSV",
-      "json": "Export JSON"
+      "json": "Export JSON",
+      "empty": "No assets to export",
+      "success": "Export completed"
     },
     "demo": {
       "load": "Load Demo Data",
-      "confirm": "This will replace all existing data. Continue?",
+      "confirmTitle": "Load Demo Data",
+      "confirm": "This will replace all existing data with sample data. Do you want to continue?",
+      "confirm_button": "Load Demo",
       "success": "Demo data loaded successfully!"
     },
     "clear": {
       "title": "Clear All Data",
-      "confirm": "⚠️ WARNING: This will permanently delete ALL your assets and data.\n\nThis action is IRREVERSIBLE and cannot be undone.\n\nAre you absolutely sure you want to continue?",
-      "success": "All data has been cleared successfully."
+      "empty": "No data to clear",
+      "confirm": "⚠️ WARNING: This will permanently delete all your assets and data. This action cannot be undone. Are you sure you want to continue?",
+      "confirm_button": "Delete All",
+      "success": "All data has been cleared."
     },
     "pdf": {
       "generate": "Generate PDF Report",
@@ -373,5 +387,20 @@
       "start": "Start Now",
       "github": "View on GitHub"
     }
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "footer": {
+    "description": "Your personal wealth tracking solution with 100% privacy. No servers, no accounts, no data collection. Your financial data stays yours.",
+    "suite": "3ASU Suite",
+    "privacy_title": "Privacy First",
+    "privacy_1": "No server storage",
+    "privacy_2": "No account required",
+    "privacy_3": "Data stays local",
+    "privacy_4": "Open source"
   }
 }

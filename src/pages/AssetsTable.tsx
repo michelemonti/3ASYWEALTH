@@ -4,11 +4,12 @@
  * CRUD interface for managing wealth assets
  * 
  * @author Michele Miky Monti
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 import { useWealthStore } from '@/stores/wealthStore'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
@@ -40,11 +41,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { DataActions } from '@/components/DataActions'
 import { PrivacyBadge } from '@/components/PrivacyBadge'
-import { Plus, Pencil, Trash2, Building2, Home, Gem, Wallet } from 'lucide-react'
+import { Plus, Pencil, Trash2, Building2, Home, Gem, Wallet, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import { CATEGORY_METADATA, type AssetCategory } from '@/types/wealth'
 
 const categoryIcons = {
@@ -60,6 +71,7 @@ export function AssetsTable() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [editingAsset, setEditingAsset] = useState<string | null>(null)
   const [filterCategory, setFilterCategory] = useState<AssetCategory | 'all'>('all')
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
 
   // Helper to get translated category label
   const getCategoryLabel = (category: AssetCategory) => t(`categories.${category}`)
@@ -74,26 +86,50 @@ export function AssetsTable() {
     notes: '',
   })
 
+  // Form validation
+  const [formErrors, setFormErrors] = useState<{ name?: boolean; value?: boolean }>({})
+
+  const validateForm = () => {
+    const errors: { name?: boolean; value?: boolean } = {}
+    
+    if (!formData.name.trim()) {
+      errors.name = true
+    }
+    
+    if (!formData.value || parseFloat(formData.value) <= 0) {
+      errors.value = true
+    }
+    
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
   const handleSubmit = () => {
-    if (!formData.name || !formData.value) {
-      alert(t('assetsTable.form.name') + ' and ' + t('assetsTable.form.value'))
+    if (!validateForm()) {
+      toast.error(t('assetsTable.form.validation_error', 'Please fill in all required fields'))
       return
     }
 
     const assetData = {
-      name: formData.name,
+      name: formData.name.trim(),
       category: formData.category,
-      ownership: formData.ownership,
+      ownership: formData.ownership.trim(),
       value: parseFloat(formData.value),
-      source: formData.source,
-      notes: formData.notes,
+      source: formData.source.trim(),
+      notes: formData.notes.trim(),
     }
 
     if (editingAsset) {
       updateAsset(editingAsset, assetData)
+      toast.success(t('assetsTable.form.updated', 'Asset updated successfully'), {
+        icon: <CheckCircle2 className="w-4 h-4 text-green-500" />,
+      })
       setEditingAsset(null)
     } else {
       addAsset(assetData)
+      toast.success(t('assetsTable.form.added', 'Asset added successfully'), {
+        icon: <CheckCircle2 className="w-4 h-4 text-green-500" />,
+      })
     }
 
     setIsAddDialogOpen(false)
@@ -111,14 +147,23 @@ export function AssetsTable() {
         source: asset.source,
         notes: asset.notes || '',
       })
+      setFormErrors({})
       setEditingAsset(assetId)
       setIsAddDialogOpen(true)
     }
   }
 
   const handleDelete = (assetId: string) => {
-    if (confirm(t('assetsTable.delete.confirm'))) {
-      deleteAsset(assetId)
+    setDeleteConfirmId(assetId)
+  }
+
+  const executeDelete = () => {
+    if (deleteConfirmId) {
+      deleteAsset(deleteConfirmId)
+      toast.success(t('assetsTable.delete.success', 'Asset deleted'), {
+        icon: <CheckCircle2 className="w-4 h-4 text-green-500" />,
+      })
+      setDeleteConfirmId(null)
     }
   }
 
@@ -131,6 +176,7 @@ export function AssetsTable() {
       source: '',
       notes: '',
     })
+    setFormErrors({})
     setEditingAsset(null)
   }
 
@@ -148,16 +194,16 @@ export function AssetsTable() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
-        <Card>
+        <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-2xl">{t('assetsTable.title')}</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-2xl text-foreground">{t('assetsTable.title')}</CardTitle>
+              <CardDescription className="text-muted-foreground">
                 {t('assetsTable.empty.subtitle')}
               </CardDescription>
             </div>
@@ -190,9 +236,18 @@ export function AssetsTable() {
                     <Input
                       id="name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value })
+                        if (formErrors.name && e.target.value.trim()) {
+                          setFormErrors({ ...formErrors, name: false })
+                        }
+                      }}
                       placeholder={t('assetsTable.form.name_placeholder')}
+                      className={formErrors.name ? 'border-destructive focus-visible:ring-destructive' : ''}
                     />
+                    {formErrors.name && (
+                      <p className="text-xs text-destructive">{t('assetsTable.form.name_required', 'Name is required')}</p>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
@@ -233,10 +288,21 @@ export function AssetsTable() {
                     <Input
                       id="value"
                       type="number"
+                      min="0"
+                      step="0.01"
                       value={formData.value}
-                      onChange={(e) => setFormData({ ...formData, value: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, value: e.target.value })
+                        if (formErrors.value && parseFloat(e.target.value) > 0) {
+                          setFormErrors({ ...formErrors, value: false })
+                        }
+                      }}
                       placeholder={t('assetsTable.form.value_placeholder')}
+                      className={formErrors.value ? 'border-destructive focus-visible:ring-destructive' : ''}
                     />
+                    {formErrors.value && (
+                      <p className="text-xs text-destructive">{t('assetsTable.form.value_required', 'A valid value is required')}</p>
+                    )}
                   </div>
 
                   <div className="grid gap-2">
@@ -337,7 +403,7 @@ export function AssetsTable() {
                         <TableCell className="text-right font-semibold">
                           {formatCurrency(asset.value)}
                         </TableCell>
-                        <TableCell className="text-sm text-gray-600">
+                        <TableCell className="text-sm text-muted-foreground">
                           {asset.source}
                         </TableCell>
                         <TableCell>
@@ -346,6 +412,7 @@ export function AssetsTable() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleEdit(asset.id)}
+                              className="hover:bg-accent"
                             >
                               <Pencil className="w-4 h-4" />
                             </Button>
@@ -353,8 +420,9 @@ export function AssetsTable() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleDelete(asset.id)}
+                              className="hover:bg-destructive/10"
                             >
-                              <Trash2 className="w-4 h-4 text-red-600" />
+                              <Trash2 className="w-4 h-4 text-destructive" />
                             </Button>
                           </div>
                         </TableCell>
@@ -367,6 +435,32 @@ export function AssetsTable() {
           )}
         </CardContent>
       </Card>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteConfirmId !== null} onOpenChange={() => setDeleteConfirmId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-amber-500" />
+              {t('assetsTable.delete.title', 'Delete Asset')}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {t('assetsTable.delete.confirm')}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>
+              {t('common.cancel')}
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={executeDelete}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              {t('common.delete')}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       
       <Footer />
     </div>

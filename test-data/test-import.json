@@ -1,0 +1,59 @@
+{
+  "assets": [
+    {
+      "id": "test-1",
+      "name": "Microsoft Corp",
+      "category": "shareholdings",
+      "ownership": "10%",
+      "value": 200000,
+      "source": "Portfolio Statement",
+      "notes": "Tech investment",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "test-2",
+      "name": "Mountain Cabin",
+      "category": "realestate",
+      "ownership": "50%",
+      "value": 300000,
+      "source": "Co-ownership deed",
+      "notes": "Shared with family",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "test-3",
+      "name": "Vintage Car",
+      "category": "personalassets",
+      "ownership": "100%",
+      "value": 85000,
+      "source": "Classic car appraisal",
+      "notes": "1967 Mustang",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "test-4",
+      "name": "Checking Account",
+      "category": "cash",
+      "ownership": "100%",
+      "value": 35000,
+      "source": "Bank Statement Dec 2025",
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "summary": {
+    "total": 620000,
+    "byCategory": {
+      "shareholdings": 200000,
+      "realestate": 300000,
+      "personalassets": 85000,
+      "cash": 35000
+    },
+    "assetCount": 4
+  },
+  "exportDate": "2025-01-04T10:00:00.000Z",
+  "version": "1.0.0"
+}

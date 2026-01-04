@@ -13,7 +13,9 @@ import {
   Zap,
   Globe,
   CheckCircle2,
-  ArrowRight
+  ArrowRight,
+  Lock,
+  BarChart3
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -31,20 +33,26 @@ export default function Landing() {
       icon: Shield,
       titleKey: 'landing.features.privacy.title',
       descKey: 'landing.features.privacy.description',
-      color: 'from-green-400 to-emerald-500'
+      color: 'from-green-500 to-emerald-600'
     },
     {
       icon: Database,
       titleKey: 'landing.features.import_export.title', 
       descKey: 'landing.features.import_export.description',
-      color: 'from-blue-400 to-cyan-500'
+      color: 'from-blue-500 to-cyan-600'
     },
     {
       icon: Zap,
       titleKey: 'landing.features.views.title',
       descKey: 'landing.features.views.description', 
-      color: 'from-purple-400 to-pink-500'
+      color: 'from-purple-500 to-pink-600'
     }
+  ];
+
+  const stats = [
+    { value: '100%', label: 'Privacy', icon: Lock },
+    { value: '0', label: 'Servers', icon: Database },
+    { value: '∞', label: 'Free Forever', icon: Star },
   ];
 
   const faqItems = [
@@ -67,7 +75,7 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/80 to-slate-900 text-white">
       {/* Navigation */}
       <Navigation />
       
@@ -75,42 +83,44 @@ export default function Landing() {
       <div className="relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-purple-500/5 to-transparent rounded-full"></div>
         </div>
         
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-300 px-6 py-3 rounded-full text-sm font-medium mb-8 backdrop-blur-sm">
+        <div className="container mx-auto px-4 py-16 lg:py-24 relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Privacy Badge */}
+            <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-300 px-5 py-2.5 rounded-full text-sm font-medium mb-8 backdrop-blur-sm">
               <Shield className="w-4 h-4" />
               {t('landing.hero.badge')}
             </div>
             
             {/* Main Title */}
-            <h1 className="text-6xl md:text-7xl font-black mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tight">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 3ASYWEALTH
               </span>
             </h1>
             
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-200">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-white">
               {t('landing.hero.title')}
             </h2>
             
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto" 
+            <p className="text-lg md:text-xl text-slate-200 mb-12 leading-relaxed max-w-3xl mx-auto" 
                dangerouslySetInnerHTML={{ __html: t('landing.hero.subtitle') }}>
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Button 
                 size="lg" 
                 onClick={() => navigate('/assets')}
-                className="text-lg px-10 py-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 border-0 shadow-2xl shadow-purple-500/25 transform hover:scale-105 transition-all duration-300"
+                className="text-lg px-10 py-7 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 border-0 shadow-2xl shadow-purple-500/30 transform hover:scale-105 transition-all duration-300 rounded-xl font-semibold"
               >
                 <Sparkles className="mr-2 h-5 w-5" />
                 {t('landing.hero.cta_primary')}
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
                 size="lg" 
@@ -118,26 +128,37 @@ export default function Landing() {
                 onClick={() => {
                   document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-lg px-8 py-6 border-slate-600 text-slate-300 hover:bg-slate-800/50 backdrop-blur-sm"
+                className="text-lg px-8 py-7 border-slate-500/50 text-slate-200 hover:bg-slate-800/50 backdrop-blur-sm rounded-xl"
               >
                 {t('landing.hero.cta_secondary')}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
+            {/* Stats Row */}
+            <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center p-4 rounded-2xl bg-slate-800/30 backdrop-blur-sm border border-slate-700/30">
+                  <stat.icon className="w-5 h-5 mx-auto mb-2 text-primary" />
+                  <div className="text-2xl md:text-3xl font-black text-white">{stat.value}</div>
+                  <div className="text-xs text-slate-400 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
             {/* Trust Badges */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700/50">
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2 bg-slate-800/70 px-4 py-2.5 rounded-full backdrop-blur-sm border border-slate-600/50 hover:border-green-500/50 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-green-400" />
-                <span className="text-slate-300">{t('landing.hero.badge_privacy')}</span>
+                <span className="text-white">{t('landing.hero.badge_privacy')}</span>
               </div>
-              <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700/50">
+              <div className="flex items-center gap-2 bg-slate-800/70 px-4 py-2.5 rounded-full backdrop-blur-sm border border-slate-600/50 hover:border-blue-500/50 transition-colors">
                 <Globe className="w-4 h-4 text-blue-400" />
-                <span className="text-slate-300">{t('landing.hero.badge_opensource')}</span>
+                <span className="text-white">{t('landing.hero.badge_opensource')}</span>
               </div>
-              <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-full backdrop-blur-sm border border-slate-700/50">
+              <div className="flex items-center gap-2 bg-slate-800/70 px-4 py-2.5 rounded-full backdrop-blur-sm border border-slate-600/50 hover:border-yellow-500/50 transition-colors">
                 <Star className="w-4 h-4 text-yellow-400" />
-                <span className="text-slate-300">{t('landing.hero.badge_free')}</span>
+                <span className="text-white">{t('landing.hero.badge_free')}</span>
               </div>
             </div>
           </div>
@@ -145,9 +166,11 @@ export default function Landing() {
       </div>
 
       {/* Features Section */}
-      <div id="features" className="py-20 bg-slate-800/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
+      <div id="features" className="py-24 bg-slate-800/30 backdrop-blur-sm relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
+            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wider uppercase">Features</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               {t('landing.features.title')}
             </h2>

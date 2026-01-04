@@ -51,6 +51,43 @@ export const parseCategory = (value: string): AssetCategory => {
 }
 
 /**
+ * Parse a CSV line handling quoted fields correctly
+ * Handles fields with commas inside quotes
+ */
+function parseCSVLine(line: string): string[] {
+  const result: string[] = []
+  let current = ''
+  let inQuotes = false
+  
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i]
+    const nextChar = line[i + 1]
+    
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        // Escaped quote
+        current += '"'
+        i++
+      } else {
+        // Toggle quote mode
+        inQuotes = !inQuotes
+      }
+    } else if (char === ',' && !inQuotes) {
+      // End of field
+      result.push(current.trim())
+      current = ''
+    } else {
+      current += char
+    }
+  }
+  
+  // Push last field
+  result.push(current.trim())
+  
+  return result
+}
+
+/**
  * Parse CSV file to assets
  */
 export function parseCSV(csvText: string): Asset[] {
@@ -62,15 +99,19 @@ export function parseCSV(csvText: string): Asset[] {
   const assets: Asset[] = []
 
   for (const line of dataLines) {
-    // Simple CSV parser (handles basic cases)
-    const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''))
+    if (!line.trim()) continue // Skip empty lines
     
-    if (values.length < 6) continue
+    const values = parseCSVLine(line)
+    
+    if (values.length < 3) continue // At minimum: name, ownership, value
 
-    const [name, ownership, valueStr, source, notes, category] = values
+    const [name, ownership, valueStr, source = '', notes = '', category = ''] = values
 
-    // Parse value
-    const value = parseFloat(valueStr.replace(/[^\d.-]/g, '')) || 0
+    // Parse value - handle various formats
+    const cleanValue = valueStr.replace(/[^\d.,-]/g, '').replace(',', '.')
+    const value = parseFloat(cleanValue) || 0
+
+    if (!name || value === 0) continue // Skip invalid rows
 
     // Parse category with multilingual support
     const assetCategory = parseCategory(category)
@@ -119,15 +160,16 @@ export async function importCSVFile(file: File): Promise<Asset[]> {
 
 /**
  * Convert assets to CSV format
+ * Headers are in English for international compatibility
  */
 export function assetsToCSV(assets: Asset[]): string {
   const headers = [
-    'Asset / Società',
-    'Quota Michele Monti',
-    'Valore (€)',
-    'Fonte / Base di stima',
-    'Note / Compensi',
-    'Categoria'
+    'Name',
+    'Ownership',
+    'Value',
+    'Source',
+    'Notes',
+    'Category'
   ]
 
   const rows = assets.map(asset => [
@@ -141,7 +183,7 @@ export function assetsToCSV(assets: Asset[]): string {
 
   const csvLines = [
     headers.join(','),
-    ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ...rows.map(row => row.map(cell => `"${cell.replace(/"/g, '""')}"`).join(','))
   ]
 
   return csvLines.join('\n')

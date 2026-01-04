@@ -150,19 +150,24 @@
       "title_edit": "Modifica Asset",
       "name": "Nome Asset / Azienda",
       "name_placeholder": "es. Azienda XYZ, Casa Principale, Bitcoin",
+      "name_required": "Il nome è obbligatorio",
       "category": "Categoria",
       "category_placeholder": "Seleziona una categoria",
       "ownership": "Proprietà / Quantità",
       "ownership_placeholder": "es. 10%, 100%, 2.5 BTC",
       "value": "Valore (€)",
       "value_placeholder": "es. 50000",
+      "value_required": "Il valore deve essere maggiore di zero",
       "source": "Fonte Valutazione",
       "source_placeholder": "es. Stima 2025, Prezzo di mercato",
       "notes": "Note",
       "notes_placeholder": "Informazioni aggiuntive...",
       "cancel": "Annulla",
       "add": "Aggiungi Asset",
-      "save": "Salva Modifiche"
+      "save": "Salva Modifiche",
+      "validation_error": "Compila tutti i campi obbligatori",
+      "added": "Asset aggiunto con successo",
+      "updated": "Asset aggiornato con successo"
     },
     "empty": {
       "title": "Nessun Asset Ancora",
@@ -170,8 +175,9 @@
       "button": "Aggiungi Primo Asset"
     },
     "delete": {
-      "confirm": "Sei sicuro di voler eliminare questo asset?",
-      "success": "Asset eliminato con successo",
+      "title": "Elimina Asset",
+      "confirm": "Sei sicuro di voler eliminare questo asset? Questa azione non può essere annullata.",
+      "success": "Asset eliminato",
       "cancel": "Annulla",
       "delete": "Elimina"
     },
@@ -210,22 +216,30 @@
     "import": {
       "csv": "Importa CSV",
       "json": "Importa JSON",
+      "loading": "Importazione in corso...",
+      "empty": "Nessun asset valido trovato nel file",
       "success": "{{count}} asset importati con successo!",
       "error": "Errore nell'importazione del file. Controlla il formato."
     },
     "export": {
       "csv": "Esporta CSV",
-      "json": "Esporta JSON"
+      "json": "Esporta JSON",
+      "empty": "Nessun asset da esportare",
+      "success": "Export completato"
     },
     "demo": {
       "load": "Carica Dati Demo",
-      "confirm": "Questo sostituirà tutti i dati esistenti. Continuare?",
+      "confirmTitle": "Carica Dati Demo",
+      "confirm": "Questo sostituirà tutti i dati esistenti con i dati di esempio. Vuoi continuare?",
+      "confirm_button": "Carica Demo",
       "success": "Dati demo caricati con successo!"
     },
     "clear": {
       "title": "Cancella Tutti i Dati",
-      "confirm": "⚠️ ATTENZIONE: Questo cancellerà PERMANENTEMENTE TUTTI i tuoi asset e dati.\n\nQuesta azione è IRREVERSIBILE e non può essere annullata.\n\nSei assolutamente sicuro di voler continuare?",
-      "success": "Tutti i dati sono stati cancellati con successo."
+      "empty": "Nessun dato da cancellare",
+      "confirm": "⚠️ ATTENZIONE: Questo cancellerà permanentemente tutti i tuoi asset e dati. Questa azione non può essere annullata. Sei sicuro di voler continuare?",
+      "confirm_button": "Cancella Tutto",
+      "success": "Tutti i dati sono stati cancellati."
     },
     "pdf": {
       "generate": "Genera Report PDF",
@@ -373,5 +387,20 @@
       "start": "Inizia Ora",
       "github": "Vedi su GitHub"
     }
+  },
+  "theme": {
+    "toggle": "Cambia tema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "system": "Sistema"
+  },
+  "footer": {
+    "description": "La tua soluzione per il tracciamento del patrimonio con 100% privacy. Nessun server, nessun account, nessuna raccolta dati. I tuoi dati finanziari rimangono tuoi.",
+    "suite": "Suite 3ASU",
+    "privacy_title": "Privacy First",
+    "privacy_1": "Nessun server",
+    "privacy_2": "Nessun account richiesto",
+    "privacy_3": "Dati locali",
+    "privacy_4": "Open source"
   }
 }

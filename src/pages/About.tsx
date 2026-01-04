@@ -102,22 +102,31 @@ export default function About() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900">
       <Navigation />
       
       <div className="container mx-auto px-4 py-12 max-w-6xl">
         {/* Hero Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <Badge className="mb-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-4 py-2">
             <Shield className="w-4 h-4 mr-2" />
             {t('about.hero.badge')}
           </Badge>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
             {t('about.hero.title')}
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t('about.hero.subtitle')}
           </p>
+          
+          {/* Suite Banner */}
+          <div className="mt-8 inline-flex items-center gap-2 bg-card border border-border px-6 py-3 rounded-full text-sm">
+            <span className="text-muted-foreground">Part of</span>
+            <a href="https://www.3asy.app" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
+              3ASY.APP Suite
+            </a>
+            <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+          </div>
         </div>
 
         {/* Core Values */}
@@ -125,15 +134,15 @@ export default function About() {
           {features.map((feature, index) => {
             const Icon = feature.icon
             return (
-              <Card key={index} className="border-2 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <Card key={index} className="border border-border bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <CardContent className="pt-6">
                   <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-lg`}>
                     <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <h3 className="text-lg font-bold text-foreground mb-2">
                     {t(feature.titleKey)}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {t(feature.descKey)}
                   </p>
                 </CardContent>
@@ -143,31 +152,31 @@ export default function About() {
         </div>
 
         {/* Open Source Challenge */}
-        <Card className="mb-16 border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 shadow-xl">
+        <Card className="mb-16 border border-purple-500/20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/30 dark:to-pink-950/30 shadow-xl">
           <CardHeader>
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
                 <Code className="w-6 h-6 text-white" />
               </div>
-              <CardTitle className="text-2xl">{t('about.opensource.title')}</CardTitle>
+              <CardTitle className="text-2xl text-foreground">{t('about.opensource.title')}</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               {t('about.opensource.description')}
             </p>
             
-            <div className="bg-white rounded-lg p-6 border-2 border-purple-200">
-              <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <Eye className="w-5 h-5 text-purple-600" />
+            <div className="bg-card rounded-lg p-6 border border-border">
+              <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-foreground">
+                <Eye className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 {t('about.opensource.challenge.title')}
               </h4>
-              <p className="text-gray-700 mb-4 leading-relaxed">
+              <p className="text-muted-foreground mb-4 leading-relaxed">
                 {t('about.opensource.challenge.description')}
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button 
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-md"
                   onClick={() => window.open('https://github.com/michelemonti/3asywealth', '_blank')}
                 >
                   <Github className="w-5 h-5 mr-2" />
@@ -176,7 +185,7 @@ export default function About() {
                 </Button>
                 <Button 
                   variant="outline"
-                  className="border-2 border-purple-300 hover:bg-purple-50"
+                  className="border border-purple-300 dark:border-purple-700 hover:bg-purple-50 dark:hover:bg-purple-950/50"
                   onClick={() => window.open('https://github.com/michelemonti/3asywealth/issues', '_blank')}
                 >
                   <AlertCircle className="w-5 h-5 mr-2" />
@@ -256,33 +265,33 @@ export default function About() {
         </Card>
 
         {/* Technical Stack */}
-        <Card className="mb-16 border-2 border-blue-200 shadow-xl">
+        <Card className="mb-16 border border-blue-500/20 shadow-xl bg-card">
           <CardHeader>
-            <CardTitle className="text-2xl flex items-center gap-3">
-              <Code className="w-8 h-8 text-blue-600" />
+            <CardTitle className="text-2xl flex items-center gap-3 text-foreground">
+              <Code className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               {t('about.technical.title')}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-700 mb-6 leading-relaxed">
+            <p className="text-muted-foreground mb-6 leading-relaxed">
               {t('about.technical.description')}
             </p>
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                <h5 className="font-semibold mb-2 text-blue-900">{t('about.technical.frontend')}</h5>
-                <p className="text-sm text-gray-700">React 18, TypeScript, Tailwind CSS, Recharts</p>
+              <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <h5 className="font-semibold mb-2 text-blue-900 dark:text-blue-300">{t('about.technical.frontend')}</h5>
+                <p className="text-sm text-muted-foreground">React 18, TypeScript, Tailwind CSS, Recharts</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                <h5 className="font-semibold mb-2 text-purple-900">{t('about.technical.storage')}</h5>
-                <p className="text-sm text-gray-700">Browser localStorage (100% local)</p>
+              <div className="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                <h5 className="font-semibold mb-2 text-purple-900 dark:text-purple-300">{t('about.technical.storage')}</h5>
+                <p className="text-sm text-muted-foreground">Browser localStorage (100% local)</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                <h5 className="font-semibold mb-2 text-green-900">{t('about.technical.export')}</h5>
-                <p className="text-sm text-gray-700">CSV, JSON, PDF (jsPDF + html2canvas)</p>
+              <div className="bg-green-50 dark:bg-green-950/30 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                <h5 className="font-semibold mb-2 text-green-900 dark:text-green-300">{t('about.technical.export')}</h5>
+                <p className="text-sm text-muted-foreground">CSV, JSON, PDF (jsPDF + html2canvas)</p>
               </div>
-              <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
-                <h5 className="font-semibold mb-2 text-amber-900">{t('about.technical.i18n')}</h5>
-                <p className="text-sm text-gray-700">English, Italiano, Español</p>
+              <div className="bg-amber-50 dark:bg-amber-950/30 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                <h5 className="font-semibold mb-2 text-amber-900 dark:text-amber-300">{t('about.technical.i18n')}</h5>
+                <p className="text-sm text-muted-foreground">English, Italiano, Español</p>
               </div>
             </div>
           </CardContent>

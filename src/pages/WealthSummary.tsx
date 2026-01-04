@@ -131,17 +131,17 @@ export function WealthSummary() {
   // Empty state
   if (assets.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Navigation />
         
         <div className="container mx-auto px-4 py-8">
           <div className="mb-8">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                <h1 className="text-3xl font-bold text-foreground mb-2">
                   {t('summary.title')}
                 </h1>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {t('summary.by_category')}
                 </p>
               </div>
@@ -152,44 +152,46 @@ export function WealthSummary() {
             </div>
           </div>
 
-          <Card className="border-2 border-dashed">
+          <Card className="border-2 border-dashed border-border">
             <CardContent className="flex flex-col items-center justify-center py-16 px-4">
-              <AlertCircle className="w-16 h-16 text-gray-400 mb-4" />
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+              <AlertCircle className="w-16 h-16 text-muted-foreground mb-4" />
+              <h3 className="text-2xl font-semibold text-foreground mb-2">
                 {t('summary.empty.title')}
               </h3>
-              <p className="text-gray-600 text-center mb-6 max-w-md">
+              <p className="text-muted-foreground text-center mb-6 max-w-md">
                 {t('summary.empty.message')}
               </p>
-              <p className="text-gray-500 text-sm text-center mb-6 max-w-lg">
+              <p className="text-muted-foreground/70 text-sm text-center mb-6 max-w-lg">
                 {t('summary.empty.cta')}
               </p>
               <Button 
-                onClick={() => navigate('/dashboard')}
+                onClick={() => navigate('/assets')}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               >
                 <TrendingUp className="w-4 h-4 mr-2" />
-                {t('app.nav.dashboard')}
+                {t('app.nav.assets')}
               </Button>
             </CardContent>
           </Card>
         </div>
+        
+        <Footer />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-foreground mb-2">
                 {t('summary.title')}
               </h1>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 {t('summary.by_category')}
               </p>
             </div>
@@ -203,28 +205,28 @@ export function WealthSummary() {
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {/* Total Wealth */}
-          <Card>
+          <Card className="bg-card border-border shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4" />
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-primary" />
                 {t('summary.total')}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900">
+              <div className="text-3xl font-bold text-foreground">
                 {formatCurrency(summary.totalWealth)}
               </div>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 {summary.lastUpdated.toLocaleDateString()}
               </p>
             </CardContent>
           </Card>
 
           {/* Asset Count */}
-          <Card>
+          <Card className="bg-card border-border shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 flex items-center gap-2">
-                <Package className="w-4 h-4" />
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <Package className="w-4 h-4 text-primary" />
                 {t('summary.asset_count')}
               </CardTitle>
             </CardHeader>
@@ -355,23 +357,23 @@ export function WealthSummary() {
                             <h4 className="font-semibold text-gray-900">
                               {getCategoryLabel(category.category)}
                             </h4>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground">
                               {category.count} {t('summary.asset_count')}
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-xl font-bold text-gray-900">
+                          <p className="text-xl font-bold text-foreground">
                             {formatCurrency(category.total)}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-muted-foreground">
                             {formatPercentage(category.percentage)}
                           </p>
                         </div>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                      <div className="w-full bg-muted rounded-full h-2 mt-2">
                         <div
-                          className="h-2 rounded-full"
+                          className="h-2 rounded-full transition-all duration-300"
                           style={{
                             width: `${category.percentage}%`,
                             backgroundColor: color,

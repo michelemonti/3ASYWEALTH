@@ -1,15 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
-  <link rel="icon" href="/placeholder.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3ASYWEALTH - Personal Wealth Tracking with 100% Privacy</title>
-    <meta name="description" content="Gestisci il tuo patrimonio nel browser. Nessun server, nessun account, massima privacy. Import/Export CSV/JSON. Open Source." />
+    
+    <!-- Primary Meta Tags -->
+    <title>3ASYWEALTH - Personal Wealth Tracking with 100% Privacy | 3ASY.APP</title>
+    <meta name="title" content="3ASYWEALTH - Personal Wealth Tracking with 100% Privacy" />
+    <meta name="description" content="Track your personal wealth with complete privacy. No servers, no accounts, no data collection. Export to CSV/JSON. Part of the 3ASY.APP suite. Free & Open Source." />
+    <meta name="keywords" content="wealth tracking, personal finance, privacy, local storage, open source, portfolio tracker, net worth calculator, financial planning, 3asu" />
     <meta name="author" content="Michele Miky Monti" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wealth.3asy.app/" />
+    <meta property="og:title" content="3ASYWEALTH - Personal Wealth Tracking with 100% Privacy" />
+    <meta property="og:description" content="Track your personal wealth with complete privacy. No servers, no accounts, no data collection. Free & Open Source." />
+    <meta property="og:image" content="https://wealth.3asy.app/og-image.png" />
+    <meta property="og:site_name" content="3ASY.APP" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://wealth.3asy.app/" />
+    <meta property="twitter:title" content="3ASYWEALTH - Personal Wealth Tracking with 100% Privacy" />
+    <meta property="twitter:description" content="Track your personal wealth with complete privacy. No servers, no accounts, no data collection. Free & Open Source." />
+    <meta property="twitter:image" content="https://wealth.3asy.app/og-image.png" />
+    <meta name="twitter:creator" content="@mikimonti" />
+    
+    <!-- PWA / Mobile -->
+    <meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1e1b4b" media="(prefers-color-scheme: dark)" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="3ASYWEALTH" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://wealth.3asy.app/" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "3ASYWEALTH",
+      "description": "Personal wealth tracking with 100% privacy. No servers, no accounts, no data collection.",
+      "url": "https://wealth.3asy.app",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Michele Miky Monti",
+        "url": "https://github.com/michelemonti"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "3ASY.APP",
+        "url": "https://www.3asy.app"
+      }
+    }
+    </script>
   </head>
 
-  <body>
+  <body class="font-sans antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

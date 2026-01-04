@@ -149,19 +149,24 @@
       "title_edit": "Editar Activo",
       "name": "Nombre del Activo / Empresa",
       "name_placeholder": "ej. Empresa XYZ, Casa Principal, Bitcoin",
+      "name_required": "El nombre es obligatorio",
       "category": "Categoría",
       "category_placeholder": "Selecciona una categoría",
       "ownership": "Propiedad / Cantidad",
       "ownership_placeholder": "ej. 10%, 100%, 2.5 BTC",
       "value": "Valor (€)",
       "value_placeholder": "ej. 50000",
+      "value_required": "El valor debe ser mayor que cero",
       "source": "Fuente de Valoración",
       "source_placeholder": "ej. Valoración 2025, Precio de mercado",
       "notes": "Notas",
       "notes_placeholder": "Información adicional...",
       "cancel": "Cancelar",
       "add": "Agregar Activo",
-      "save": "Guardar Cambios"
+      "save": "Guardar Cambios",
+      "validation_error": "Por favor completa todos los campos requeridos",
+      "added": "Activo agregado exitosamente",
+      "updated": "Activo actualizado exitosamente"
     },
     "empty": {
       "title": "Aún No Hay Activos",
@@ -169,8 +174,9 @@
       "button": "Agregar Primer Activo"
     },
     "delete": {
-      "confirm": "¿Estás seguro de que quieres eliminar este activo?",
-      "success": "Activo eliminado exitosamente",
+      "title": "Eliminar Activo",
+      "confirm": "¿Estás seguro de que quieres eliminar este activo? Esta acción no se puede deshacer.",
+      "success": "Activo eliminado",
       "cancel": "Cancelar",
       "delete": "Eliminar"
     },
@@ -209,22 +215,30 @@
     "import": {
       "csv": "Importar CSV",
       "json": "Importar JSON",
+      "loading": "Importando...",
+      "empty": "No se encontraron activos válidos en el archivo",
       "success": "¡{{count}} activos importados exitosamente!",
       "error": "Error al importar archivo. Por favor verifica el formato."
     },
     "export": {
       "csv": "Exportar CSV",
-      "json": "Exportar JSON"
+      "json": "Exportar JSON",
+      "empty": "No hay activos para exportar",
+      "success": "Exportación completada"
     },
     "demo": {
       "load": "Cargar Datos Demo",
-      "confirm": "Esto reemplazará todos los datos existentes. ¿Continuar?",
+      "confirmTitle": "Cargar Datos Demo",
+      "confirm": "Esto reemplazará todos los datos existentes con datos de ejemplo. ¿Deseas continuar?",
+      "confirm_button": "Cargar Demo",
       "success": "¡Datos demo cargados exitosamente!"
     },
     "clear": {
       "title": "Borrar Todos los Datos",
-      "confirm": "⚠️ ADVERTENCIA: Esto eliminará PERMANENTEMENTE TODOS tus activos y datos.\n\nEsta acción es IRREVERSIBLE y no se puede deshacer.\n\n¿Estás absolutamente seguro de que quieres continuar?",
-      "success": "Todos los datos han sido eliminados exitosamente."
+      "empty": "No hay datos para borrar",
+      "confirm": "⚠️ ADVERTENCIA: Esto eliminará permanentemente todos tus activos y datos. Esta acción no se puede deshacer. ¿Estás seguro de que deseas continuar?",
+      "confirm_button": "Eliminar Todo",
+      "success": "Todos los datos han sido eliminados."
     },
     "pdf": {
       "generate": "Generar Reporte PDF",
