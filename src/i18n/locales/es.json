@@ -139,7 +139,7 @@
       "name": "Activo / Empresa",
       "category": "Categoría",
       "ownership": "Propiedad",
-      "value": "Valor (€)",
+      "value": "Valor",
       "source": "Fuente",
       "notes": "Notas",
       "actions": "Acciones"
@@ -154,7 +154,7 @@
       "category_placeholder": "Selecciona una categoría",
       "ownership": "Propiedad / Cantidad",
       "ownership_placeholder": "ej. 10%, 100%, 2.5 BTC",
-      "value": "Valor (€)",
+      "value": "Valor",
       "value_placeholder": "ej. 50000",
       "value_required": "El valor debe ser mayor que cero",
       "source": "Fuente de Valoración",
@@ -177,8 +177,25 @@
       "title": "Eliminar Activo",
       "confirm": "¿Estás seguro de que quieres eliminar este activo? Esta acción no se puede deshacer.",
       "success": "Activo eliminado",
+      "undone": "Eliminación deshecha",
       "cancel": "Cancelar",
       "delete": "Eliminar"
+    },
+    "search": {
+      "placeholder": "Buscar activos...",
+      "noResults": "Ningún activo coincide con la búsqueda",
+      "showing": "Mostrando {{count}} de {{total}} activos",
+      "clearFilters": "Limpiar filtros"
+    },
+    "sort": {
+      "name": "Nombre",
+      "value": "Valor",
+      "category": "Categoría",
+      "updated": "Última Actualización"
+    },
+    "total": {
+      "label": "Valor Total del Portafolio",
+      "assets": "{{count}} activos"
     },
     "notifications": {
       "added": "¡Activo agregado exitosamente!",
@@ -301,7 +318,12 @@
     "add": "Agregar",
     "back": "Atrás",
     "next": "Siguiente",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "undo": "Deshacer",
+    "search": "Buscar...",
+    "total": "Total",
+    "sortBy": "Ordenar por",
+    "noResults": "Sin resultados"
   },
   "about": {
     "hero": {
@@ -386,5 +408,30 @@
       "start": "Comenzar Ahora",
       "github": "Ver en GitHub"
     }
+  },
+  "notFound": {
+    "title": "Página No Encontrada",
+    "subtitle": "La página que buscas no existe o ha sido movida.",
+    "goHome": "Ir al Inicio",
+    "goAssets": "Ver Activos"
+  },
+  "loading": {
+    "title": "Cargando...",
+    "subtitle": "Preparando tus datos"
+  },
+  "footer": {
+    "description": "Tu solución personal de seguimiento patrimonial con 100% de privacidad. Sin servidores, sin cuentas, sin recopilación de datos.",
+    "suite": "Suite 3ASU",
+    "privacy_title": "Privacidad Primero",
+    "privacy_1": "Sin almacenamiento en servidor",
+    "privacy_2": "Sin cuenta requerida",
+    "privacy_3": "Datos permanecen locales",
+    "privacy_4": "Código abierto"
+  },
+  "currency": {
+    "editRate": "Tipo de cambio",
+    "rateTitle": "Tipo de Cambio",
+    "rateDescription": "Establece el tipo de conversión EUR → USD. Usado para normalizar activos en monedas mixtas.",
+    "mixedImport": "{{count}} activos importados con monedas mixtas (normalizados a {{currency}})"
   }
 }

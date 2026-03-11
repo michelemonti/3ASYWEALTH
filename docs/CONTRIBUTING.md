@@ -2,10 +2,7 @@
 
 Thank you for your interest in contributing to **3ASYWEALTH**! This document provides guidelines and information for contributors.
 
-> **📢 Important Note**: This project is based on the **3ASYAPP template** by Miky. 
-> - ✅ **Personal/Open Source use**: Completely free
-> - 💰 **Commercial use**: Requires a commercial license from the template creator
-> - See the [License & Usage Rights](#-license--usage-rights) section below for details.
+> **📢 Note**: This project is licensed under the **MIT License**. All contributions are welcome!
 
 ## 🎯 Project Philosophy
 
@@ -351,47 +348,24 @@ To maintain the privacy-first philosophy:
 
 ### About This Project
 
-This project is based on the **3ASYAPP** template created by [Miky](https://github.com/michelemonti).
+This project is created by [Miky Monti](https://github.com/michelemonti) and licensed under the **MIT License**.
 
 ### License Terms
 
 By contributing, you agree that your contributions will be licensed under the same **MIT License** that covers the project.
 
-**Important for forks and derivatives**:
-
-#### ✅ Free Usage (No License Required)
-- **Personal use**: Track your own wealth, completely free
-- **Open source projects**: Fork, modify, share freely
-- **Educational purposes**: Learning, teaching, research
-- **Non-profit organizations**: Community projects, NGOs
-
-#### 💰 Commercial Usage (License Required)
-If you plan to use this project for commercial purposes, you **must obtain a commercial license** from the original template creator:
-
-**Commercial use includes**:
-- ❌ Selling the software or derived versions
-- ❌ Offering paid services based on this codebase
-- ❌ Using within commercial/enterprise applications
-- ❌ Monetizing through ads, subscriptions, or fees
-- ❌ White-labeling for clients
-
-**How to get a commercial license**:
-Contact the original template creator at [3ASYAPP repository](https://github.com/michelemonti/3asyapp) to discuss commercial licensing terms.
-
-#### 📋 Attribution Required
+#### 📋 Attribution
 When forking or redistributing:
 - ✅ Keep the original copyright notice
-- ✅ Credit the original template: "Based on 3ASYAPP by Miky"
-- ✅ Link to the original template repository
+- ✅ Credit the original author
 - ✅ Maintain the MIT license file
 
 ### Why This Matters
 
-The template creator invested significant time and effort to build a robust, privacy-first architecture. Respecting the license terms ensures:
+The project creator invested significant time and effort to build a robust, privacy-first architecture. Respecting the license terms ensures:
 - 🎨 Continued development and maintenance
 - 🔒 Quality standards and security updates
 - 🌍 A thriving open source community
-- ⚖️ Fair compensation for commercial applications
 
 **Bottom line**: Personal and educational use is completely free. Commercial ventures need a proper license.
 

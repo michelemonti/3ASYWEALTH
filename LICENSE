@@ -1,108 +1,21 @@
-# 📜 **3ASYAPP Template License**
+MIT License
 
-**Copyright © 2025 Michele Miky Monti**  
-All rights reserved.
+Copyright (c) 2025 Michele Miky Monti
 
-## License Overview
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This template is available under a commercial license model with different tiers for different use cases.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-## Permitted Uses
-
-### ✅ Free Personal Use
-- ✓ Learning and evaluation purposes
-- ✓ Personal non-commercial projects
-- ✓ Portfolio demonstrations
-- ✓ Code study and reference
-
-**Requirements:** Attribution required
-
-### 💼 Professional License (Paid)
-- ✓ Single commercial project use
-- ✓ Full source code access
-- ✓ Modifications and customizations
-- ✓ Priority email support
-- ✓ Updates and bug fixes
-- ✓ Implementation assistance
-
-**Contact for pricing:** michele.monti@me.com
-
-### 🏢 Enterprise License (Custom Pricing)
-- ✓ Unlimited commercial projects
-- ✓ White-label rights
-- ✓ Team licensing
-- ✓ Dedicated support channel
-- ✓ Custom development assistance
-- ✓ SLA guarantees
-- ✓ Team training included
-
-**Contact for pricing:** michele.monti@me.com
-
-## Restrictions
-
-### ❌ Prohibited Without License:
-- Commercial use (requires Professional or Enterprise license)
-- Distribution or resale of the template
-- Sublicensing to third parties
-- Creating competing template products
-- Providing template-as-a-service
-- Removing copyright notices
-
-## License Terms
-
-### Attribution
-
-All uses require attribution to Michele Miky Monti:
-- In the application footer or about page
-- In the source code comments
-- Format: "Built with 3ASYAPP Template by Michele Miky Monti"
-
-### Modifications
-
-You may modify the template for your licensed projects, but:
-- Modified versions are still subject to this license
-- You cannot distribute modified versions as templates
-- Copyright notices must remain intact
-
-### Updates
-
-Licensed users receive:
-- Bug fixes and security updates
-- Feature enhancements (Professional & Enterprise)
-- Migration guides for major versions
-- Technical support based on license tier
-
-## Warranty Disclaimer
-
-**THE TEMPLATE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.**
-
-## Limitation of Liability
-
-**IN NO EVENT SHALL MICHELE MIKY MONTI BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE TEMPLATE OR THE USE OR OTHER DEALINGS IN THE TEMPLATE.**
-
-## Acquiring a License
-
-### To Purchase:
-1. **Email:** michele.monti@me.com
-2. **Website:** https://michelemonti.me
-3. **GitHub:** https://github.com/michelemonti
-
-### License Delivery:
-- Digital license certificate
-- Invoice for business accounting
-- Access to private support channels
-- Documentation and setup assistance
-
-## Questions?
-
-For license inquiries, custom arrangements, or any questions:
-
-**Michele Miky Monti**
-- Email: michele.monti@me.com
-- Website: https://michelemonti.me
-- GitHub: https://github.com/michelemonti
-- Repository: https://github.com/michelemonti/3ASYAPPS
-
----
-
-*Last updated: October 2025 - Template Version 2.0*
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

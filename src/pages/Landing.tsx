@@ -75,7 +75,7 @@ export default function Landing() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/80 to-slate-900 text-white">
+    <div className="dark min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/80 to-slate-900 text-white">
       {/* Navigation */}
       <Navigation />
       
@@ -116,7 +116,7 @@ export default function Landing() {
               <Button 
                 size="lg" 
                 onClick={() => navigate('/assets')}
-                className="text-lg px-10 py-7 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 border-0 shadow-2xl shadow-purple-500/30 transform hover:scale-105 transition-all duration-300 rounded-xl font-semibold"
+                className="text-lg px-6 py-5 sm:px-10 sm:py-7 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 border-0 shadow-2xl shadow-purple-500/30 transform hover:scale-105 transition-all duration-300 rounded-xl font-semibold"
               >
                 <Sparkles className="mr-2 h-5 w-5" />
                 {t('landing.hero.cta_primary')}
@@ -128,7 +128,7 @@ export default function Landing() {
                 onClick={() => {
                   document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-lg px-8 py-7 border-slate-500/50 text-slate-200 hover:bg-slate-800/50 backdrop-blur-sm rounded-xl"
+                className="text-lg px-6 py-5 sm:px-8 sm:py-7 border-slate-500/50 text-slate-200 hover:bg-slate-800/50 backdrop-blur-sm rounded-xl"
               >
                 {t('landing.hero.cta_secondary')}
                 <ChevronDown className="ml-2 h-4 w-4" />
@@ -136,7 +136,7 @@ export default function Landing() {
             </div>
 
             {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto mb-12">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center p-4 rounded-2xl bg-slate-800/30 backdrop-blur-sm border border-slate-700/30">
                   <stat.icon className="w-5 h-5 mx-auto mb-2 text-primary" />
@@ -147,7 +147,7 @@ export default function Landing() {
             </div>
 
             {/* Trust Badges */}
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-sm">
               <div className="flex items-center gap-2 bg-slate-800/70 px-4 py-2.5 rounded-full backdrop-blur-sm border border-slate-600/50 hover:border-green-500/50 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-green-400" />
                 <span className="text-white">{t('landing.hero.badge_privacy')}</span>
@@ -176,12 +176,12 @@ export default function Landing() {
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <Card key={index} className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm hover:bg-slate-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10">
-                  <CardContent className="p-8 text-center">
+                  <CardContent className="p-6 sm:p-8 text-center">
                     <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${feature.color} mb-6 mt-4`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
@@ -209,7 +209,7 @@ export default function Landing() {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
               {[1, 2, 3].map((step) => (
                 <div key={step} className="relative">
                   <div className="text-center">
@@ -285,11 +285,11 @@ export default function Landing() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl"></div>
             
-            <CardContent className="p-16 relative z-10">
+            <CardContent className="p-8 sm:p-16 relative z-10">
               <div className="mb-8">
                 <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/30 text-green-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Sparkles className="w-4 h-4" />
-                  Ready in seconds
+                  {t('landing.cta.readyBadge', 'Ready in seconds')}
                 </div>
                 
                 <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
@@ -307,7 +307,7 @@ export default function Landing() {
                 <Button 
                   size="lg"
                   onClick={() => navigate('/assets')}
-                  className="text-xl px-16 py-8 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 border-0 shadow-2xl shadow-green-500/30 transform hover:scale-110 transition-all duration-500 font-semibold rounded-2xl"
+                  className="text-lg sm:text-xl px-8 py-6 sm:px-16 sm:py-8 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 border-0 shadow-2xl shadow-green-500/30 transform hover:scale-110 transition-all duration-500 font-semibold rounded-2xl"
                 >
                   <Sparkles className="mr-3 h-6 w-6" />
                   {t('landing.cta.button')}
@@ -322,15 +322,15 @@ export default function Landing() {
                 <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm">
                   <div className="flex items-center gap-2 text-green-300">
                     <CheckCircle2 className="w-4 h-4" />
-                    No credit card required
+                    {t('landing.cta.trust_nocreditcard', 'No credit card required')}
                   </div>
                   <div className="flex items-center gap-2 text-green-300">
                     <CheckCircle2 className="w-4 h-4" />
-                    No personal data collected
+                    {t('landing.cta.trust_nodata', 'No personal data collected')}
                   </div>
                   <div className="flex items-center gap-2 text-green-300">
                     <CheckCircle2 className="w-4 h-4" />
-                    Start in 10 seconds
+                    {t('landing.cta.trust_fast', 'Start in 10 seconds')}
                   </div>
                 </div>
               </div>

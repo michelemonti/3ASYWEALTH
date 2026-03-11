@@ -11,6 +11,8 @@
 // ASSET CATEGORIES
 // =============================================================================
 
+export type Currency = 'EUR' | 'USD'
+
 export type AssetCategory = 
   | 'shareholdings'       // Shareholdings/Equity/Partecipazioni
   | 'realestate'          // Real Estate/Immobili
@@ -26,7 +28,8 @@ export interface Asset {
   name: string                    // Asset / Company name
   category: AssetCategory
   ownership: string               // Ownership percentage or quantity
-  value: number                   // Value in EUR
+  value: number                   // Value in original currency
+  currency: Currency              // Currency of the stored value
   source: string                  // Valuation source/basis
   notes?: string                  // Additional notes/compensation
   createdAt: Date
@@ -70,6 +73,8 @@ export interface ExportData {
   summary: WealthSummary
   exportDate: Date
   version: string
+  displayCurrency: Currency
+  exchangeRate: number
 }
 
 // =============================================================================

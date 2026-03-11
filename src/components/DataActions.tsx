@@ -51,7 +51,7 @@ type ConfirmAction = 'demo' | 'clear' | null
 
 export function DataActions() {
   const { t } = useTranslation()
-  const { assets, getSummary, importAssets, loadDemoData, clearAssets } = useWealthStore()
+  const { assets, getSummary, importAssets, loadDemoData, clearAssets, displayCurrency, exchangeRate } = useWealthStore()
   const fileInputRef = useRef<HTMLInputElement>(null)
   const jsonInputRef = useRef<HTMLInputElement>(null)
   const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null)
@@ -85,7 +85,7 @@ export function DataActions() {
         icon: <CheckCircle2 className="w-4 h-4 text-green-500" />,
       })
     } catch (error) {
-      console.error('Import error:', error)
+      if (import.meta.env.DEV) console.error('Import error:', error)
       toast.dismiss(loadingToast)
       toast.error(t('dataActions.import.error'))
     }
@@ -114,7 +114,7 @@ export function DataActions() {
         icon: <CheckCircle2 className="w-4 h-4 text-green-500" />,
       })
     } catch (error) {
-      console.error('Import error:', error)
+      if (import.meta.env.DEV) console.error('Import error:', error)
       toast.dismiss(loadingToast)
       toast.error(t('dataActions.import.error'))
     }
@@ -138,7 +138,7 @@ export function DataActions() {
       return
     }
     
-    downloadJSON(assets, getSummary(), `3asywealth-export-${new Date().toISOString().split('T')[0]}.json`)
+    downloadJSON(assets, getSummary(), `3asywealth-export-${new Date().toISOString().split('T')[0]}.json`, displayCurrency, exchangeRate)
     toast.success(t('dataActions.export.success', 'Export completed'))
   }
 

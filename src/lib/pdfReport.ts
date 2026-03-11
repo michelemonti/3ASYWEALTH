@@ -9,32 +9,35 @@
 
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
-import type { Asset, WealthSummary } from '@/types/wealth'
+import type { Asset, Currency, WealthSummary } from '@/types/wealth'
 import { CATEGORY_METADATA } from '@/types/wealth'
+import { convertValue } from '@/stores/wealthStore'
 
 interface ReportData {
   assets: Asset[]
   summary: WealthSummary
   t: (key: string, options?: any) => string
+  displayCurrency: Currency
+  exchangeRate: number
+  locale: string
 }
 
 /**
- * Format currency for PDF
+ * Create a currency formatter for the given locale and currency
  */
-const formatCurrency = (value: number): string => {
-  return new Intl.NumberFormat('it-IT', {
+const makeCurrencyFormatter = (locale: string, currency: Currency) =>
+  new Intl.NumberFormat(locale, {
     style: 'currency',
-    currency: 'EUR',
+    currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value)
-}
+  })
 
 /**
  * Format date for PDF
  */
-const formatDate = (date: Date): string => {
-  return new Intl.DateTimeFormat('it-IT', {
+const formatDate = (date: Date, locale: string): string => {
+  return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -47,9 +50,13 @@ const formatDate = (date: Date): string => {
  * Create HTML content for PDF generation
  */
 const createReportHTML = (data: ReportData): string => {
-  const { assets, summary, t } = data
+  const { assets, summary, t, displayCurrency, exchangeRate, locale } = data
+  const fmt = makeCurrencyFormatter(locale, displayCurrency)
+  const formatCurrency = (value: number) => fmt.format(value)
+  const toDisplay = (asset: Asset) =>
+    convertValue(asset.value, asset.currency ?? displayCurrency, displayCurrency, exchangeRate)
   const totalValue = summary.totalWealth
-  const reportDate = formatDate(new Date())
+  const reportDate = formatDate(new Date(), locale)
 
   // Categories summary HTML
   const categoriesHTML = summary.categories.map(category => {
@@ -101,14 +108,15 @@ const createReportHTML = (data: ReportData): string => {
   for (let i = 0; i < assets.length; i += assetsPerPage) {
     const pageAssets = assets.slice(i, i + assetsPerPage)
     const assetsHTML = pageAssets.map(asset => {
-      const percentage = totalValue > 0 ? ((asset.value / totalValue) * 100).toFixed(1) : '0.0'
+      const displayVal = toDisplay(asset)
+      const percentage = totalValue > 0 ? ((displayVal / totalValue) * 100).toFixed(1) : '0.0'
       
       return `
         <tr>
           <td style="padding: 10px; border: 1px solid #ddd;">${asset.name}</td>
           <td style="padding: 10px; border: 1px solid #ddd;">${t(`categories.${asset.category}`)}</td>
           <td style="padding: 10px; border: 1px solid #ddd;">${asset.ownership}</td>
-          <td style="padding: 10px; border: 1px solid #ddd; text-align: right; font-weight: 600;">${formatCurrency(asset.value)}</td>
+          <td style="padding: 10px; border: 1px solid #ddd; text-align: right; font-weight: 600;">${formatCurrency(displayVal)}</td>
           <td style="padding: 10px; border: 1px solid #ddd; text-align: right;">${percentage}%</td>
         </tr>
       `
@@ -452,7 +460,9 @@ export async function generatePDFReport(data: ReportData): Promise<void> {
     pdf.save(filename)
 
   } catch (error) {
-    console.error('Error generating PDF:', error)
+    if (import.meta.env.DEV) {
+      console.error('Error generating PDF:', error)
+    }
     throw new Error(data.t('pdfReport.error'))
   }
 }

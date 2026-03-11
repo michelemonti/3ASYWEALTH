@@ -15,6 +15,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { CurrencySelector } from '@/components/CurrencySelector'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Home, Table, PieChart, Info, Menu, X } from 'lucide-react'
 
@@ -37,7 +38,7 @@ export function Navigation() {
   }
 
   return (
-    <nav className="border-b border-border/40 bg-background/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+    <nav aria-label={t('app.nav.main', 'Main navigation')} className="border-b border-border/40 bg-background/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Left side - Logo */}
@@ -52,7 +53,7 @@ export function Navigation() {
                   <span className="text-white font-bold text-sm">3W</span>
                 </div>
               </div>
-              <span className="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent leading-tight">
+              <span className="hidden sm:inline font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent leading-tight">
                 3ASYWEALTH
               </span>
             </div>
@@ -68,6 +69,7 @@ export function Navigation() {
                     variant={isActive ? 'default' : 'ghost'}
                     size="sm"
                     onClick={() => handleNavigate(tab.path)}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`
                       transition-all duration-200
                       ${isActive 
@@ -85,7 +87,8 @@ export function Navigation() {
           </div>
 
           {/* Right side - Theme, Language, Mobile Menu */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <CurrencySelector />
             <ThemeToggle />
             <LanguageSwitcher />
             
@@ -95,6 +98,8 @@ export function Navigation() {
               size="icon"
               className="md:hidden h-9 w-9"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-label={mobileMenuOpen ? t('common.close', 'Close menu') : t('common.menu', 'Open menu')}
             >
               {mobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -117,6 +122,7 @@ export function Navigation() {
                     key={tab.path}
                     variant={isActive ? 'default' : 'ghost'}
                     onClick={() => handleNavigate(tab.path)}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`
                       justify-start w-full
                       ${isActive 

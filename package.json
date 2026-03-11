@@ -10,6 +10,10 @@
     "type": "git",
     "url": "https://github.com/michelemonti/3asywealth.git"
   },
+  "homepage": "https://wealth.3asy.app",
+  "bugs": {
+    "url": "https://github.com/michelemonti/3asywealth/issues"
+  },
   "keywords": [
     "wealth",
     "finance",

@@ -9,6 +9,7 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -35,6 +36,7 @@ import {
 
 export default function About() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const toggleFaq = (index: number) => {
@@ -102,10 +104,10 @@ export default function About() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50/50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:from-background dark:via-background dark:to-background">
       <Navigation />
       
-      <div className="container mx-auto px-4 py-12 max-w-6xl">
+      <div className="container mx-auto px-4 py-8 lg:py-12 max-w-6xl">
         {/* Hero Section */}
         <div className="text-center mb-16 animate-fade-in">
           <Badge className="mb-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-4 py-2">
@@ -130,7 +132,7 @@ export default function About() {
         </div>
 
         {/* Core Values */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
           {features.map((feature, index) => {
             const Icon = feature.icon
             return (
@@ -195,21 +197,21 @@ export default function About() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-white rounded-lg p-4 border border-purple-100">
-                <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
-                <h5 className="font-semibold mb-1">{t('about.opensource.benefits.transparent')}</h5>
-                <p className="text-sm text-gray-600">{t('about.opensource.benefits.transparentDesc')}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="bg-card rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 mb-2" />
+                <h5 className="font-semibold mb-1 text-foreground">{t('about.opensource.benefits.transparent')}</h5>
+                <p className="text-sm text-muted-foreground">{t('about.opensource.benefits.transparentDesc')}</p>
               </div>
-              <div className="bg-white rounded-lg p-4 border border-purple-100">
-                <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
-                <h5 className="font-semibold mb-1">{t('about.opensource.benefits.auditable')}</h5>
-                <p className="text-sm text-gray-600">{t('about.opensource.benefits.auditableDesc')}</p>
+              <div className="bg-card rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 mb-2" />
+                <h5 className="font-semibold mb-1 text-foreground">{t('about.opensource.benefits.auditable')}</h5>
+                <p className="text-sm text-muted-foreground">{t('about.opensource.benefits.auditableDesc')}</p>
               </div>
-              <div className="bg-white rounded-lg p-4 border border-purple-100">
-                <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
-                <h5 className="font-semibold mb-1">{t('about.opensource.benefits.community')}</h5>
-                <p className="text-sm text-gray-600">{t('about.opensource.benefits.communityDesc')}</p>
+              <div className="bg-card rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400 mb-2" />
+                <h5 className="font-semibold mb-1 text-foreground">{t('about.opensource.benefits.community')}</h5>
+                <p className="text-sm text-muted-foreground">{t('about.opensource.benefits.communityDesc')}</p>
               </div>
             </div>
           </CardContent>
@@ -231,28 +233,28 @@ export default function About() {
                 const Icon = item.icon
                 const isOpen = openFaq === index
                 return (
-                  <div key={index} className="border-2 border-gray-200 rounded-lg overflow-hidden hover:border-purple-300 transition-colors">
+                  <div key={index} className="border-2 border-border rounded-lg overflow-hidden hover:border-purple-500/50 transition-colors">
                     <button
                       onClick={() => toggleFaq(index)}
-                      className="w-full px-6 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors"
+                      className="w-full px-6 py-4 flex items-center justify-between bg-card hover:bg-muted/50 transition-colors"
                     >
                       <div className="flex items-center gap-3 text-left">
                         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
                           <Icon className="w-5 h-5 text-white" />
                         </div>
-                        <span className="font-semibold text-lg text-gray-900">
+                        <span className="font-semibold text-lg text-foreground">
                           {t(item.question)}
                         </span>
                       </div>
                       {isOpen ? (
-                        <ChevronUp className="w-6 h-6 text-purple-600 flex-shrink-0" />
+                        <ChevronUp className="w-6 h-6 text-purple-600 dark:text-purple-400 flex-shrink-0" />
                       ) : (
-                        <ChevronDown className="w-6 h-6 text-gray-400 flex-shrink-0" />
+                        <ChevronDown className="w-6 h-6 text-muted-foreground flex-shrink-0" />
                       )}
                     </button>
                     {isOpen && (
-                      <div className="px-6 py-4 bg-gradient-to-br from-blue-50 to-purple-50 border-t-2 border-gray-200">
-                        <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                      <div className="px-6 py-4 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 border-t-2 border-border">
+                        <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                           {t(item.answer)}
                         </p>
                       </div>
@@ -276,21 +278,21 @@ export default function About() {
             <p className="text-muted-foreground mb-6 leading-relaxed">
               {t('about.technical.description')}
             </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-                <h5 className="font-semibold mb-2 text-blue-900 dark:text-blue-300">{t('about.technical.frontend')}</h5>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-4 border border-blue-200 dark:border-blue-900">
+                <h5 className="font-semibold mb-2 text-blue-800 dark:text-blue-300">{t('about.technical.frontend')}</h5>
                 <p className="text-sm text-muted-foreground">React 18, TypeScript, Tailwind CSS, Recharts</p>
               </div>
-              <div className="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
-                <h5 className="font-semibold mb-2 text-purple-900 dark:text-purple-300">{t('about.technical.storage')}</h5>
+              <div className="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-4 border border-purple-200 dark:border-purple-900">
+                <h5 className="font-semibold mb-2 text-purple-800 dark:text-purple-300">{t('about.technical.storage')}</h5>
                 <p className="text-sm text-muted-foreground">Browser localStorage (100% local)</p>
               </div>
-              <div className="bg-green-50 dark:bg-green-950/30 rounded-lg p-4 border border-green-200 dark:border-green-800">
-                <h5 className="font-semibold mb-2 text-green-900 dark:text-green-300">{t('about.technical.export')}</h5>
+              <div className="bg-green-50 dark:bg-green-950/30 rounded-lg p-4 border border-green-200 dark:border-green-900">
+                <h5 className="font-semibold mb-2 text-green-800 dark:text-green-300">{t('about.technical.export')}</h5>
                 <p className="text-sm text-muted-foreground">CSV, JSON, PDF (jsPDF + html2canvas)</p>
               </div>
-              <div className="bg-amber-50 dark:bg-amber-950/30 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
-                <h5 className="font-semibold mb-2 text-amber-900 dark:text-amber-300">{t('about.technical.i18n')}</h5>
+              <div className="bg-amber-50 dark:bg-amber-950/30 rounded-lg p-4 border border-amber-200 dark:border-amber-900">
+                <h5 className="font-semibold mb-2 text-amber-800 dark:text-amber-300">{t('about.technical.i18n')}</h5>
                 <p className="text-sm text-muted-foreground">English, Italiano, Español</p>
               </div>
             </div>
@@ -304,8 +306,8 @@ export default function About() {
           <div className="flex flex-wrap gap-4 justify-center">
             <Button 
               size="lg"
-              className="bg-white text-purple-600 hover:bg-gray-100 shadow-lg"
-              onClick={() => window.location.href = '/assets'}
+              className="bg-white text-purple-700 hover:bg-white/90 shadow-lg font-semibold"
+              onClick={() => navigate('/assets')}
             >
               <Zap className="w-5 h-5 mr-2" />
               {t('about.cta.start')}

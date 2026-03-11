@@ -102,7 +102,11 @@
       "title": "Pronto a Riprendere il Controllo?",
       "subtitle": "Nessun account. Nessuna carta di credito. Nessun dato condiviso.<br /><span class=\"text-green-400 font-semibold\">Solo tu e il tuo patrimonio.</span>",
       "button": "Inizia Ora - È Gratis",
-      "note": "Funziona su Chrome, Firefox, Safari, Edge - Nessuna installazione richiesta"
+      "note": "Funziona su Chrome, Firefox, Safari, Edge - Nessuna installazione richiesta",
+      "trust_nocreditcard": "Nessuna carta di credito richiesta",
+      "trust_nodata": "Nessun dato personale raccolto",
+      "trust_fast": "Inizia in 10 secondi",
+      "readyBadge": "Pronto in pochi secondi"
     },
     "footer": "Open Source • Licenza MIT •"
   },
@@ -140,7 +144,7 @@
       "name": "Asset / Azienda",
       "category": "Categoria",
       "ownership": "Proprietà",
-      "value": "Valore (€)",
+      "value": "Valore",
       "source": "Fonte",
       "notes": "Note",
       "actions": "Azioni"
@@ -155,7 +159,7 @@
       "category_placeholder": "Seleziona una categoria",
       "ownership": "Proprietà / Quantità",
       "ownership_placeholder": "es. 10%, 100%, 2.5 BTC",
-      "value": "Valore (€)",
+      "value": "Valore",
       "value_placeholder": "es. 50000",
       "value_required": "Il valore deve essere maggiore di zero",
       "source": "Fonte Valutazione",
@@ -178,8 +182,25 @@
       "title": "Elimina Asset",
       "confirm": "Sei sicuro di voler eliminare questo asset? Questa azione non può essere annullata.",
       "success": "Asset eliminato",
+      "undone": "Eliminazione annullata",
       "cancel": "Annulla",
       "delete": "Elimina"
+    },
+    "search": {
+      "placeholder": "Cerca asset...",
+      "noResults": "Nessun asset corrisponde alla ricerca",
+      "showing": "Mostrando {{count}} di {{total}} asset",
+      "clearFilters": "Rimuovi filtri"
+    },
+    "sort": {
+      "name": "Nome",
+      "value": "Valore",
+      "category": "Categoria",
+      "updated": "Ultimo Aggiornamento"
+    },
+    "total": {
+      "label": "Valore Totale Portafoglio",
+      "assets": "{{count}} asset"
     },
     "notifications": {
       "added": "Asset aggiunto con successo!",
@@ -302,7 +323,12 @@
     "add": "Aggiungi",
     "back": "Indietro",
     "next": "Avanti",
-    "confirm": "Conferma"
+    "confirm": "Conferma",
+    "undo": "Annulla",
+    "search": "Cerca...",
+    "total": "Totale",
+    "sortBy": "Ordina per",
+    "noResults": "Nessun risultato trovato"
   },
   "about": {
     "hero": {
@@ -388,6 +414,16 @@
       "github": "Vedi su GitHub"
     }
   },
+  "notFound": {
+    "title": "Pagina Non Trovata",
+    "subtitle": "La pagina che cerchi non esiste o è stata spostata.",
+    "goHome": "Vai alla Home",
+    "goAssets": "Vedi Asset"
+  },
+  "loading": {
+    "title": "Caricamento...",
+    "subtitle": "Preparazione dei dati"
+  },
   "theme": {
     "toggle": "Cambia tema",
     "light": "Chiaro",
@@ -402,5 +438,11 @@
     "privacy_2": "Nessun account richiesto",
     "privacy_3": "Dati locali",
     "privacy_4": "Open source"
+  },
+  "currency": {
+    "editRate": "Tasso di cambio",
+    "rateTitle": "Tasso di Cambio",
+    "rateDescription": "Imposta il tasso di conversione EUR → USD. Usato per normalizzare asset in valute diverse.",
+    "mixedImport": "{{count}} asset importati con valute miste (normalizzati in {{currency}})"
   }
 }

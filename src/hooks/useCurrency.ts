@@ -1,21 +1,15 @@
 /**
  * Currency Hook
  * 
- * Currency formatting utilities with locale support
+ * Currency formatting utilities driven by the store's displayCurrency
  * 
  * @author Michele Miky Monti
- * @version 2.0.0
+ * @version 3.0.0
  */
 
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-
-interface UseCurrencyOptions {
-  currency?: string
-  minimumFractionDigits?: number
-  maximumFractionDigits?: number
-  compact?: boolean
-}
+import { useWealthStore } from '@/stores/wealthStore'
 
 interface UseCurrencyReturn {
   format: (value: number) => string
@@ -23,6 +17,7 @@ interface UseCurrencyReturn {
   formatWithSign: (value: number) => string
   parse: (value: string) => number
   currency: string
+  symbol: string
   locale: string
 }
 
@@ -32,66 +27,75 @@ const LOCALE_MAP: Record<string, string> = {
   es: 'es-ES',
 }
 
-const CURRENCY_MAP: Record<string, string> = {
-  it: 'EUR',
-  en: 'USD',
-  es: 'EUR',
-}
-
-export function useCurrency(options: UseCurrencyOptions = {}): UseCurrencyReturn {
+export function useCurrency(): UseCurrencyReturn {
   const { i18n } = useTranslation()
-  
-  const locale = useMemo(() => 
-    LOCALE_MAP[i18n.language] || 'it-IT'
-  , [i18n.language])
-  
-  const currency = useMemo(() => 
-    options.currency || CURRENCY_MAP[i18n.language] || 'EUR'
-  , [options.currency, i18n.language])
+  const displayCurrency = useWealthStore((s) => s.displayCurrency)
 
-  const formatter = useMemo(() => 
-    new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency,
-      minimumFractionDigits: options.minimumFractionDigits ?? 0,
-      maximumFractionDigits: options.maximumFractionDigits ?? 0,
-    })
-  , [locale, currency, options.minimumFractionDigits, options.maximumFractionDigits])
+  const locale = useMemo(
+    () => LOCALE_MAP[i18n.language] || 'it-IT',
+    [i18n.language]
+  )
 
-  const compactFormatter = useMemo(() => 
-    new Intl.NumberFormat(locale, {
-      style: 'currency',
-      currency,
-      notation: 'compact',
-      compactDisplay: 'short',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 1,
-    })
-  , [locale, currency])
+  const symbol = displayCurrency === 'EUR' ? '€' : '$'
 
-  const format = useCallback((value: number) => 
-    formatter.format(value)
-  , [formatter])
+  const formatter = useMemo(
+    () =>
+      new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: displayCurrency,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }),
+    [locale, displayCurrency]
+  )
 
-  const formatCompact = useCallback((value: number) => 
-    compactFormatter.format(value)
-  , [compactFormatter])
+  const compactFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: displayCurrency,
+        notation: 'compact',
+        compactDisplay: 'short',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 1,
+      }),
+    [locale, displayCurrency]
+  )
 
-  const formatWithSign = useCallback((value: number) => {
-    const formatted = format(Math.abs(value))
-    if (value > 0) return `+${formatted}`
-    if (value < 0) return `-${formatted}`
-    return formatted
-  }, [format])
+  const format = useCallback(
+    (value: number) => formatter.format(value),
+    [formatter]
+  )
+
+  const formatCompact = useCallback(
+    (value: number) => compactFormatter.format(value),
+    [compactFormatter]
+  )
+
+  const formatWithSign = useCallback(
+    (value: number) => {
+      const formatted = format(Math.abs(value))
+      if (value > 0) return `+${formatted}`
+      if (value < 0) return `-${formatted}`
+      return formatted
+    },
+    [format]
+  )
 
   const parse = useCallback((value: string): number => {
-    // Remove currency symbols and formatting
-    const cleaned = value
-      .replace(/[€$£¥]/g, '')
-      .replace(/\s/g, '')
-      .replace(/\./g, '') // Remove thousand separators (IT)
-      .replace(/,/g, '.') // Convert decimal separator (IT)
-    
+    let cleaned = value.replace(/[€$£¥]/g, '').replace(/\s/g, '')
+    // Detect format: if string has both . and , check which is last (that's the decimal sep)
+    const lastDot = cleaned.lastIndexOf('.')
+    const lastComma = cleaned.lastIndexOf(',')
+    if (lastComma > lastDot) {
+      // European: 1.234,56
+      cleaned = cleaned.replace(/\./g, '').replace(',', '.')
+    } else if (lastDot > lastComma) {
+      // US: 1,234.56
+      cleaned = cleaned.replace(/,/g, '')
+    } else {
+      cleaned = cleaned.replace(/,/g, '.')
+    }
     const parsed = parseFloat(cleaned)
     return isNaN(parsed) ? 0 : parsed
   }, [])
@@ -101,7 +105,8 @@ export function useCurrency(options: UseCurrencyOptions = {}): UseCurrencyReturn
     formatCompact,
     formatWithSign,
     parse,
-    currency,
+    currency: displayCurrency,
+    symbol,
     locale,
   }
 }

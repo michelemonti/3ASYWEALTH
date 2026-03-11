@@ -10,31 +10,38 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWealthStore } from '@/stores/wealthStore'
+import { useCurrency } from '@/hooks/useCurrency'
 import { Button } from '@/components/ui/button'
 import { FileDown, Loader2 } from 'lucide-react'
-import { generatePDFReport } from '@/lib/pdfReport'
 
 export function PDFReportButton() {
   const { t } = useTranslation()
-  const { assets, getSummary } = useWealthStore()
+  const { assets, getSummary, displayCurrency, exchangeRate } = useWealthStore()
+  const { locale } = useCurrency()
   const [isGenerating, setIsGenerating] = useState(false)
 
   const handleGeneratePDF = async () => {
     if (assets.length === 0) {
-      return // Non fare nulla se non ci sono dati
+      return
     }
 
     setIsGenerating(true)
     
     try {
+      const { generatePDFReport } = await import('@/lib/pdfReport')
       await generatePDFReport({
         assets,
         summary: getSummary(),
-        t
+        t,
+        displayCurrency,
+        exchangeRate,
+        locale,
       })
       alert(t('dataActions.pdf.success'))
     } catch (error) {
-      console.error('PDF generation error:', error)
+      if (import.meta.env.DEV) {
+        console.error('PDF generation error:', error)
+      }
       alert(t('dataActions.pdf.error'))
     } finally {
       setIsGenerating(false)
@@ -42,7 +49,7 @@ export function PDFReportButton() {
   }
 
   if (assets.length === 0) {
-    return null // Non mostrare il bottone se non ci sono dati
+    return null
   }
 
   return (
@@ -50,7 +57,7 @@ export function PDFReportButton() {
       onClick={handleGeneratePDF}
       disabled={isGenerating}
       className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg"
-      size="lg"
+      size="default"
     >
       {isGenerating ? (
         <Loader2 className="w-5 h-5 mr-2 animate-spin" />

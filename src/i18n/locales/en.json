@@ -102,7 +102,11 @@
       "title": "Ready to Take Control?",
       "subtitle": "No account. No credit card. No data shared.<br /><span class=\"text-green-400 font-semibold\">Just you and your wealth.</span>",
       "button": "Start Now - It's Free",
-      "note": "Works on Chrome, Firefox, Safari, Edge - No installation required"
+      "note": "Works on Chrome, Firefox, Safari, Edge - No installation required",
+      "trust_nocreditcard": "No credit card required",
+      "trust_nodata": "No personal data collected",
+      "trust_fast": "Start in 10 seconds",
+      "readyBadge": "Ready in seconds"
     },
     "footer": "Open Source • MIT License •"
   },
@@ -140,7 +144,7 @@
       "name": "Asset / Company",
       "category": "Category",
       "ownership": "Ownership",
-      "value": "Value (€)",
+      "value": "Value",
       "source": "Source",
       "notes": "Notes",
       "actions": "Actions"
@@ -155,7 +159,7 @@
       "category_placeholder": "Select a category",
       "ownership": "Ownership / Quantity",
       "ownership_placeholder": "e.g., 10%, 100%, 2.5 BTC",
-      "value": "Value (€)",
+      "value": "Value",
       "value_placeholder": "e.g., 50000",
       "value_required": "Value must be greater than zero",
       "source": "Valuation Source",
@@ -178,8 +182,25 @@
       "title": "Delete Asset",
       "confirm": "Are you sure you want to delete this asset? This action cannot be undone.",
       "success": "Asset deleted",
+      "undone": "Deletion undone",
       "cancel": "Cancel",
       "delete": "Delete"
+    },
+    "search": {
+      "placeholder": "Search assets...",
+      "noResults": "No assets match your search",
+      "showing": "Showing {{count}} of {{total}} assets",
+      "clearFilters": "Clear filters"
+    },
+    "sort": {
+      "name": "Name",
+      "value": "Value",
+      "category": "Category",
+      "updated": "Last Updated"
+    },
+    "total": {
+      "label": "Total Portfolio Value",
+      "assets": "{{count}} assets"
     },
     "notifications": {
       "added": "Asset added successfully!",
@@ -302,7 +323,12 @@
     "add": "Add",
     "back": "Back",
     "next": "Next",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "undo": "Undo",
+    "search": "Search...",
+    "total": "Total",
+    "sortBy": "Sort by",
+    "noResults": "No results found"
   },
   "about": {
     "hero": {
@@ -388,6 +414,16 @@
       "github": "View on GitHub"
     }
   },
+  "notFound": {
+    "title": "Page Not Found",
+    "subtitle": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "goAssets": "View Assets"
+  },
+  "loading": {
+    "title": "Loading...",
+    "subtitle": "Preparing your data"
+  },
   "theme": {
     "toggle": "Toggle theme",
     "light": "Light",
@@ -402,5 +438,11 @@
     "privacy_2": "No account required",
     "privacy_3": "Data stays local",
     "privacy_4": "Open source"
+  },
+  "currency": {
+    "editRate": "Exchange rate",
+    "rateTitle": "Exchange Rate",
+    "rateDescription": "Set the EUR → USD conversion rate. Used to normalize mixed-currency assets.",
+    "mixedImport": "{{count}} assets imported with mixed currencies (normalized to {{currency}})"
   }
 }

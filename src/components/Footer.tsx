@@ -60,24 +60,24 @@ export function Footer() {
           {/* Trust & Privacy */}
           <div>
             <h4 className="font-semibold mb-4 flex items-center gap-2">
-              <Shield className="w-4 h-4 text-green-500" />
+              <Shield className="w-4 h-4 text-green-600 dark:text-green-400" />
               {t('footer.privacy_title', 'Privacy First')}
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
                 {t('footer.privacy_1', 'No server storage')}
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
                 {t('footer.privacy_2', 'No account required')}
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
                 {t('footer.privacy_3', 'Data stays local')}
               </li>
               <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></span>
                 {t('footer.privacy_4', 'Open source')}
               </li>
             </ul>

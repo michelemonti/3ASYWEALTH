@@ -162,6 +162,10 @@ contracts/node_modules/
 secrets.json
 
 # Personal data files
-demo-data.json
-personal-data.json
 data-miky.json
+personal-data.json
+demo-data.json
+
+# Backup files in source
+src/**/*.backup
+src/**/*.backup.*

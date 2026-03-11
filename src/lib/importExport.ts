@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-import type { Asset, AssetCategory, ExportData, WealthSummary } from '@/types/wealth'
+import type { Asset, AssetCategory, Currency, ExportData, WealthSummary } from '@/types/wealth'
 
 // =============================================================================
 // CSV IMPORT
@@ -88,9 +88,36 @@ function parseCSVLine(line: string): string[] {
 }
 
 /**
+ * Detect currency from a value string (e.g. "$5,000" → USD, "€5.000" → EUR)
+ */
+function detectCurrency(raw: string, fallback: Currency): Currency {
+  const trimmed = raw.trim()
+  if (/\$/.test(trimmed) || /USD/i.test(trimmed)) return 'USD'
+  if (/€/.test(trimmed) || /EUR/i.test(trimmed)) return 'EUR'
+  return fallback
+}
+
+/**
+ * Parse a numeric value from a string, handling both EU and US formats
+ */
+function parseNumericValue(raw: string): number {
+  let cleaned = raw.replace(/[^\d.,-]/g, '')
+  const lastDot = cleaned.lastIndexOf('.')
+  const lastComma = cleaned.lastIndexOf(',')
+  if (lastComma > lastDot) {
+    cleaned = cleaned.replace(/\./g, '').replace(',', '.')
+  } else if (lastDot > lastComma) {
+    cleaned = cleaned.replace(/,/g, '')
+  } else {
+    cleaned = cleaned.replace(/,/g, '.')
+  }
+  return parseFloat(cleaned) || 0
+}
+
+/**
  * Parse CSV file to assets
  */
-export function parseCSV(csvText: string): Asset[] {
+export function parseCSV(csvText: string, defaultCurrency: Currency = 'EUR'): Asset[] {
   const lines = csvText.trim().split('\n')
   if (lines.length < 2) return []
 
@@ -105,11 +132,14 @@ export function parseCSV(csvText: string): Asset[] {
     
     if (values.length < 3) continue // At minimum: name, ownership, value
 
-    const [name, ownership, valueStr, source = '', notes = '', category = ''] = values
+    const [name, ownership, valueStr, source = '', notes = '', category = '', currencyStr = ''] = values
 
-    // Parse value - handle various formats
-    const cleanValue = valueStr.replace(/[^\d.,-]/g, '').replace(',', '.')
-    const value = parseFloat(cleanValue) || 0
+    // Detect currency from the value string or explicit currency column
+    const currency: Currency = currencyStr.trim()
+      ? detectCurrency(currencyStr, defaultCurrency)
+      : detectCurrency(valueStr, defaultCurrency)
+
+    const value = parseNumericValue(valueStr)
 
     if (!name || value === 0) continue // Skip invalid rows
 
@@ -122,6 +152,7 @@ export function parseCSV(csvText: string): Asset[] {
       category: assetCategory,
       ownership: ownership || '-',
       value,
+      currency,
       source: source || '',
       notes: notes || '',
       createdAt: new Date(),
@@ -169,7 +200,8 @@ export function assetsToCSV(assets: Asset[]): string {
     'Value',
     'Source',
     'Notes',
-    'Category'
+    'Category',
+    'Currency'
   ]
 
   const rows = assets.map(asset => [
@@ -178,7 +210,8 @@ export function assetsToCSV(assets: Asset[]): string {
     asset.value.toString(),
     asset.source,
     asset.notes || '',
-    asset.category
+    asset.category,
+    asset.currency || 'EUR'
   ])
 
   const csvLines = [
@@ -234,7 +267,7 @@ type RawAsset = Record<string, unknown>
 /**
  * Parse JSON file to assets
  */
-export function parseJSON(jsonText: string): Asset[] {
+export function parseJSON(jsonText: string, defaultCurrency: Currency = 'EUR'): Asset[] {
   try {
     const data = JSON.parse(jsonText)
     
@@ -264,12 +297,20 @@ export function parseJSON(jsonText: string): Asset[] {
       const categoryValue = typeof asset.category === 'string' ? asset.category : ''
       const category = parseCategory(categoryValue)
 
+      // Parse currency — accept 'EUR'/'USD' or detect from value string
+      let currency: Currency = defaultCurrency
+      if (typeof asset.currency === 'string') {
+        const c = asset.currency.toUpperCase()
+        if (c === 'EUR' || c === 'USD') currency = c
+      }
+
       return {
         id,
         name,
         category,
         ownership,
         value,
+        currency,
         source,
         notes,
         createdAt: parseDate(asset.createdAt),
@@ -311,20 +352,33 @@ export async function importJSONFile(file: File): Promise<Asset[]> {
 /**
  * Convert assets to JSON with metadata
  */
-export function assetsToJSON(assets: Asset[], summary: WealthSummary): ExportData {
+export function assetsToJSON(
+  assets: Asset[],
+  summary: WealthSummary,
+  displayCurrency: Currency = 'EUR',
+  exchangeRate: number = 1.08
+): ExportData {
   return {
     assets,
     summary,
     exportDate: new Date(),
-    version: '1.0.0'
+    version: '1.0.0',
+    displayCurrency,
+    exchangeRate,
   }
 }
 
 /**
  * Download JSON file
  */
-export function downloadJSON(assets: Asset[], summary: WealthSummary, filename = 'wealth-export.json') {
-  const data = assetsToJSON(assets, summary)
+export function downloadJSON(
+  assets: Asset[],
+  summary: WealthSummary,
+  filename = 'wealth-export.json',
+  displayCurrency: Currency = 'EUR',
+  exchangeRate: number = 1.08
+) {
+  const data = assetsToJSON(assets, summary, displayCurrency, exchangeRate)
   const json = JSON.stringify(data, null, 2)
   const blob = new Blob([json], { type: 'application/json' })
   const link = document.createElement('a')
