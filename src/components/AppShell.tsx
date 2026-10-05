@@ -27,11 +27,22 @@ const NAV = [
 function useScrollTopOnNavigate() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
-    if (hash) {
-      document.getElementById(hash.slice(1))?.scrollIntoView()
-    } else {
+    if (!hash) {
       window.scrollTo(0, 0)
+      return
     }
+    const scrollToTarget = () => {
+      const target = document.getElementById(hash.slice(1))
+      if (!target) return false
+      target.scrollIntoView()
+      return true
+    }
+    if (scrollToTarget()) return
+    const observer = new MutationObserver(() => {
+      if (scrollToTarget()) observer.disconnect()
+    })
+    observer.observe(document.body, { childList: true, subtree: true })
+    return () => observer.disconnect()
   }, [pathname, hash])
 }
 
