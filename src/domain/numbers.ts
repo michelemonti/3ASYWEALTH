@@ -75,7 +75,13 @@ export function parseDecimal(input: string, hint: DecimalSeparator = ','): numbe
 export function roundCents(value: number): number {
   if (!Number.isFinite(value)) return value
   const sign = value < 0 ? -1 : 1
-  const rounded = Number(`${Math.round(Number(`${Math.abs(value)}e2`))}e-2`)
+  const shift = (n: number, exponent: number) => {
+    const [coefficient, current = '0'] = n.toString().split('e')
+    return Number(`${coefficient}e${Number(current) + exponent}`)
+  }
+  const shifted = shift(Math.abs(value), 2)
+  if (!Number.isFinite(shifted)) return value
+  const rounded = shift(Math.round(shifted), -2)
   return rounded === 0 ? 0 : sign * rounded
 }
 
