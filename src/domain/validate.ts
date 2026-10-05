@@ -377,7 +377,13 @@ export function readDocument(json: unknown, ctx: Ctx = defaultCtx()): ReadResult
 
   if (json.app === APP_ID && typeof json.schemaVersion === 'number') {
     if (json.schemaVersion > SCHEMA_VERSION) return { ok: false, error: 'newerVersion' }
-    if (!isRecord(json.data)) return { ok: false, error: 'unrecognized' }
+    if (
+      !isRecord(json.data) ||
+      !Array.isArray(json.data.assets) ||
+      !Array.isArray(json.data.liabilities) ||
+      !Array.isArray(json.data.snapshots) ||
+      !isRecord(json.data.settings)
+    ) return { ok: false, error: 'unrecognized' }
     return { ok: true, ...parseWorkspaceV2(json.data, ctx), source: 'v2' }
   }
 
