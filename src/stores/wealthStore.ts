@@ -1,365 +1,437 @@
 /**
- * Wealth Store (Zustand)
- * 
- * Global state management for wealth tracking.
- * Persists assets and calculations across page reloads.
- * 
- * @author Michele Miky Monti
- * @version 1.0.0
+ * Wealth store (Zustand).
+ *
+ * - `personal` is the person's data and the only thing persisted.
+ * - `demo` is an in-memory fictional workspace; while it is active every edit goes
+ *   there, and leaving the demo simply discards it.
+ * - Persistence happens in a subscription; failures are surfaced in `persistence`.
  */
 
-import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
-import type { Asset, AssetCategory, Currency, WealthSummary, CategorySummary } from '../types/wealth'
+import { createStore, type StoreApi } from 'zustand/vanilla'
+import { useStore } from 'zustand'
+import type { Asset, Currency, Liability, Snapshot, Workspace } from '@/domain/types'
+import { emptyWorkspace } from '@/domain/types'
+import { createSnapshot, type CreateSnapshotResult } from '@/domain/snapshots'
+import { createDemoWorkspace, type DemoLabelKey } from '@/domain/demo'
+import { todayISODate } from '@/domain/numbers'
+import type { Issue } from '@/domain/validate'
+import {
+  backupWorkspace,
+  createBackup,
+  getBrowserStorage,
+  loadPrefs,
+  loadWorkspace,
+  readRaw,
+  removeKey,
+  savePrefs,
+  saveWorkspace,
+  type BackupReason,
+  type KV,
+  type LoadResult,
+  type WriteError,
+} from '@/lib/storage'
 
-// =============================================================================
-// CURRENCY CONVERSION
-// =============================================================================
+export type AssetInput = Omit<Asset, 'id' | 'createdAt' | 'updatedAt'>
+export type LiabilityInput = Omit<Liability, 'id' | 'createdAt' | 'updatedAt'>
 
-const DEFAULT_EUR_USD_RATE = 1.08
+export type PersistenceState =
+  | { status: 'ok' }
+  | { status: 'error'; reason: WriteError }
+  | { status: 'blocked'; error: 'unreadable' | 'newerVersion' | 'unrecognized' | 'invalidNoBackup'; key: string }
 
-export function convertValue(
-  value: number,
-  fromCurrency: Currency,
-  toCurrency: Currency,
-  eurToUsdRate: number
-): number {
-  if (fromCurrency === toCurrency) return value
-  if (fromCurrency === 'EUR' && toCurrency === 'USD') return value * eurToUsdRate
-  return value / eurToUsdRate // USD → EUR
+export type LoadNotice = { kind: 'migrated' | 'issues'; backupKey: string | null; issues: Issue[] }
+
+export type GuardedResult = { ok: true; backupKey: string | null } | { ok: false; reason: 'backupFailed' }
+
+export interface DeletedAsset {
+  asset: Asset
+  index: number
+  unlinked: string[]
 }
 
-// =============================================================================
-// STORE INTERFACE
-// =============================================================================
+export interface DeletedLiability {
+  liability: Liability
+  index: number
+}
 
-interface WealthStore {
-  // State
-  assets: Asset[]
-  isLoading: boolean
-  error: string | null
-  displayCurrency: Currency
-  exchangeRate: number // EUR → USD rate
+export interface WealthState {
+  personal: Workspace
+  demo: Workspace | null
+  hideAmounts: boolean
+  persistence: PersistenceState
+  notice: LoadNotice | null
+  /** Incremented whenever local backups change, so lists can refresh. */
+  backupsRevision: number
 
-  // Actions - CRUD
-  addAsset: (asset: Omit<Asset, 'id' | 'createdAt' | 'updatedAt'>) => void
-  updateAsset: (id: string, updates: Partial<Asset>) => void
-  deleteAsset: (id: string) => void
-  clearAssets: () => void
+  addAsset: (input: AssetInput) => string
+  updateAsset: (id: string, input: AssetInput) => void
+  duplicateAsset: (id: string, suffix: string) => string | null
+  deleteAsset: (id: string) => DeletedAsset | null
+  restoreAsset: (deleted: DeletedAsset) => void
 
-  // Actions - Import/Export
-  importAssets: (assets: Asset[]) => void
-  loadDemoData: () => void
+  addLiability: (input: LiabilityInput) => string
+  updateLiability: (id: string, input: LiabilityInput) => void
+  duplicateLiability: (id: string, suffix: string) => string | null
+  deleteLiability: (id: string) => DeletedLiability | null
+  restoreLiability: (deleted: DeletedLiability) => void
 
-  // Actions - Currency
+  saveSnapshot: (note?: string) => CreateSnapshotResult
+  deleteSnapshot: (id: string) => Snapshot | null
+
   setDisplayCurrency: (currency: Currency) => void
-  setExchangeRate: (rate: number) => void
+  setRate: (rate: number) => void
 
-  // Computed
-  getSummary: () => WealthSummary
-  getAssetsByCategory: (category: AssetCategory) => Asset[]
-  getDisplayValue: (asset: Asset) => number
-  
-  // Utility
-  setError: (error: string | null) => void
+  startDemo: (label: (key: DemoLabelKey) => string) => void
+  exitDemo: () => void
+
+  mergeIntoPersonal: (incoming: Pick<Workspace, 'assets' | 'liabilities' | 'snapshots'>, adoptRate: number | null) => void
+  replacePersonal: (
+    next: Workspace,
+    reason: Extract<BackupReason, 'beforeReplace' | 'beforeRestore'>,
+    force?: boolean,
+  ) => GuardedResult
+  clearPersonal: (force?: boolean) => GuardedResult
+  resolveBlocked: () => boolean
+  /** Reload personal data written by another tab, without saving it back. */
+  syncFromStorage: () => boolean
+
+  setHideAmounts: (hide: boolean) => void
+  dismissNotice: () => void
+  touchBackups: () => void
 }
 
-// =============================================================================
-// STORE IMPLEMENTATION
-// =============================================================================
+export interface StoreDeps {
+  kv: KV | null
+  now?: () => Date
+  newId?: () => string
+}
 
-export const useWealthStore = create<WealthStore>()(
-  devtools(
-    persist(
-      (set, get) => ({
-        // Initial state
-        assets: [],
-        isLoading: false,
-        error: null,
-        displayCurrency: 'EUR',
-        exchangeRate: DEFAULT_EUR_USD_RATE,
-
-        // CRUD actions
-
-        /**
-         * Add new asset
-         */
-        addAsset: (assetData) => {
-          const newAsset: Asset = {
-            ...assetData,
-            id: crypto.randomUUID(),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          }
-
-          set((state) => ({
-            assets: [...state.assets, newAsset],
-            error: null,
-          }))
-        },
-
-        /**
-         * Update existing asset
-         */
-        updateAsset: (id, updates) => {
-          set((state) => ({
-            assets: state.assets.map((asset) =>
-              asset.id === id
-                ? { ...asset, ...updates, updatedAt: new Date() }
-                : asset
-            ),
-            error: null,
-          }))
-        },
-
-        /**
-         * Delete asset
-         */
-        deleteAsset: (id) => {
-          set((state) => ({
-            assets: state.assets.filter((asset) => asset.id !== id),
-            error: null,
-          }))
-        },
-
-        /**
-         * Clear all assets
-         */
-        clearAssets: () => {
-          set({ assets: [], error: null })
-        },
-
-        // Import/Export actions
-
-        /**
-         * Import assets (replaces existing)
-         */
-        importAssets: (assets) => {
-          set({ assets, error: null })
-        },
-
-        /**
-         * Load demo data (Generic example dataset)
-         */
-        loadDemoData: () => {
-          const { displayCurrency } = get()
-          const demoAssets: Asset[] = [
-            {
-              id: crypto.randomUUID(),
-              name: 'Tech Startup SRL',
-              category: 'shareholdings',
-              ownership: '10%',
-              value: 50000,
-              currency: displayCurrency,
-              source: '2025 Valuation',
-              notes: 'Angel round investment 2023',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Real Estate Fund',
-              category: 'shareholdings',
-              ownership: '5%',
-              value: 30000,
-              currency: displayCurrency,
-              source: 'Market value',
-              notes: 'Publicly traded REIT',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Investment Fund',
-              category: 'shareholdings',
-              ownership: '100%',
-              value: 75000,
-              currency: displayCurrency,
-              source: 'Current NAV',
-              notes: 'Balanced equity fund',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Main Residence',
-              category: 'realestate',
-              ownership: '100%',
-              value: 250000,
-              currency: displayCurrency,
-              source: 'Bank appraisal 2025',
-              notes: 'Purchased in 2020',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'City Apartment',
-              category: 'realestate',
-              ownership: '50%',
-              value: 180000,
-              currency: displayCurrency,
-              source: 'Market value',
-              notes: 'Co-ownership',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Crypto Portfolio',
-              category: 'personalassets',
-              ownership: '100%',
-              value: 25000,
-              currency: displayCurrency,
-              source: 'Current exchange value',
-              notes: 'BTC, ETH, various altcoins',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Collectible Car',
-              category: 'personalassets',
-              ownership: '100%',
-              value: 45000,
-              currency: displayCurrency,
-              source: 'Expert appraisal 2025',
-              notes: "Classic 1980s",
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Checking Account',
-              category: 'cash',
-              ownership: '100%',
-              value: 35000,
-              currency: displayCurrency,
-              source: 'Current balance',
-              notes: 'Immediate liquidity',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              id: crypto.randomUUID(),
-              name: 'Time Deposit',
-              category: 'cash',
-              ownership: '100%',
-              value: 50000,
-              currency: displayCurrency,
-              source: 'Face value + interest',
-              notes: 'Maturity 2026',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-          ]
-
-          set({ assets: demoAssets, error: null })
-        },
-
-        // Currency actions
-
-        setDisplayCurrency: (currency) => {
-          set({ displayCurrency: currency })
-        },
-
-        setExchangeRate: (rate) => {
-          set({ exchangeRate: rate })
-        },
-
-        // Computed getters
-
-        /**
-         * Get wealth summary with categories
-         */
-        getSummary: () => {
-          const { assets, displayCurrency, exchangeRate } = get()
-          
-          if (assets.length === 0) {
-            return {
-              totalWealth: 0,
-              categories: [],
-              lastUpdated: new Date(),
-              assetCount: 0,
-            }
-          }
-
-          const toDisplay = (asset: Asset) =>
-            convertValue(asset.value, asset.currency ?? displayCurrency, displayCurrency, exchangeRate)
-
-          const totalWealth = assets.reduce((sum, asset) => sum + toDisplay(asset), 0)
-
-          const categoryMap = new Map<AssetCategory, { total: number; count: number }>()
-
-          assets.forEach((asset) => {
-            const existing = categoryMap.get(asset.category) || { total: 0, count: 0 }
-            categoryMap.set(asset.category, {
-              total: existing.total + toDisplay(asset),
-              count: existing.count + 1,
-            })
-          })
-
-          const categories: CategorySummary[] = Array.from(categoryMap.entries()).map(
-            ([category, data]) => ({
-              category,
-              total: data.total,
-              count: data.count,
-              percentage: totalWealth > 0 ? (data.total / totalWealth) * 100 : 0,
-            })
-          )
-
-          // Sort by total value descending
-          categories.sort((a, b) => b.total - a.total)
-
-          return {
-            totalWealth,
-            categories,
-            lastUpdated: new Date(),
-            assetCount: assets.length,
-          }
-        },
-
-        /**
-         * Get assets filtered by category
-         */
-        getAssetsByCategory: (category) => {
-          return get().assets.filter((asset) => asset.category === category)
-        },
-
-        getDisplayValue: (asset) => {
-          const { displayCurrency, exchangeRate } = get()
-          return convertValue(asset.value, asset.currency ?? displayCurrency, displayCurrency, exchangeRate)
-        },
-
-        /**
-         * Set error message
-         */
-        setError: (error) => {
-          set({ error })
-        },
-      }),
-      {
-        name: 'wealth-storage',
-        partialize: (state) => ({
-          assets: state.assets,
-          displayCurrency: state.displayCurrency,
-          exchangeRate: state.exchangeRate,
-        }),
+function initialFrom(load: LoadResult, kv: KV | null): Pick<WealthState, 'personal' | 'persistence' | 'notice'> {
+  const base: PersistenceState = kv ? { status: 'ok' } : { status: 'error', reason: 'unavailable' }
+  switch (load.status) {
+    case 'empty':
+      return { personal: emptyWorkspace(), persistence: base, notice: null }
+    case 'loaded':
+      return {
+        personal: load.workspace,
+        persistence: base,
+        notice: load.issues.length > 0 ? { kind: 'issues', backupKey: load.backupKey, issues: load.issues } : null,
       }
-    ),
-    {
-      name: 'WealthStore',
-      enabled: import.meta.env.DEV,
+    case 'migrated':
+      return {
+        personal: load.workspace,
+        persistence: load.saved.ok ? { status: 'ok' } : { status: 'error', reason: load.saved.reason },
+        notice: { kind: 'migrated', backupKey: load.backupKey, issues: load.issues },
+      }
+    case 'failed':
+      return {
+        personal: emptyWorkspace(),
+        persistence: { status: 'blocked', error: load.error, key: load.key },
+        notice: null,
+      }
+    case 'loadedUnsafe':
+      return {
+        personal: load.workspace,
+        persistence: { status: 'blocked', error: 'invalidNoBackup', key: load.key },
+        notice: { kind: 'issues', backupKey: null, issues: load.issues },
+      }
+  }
+}
+
+function withoutLink(l: Liability): Liability {
+  const { linkedAssetId: _drop, ...rest } = l
+  return rest
+}
+
+export function createWealthStore(deps: StoreDeps, load?: LoadResult): StoreApi<WealthState> {
+  const { kv } = deps
+  const now = deps.now ?? (() => new Date())
+  const newId = deps.newId ?? (() => crypto.randomUUID())
+  const initialLoad = load ?? loadWorkspace(kv, now())
+  let syncing = false
+
+  const store = createStore<WealthState>()((set, get) => {
+    /** Apply a change to whichever workspace is active (demo or personal). */
+    const updateActive = (fn: (ws: Workspace) => Workspace) =>
+      set((s) => (s.demo ? { demo: fn(s.demo) } : { personal: fn(s.personal) }))
+    const active = () => get().demo ?? get().personal
+    const stamp = () => now().toISOString()
+    const normalizeAsset = (input: AssetInput): AssetInput => ({
+      ...input,
+      ownershipPercent: input.valueBasis === 'share' ? 100 : input.ownershipPercent,
+    })
+
+    const guardedBackup = (reason: BackupReason, force: boolean): GuardedResult => {
+      const { personal } = get()
+      const isEmpty = personal.assets.length + personal.liabilities.length + personal.snapshots.length === 0
+      if (isEmpty) return { ok: true, backupKey: null }
+      const backup = backupWorkspace(kv, reason, personal, now())
+      if (backup.ok) {
+        set((s) => ({ backupsRevision: s.backupsRevision + 1 }))
+        return { ok: true, backupKey: backup.key }
+      }
+      return force ? { ok: true, backupKey: null } : { ok: false, reason: 'backupFailed' }
     }
-  )
-)
 
-// =============================================================================
-// CONVENIENCE SELECTORS
-// =============================================================================
+    return {
+      ...initialFrom(initialLoad, kv),
+      demo: null,
+      hideAmounts: loadPrefs(kv).hideAmounts,
+      backupsRevision: 0,
 
-export const useAssets = () => useWealthStore((state) => state.assets)
-export const useWealthSummary = () => useWealthStore((state) => state.getSummary())
-export const useWealthError = () => useWealthStore((state) => state.error)
-export const useDisplayCurrency = () => useWealthStore((state) => state.displayCurrency)
-export const useExchangeRate = () => useWealthStore((state) => state.exchangeRate)
+      addAsset: (input) => {
+        const id = newId()
+        const t = stamp()
+        updateActive((ws) => ({
+          ...ws,
+          assets: [...ws.assets, { ...normalizeAsset(input), id, createdAt: t, updatedAt: t }],
+        }))
+        return id
+      },
+      updateAsset: (id, input) =>
+        updateActive((ws) => ({
+          ...ws,
+          assets: ws.assets.map((a) => {
+            if (a.id !== id) return a
+            const next: Asset = { ...a, ...normalizeAsset(input), id, updatedAt: stamp() }
+            if (!input.legacyOwnership) delete next.legacyOwnership
+            return next
+          }),
+        })),
+      duplicateAsset: (id, suffix) => {
+        const source = active().assets.find((a) => a.id === id)
+        if (!source) return null
+        const copyId = newId()
+        const t = stamp()
+        updateActive((ws) => {
+          const index = ws.assets.findIndex((a) => a.id === id)
+          const copy: Asset = {
+            ...structuredClone(source),
+            id: copyId,
+            name: `${source.name} ${suffix}`,
+            createdAt: t,
+            updatedAt: t,
+          }
+          const assets = [...ws.assets]
+          assets.splice(index + 1, 0, copy)
+          return { ...ws, assets }
+        })
+        return copyId
+      },
+      deleteAsset: (id) => {
+        const ws = active()
+        const index = ws.assets.findIndex((a) => a.id === id)
+        if (index < 0) return null
+        const asset = ws.assets[index]!
+        const unlinked = ws.liabilities.filter((l) => l.linkedAssetId === id).map((l) => l.id)
+        updateActive((w) => ({
+          ...w,
+          assets: w.assets.filter((a) => a.id !== id),
+          liabilities: w.liabilities.map((l) => (l.linkedAssetId === id ? withoutLink(l) : l)),
+        }))
+        return { asset, index, unlinked }
+      },
+      restoreAsset: ({ asset, index, unlinked }) =>
+        updateActive((ws) => {
+          if (ws.assets.some((a) => a.id === asset.id)) return ws
+          const assets = [...ws.assets]
+          assets.splice(Math.min(index, assets.length), 0, asset)
+          const relink = new Set(unlinked)
+          return {
+            ...ws,
+            assets,
+            liabilities: ws.liabilities.map((l) => (relink.has(l.id) ? { ...l, linkedAssetId: asset.id } : l)),
+          }
+        }),
+
+      addLiability: (input) => {
+        const id = newId()
+        const t = stamp()
+        const item: Liability = { ...input, id, createdAt: t, updatedAt: t }
+        updateActive((ws) => ({ ...ws, liabilities: [...ws.liabilities, input.linkedAssetId ? item : withoutLink(item)] }))
+        return id
+      },
+      updateLiability: (id, input) =>
+        updateActive((ws) => ({
+          ...ws,
+          liabilities: ws.liabilities.map((l) => {
+            if (l.id !== id) return l
+            const next: Liability = { ...l, ...input, id, updatedAt: stamp() }
+            return input.linkedAssetId ? next : withoutLink(next)
+          }),
+        })),
+      duplicateLiability: (id, suffix) => {
+        const source = active().liabilities.find((l) => l.id === id)
+        if (!source) return null
+        const copyId = newId()
+        const t = stamp()
+        updateActive((ws) => {
+          const index = ws.liabilities.findIndex((l) => l.id === id)
+          const liabilities = [...ws.liabilities]
+          liabilities.splice(index + 1, 0, {
+            ...structuredClone(source),
+            id: copyId,
+            name: `${source.name} ${suffix}`,
+            createdAt: t,
+            updatedAt: t,
+          })
+          return { ...ws, liabilities }
+        })
+        return copyId
+      },
+      deleteLiability: (id) => {
+        const ws = active()
+        const index = ws.liabilities.findIndex((l) => l.id === id)
+        if (index < 0) return null
+        const liability = ws.liabilities[index]!
+        updateActive((w) => ({ ...w, liabilities: w.liabilities.filter((l) => l.id !== id) }))
+        return { liability, index }
+      },
+      restoreLiability: ({ liability, index }) =>
+        updateActive((ws) => {
+          if (ws.liabilities.some((l) => l.id === liability.id)) return ws
+          const liabilities = [...ws.liabilities]
+          const restored =
+            liability.linkedAssetId && !ws.assets.some((a) => a.id === liability.linkedAssetId)
+              ? withoutLink(liability)
+              : liability
+          liabilities.splice(Math.min(index, liabilities.length), 0, restored)
+          return { ...ws, liabilities }
+        }),
+
+      saveSnapshot: (note) => {
+        const result = createSnapshot(active(), { id: newId(), now: now(), note })
+        if (result.ok) updateActive((ws) => ({ ...ws, snapshots: [...ws.snapshots, result.snapshot] }))
+        return result
+      },
+      deleteSnapshot: (id) => {
+        const snapshot = active().snapshots.find((s) => s.id === id) ?? null
+        if (snapshot) updateActive((ws) => ({ ...ws, snapshots: ws.snapshots.filter((s) => s.id !== id) }))
+        return snapshot
+      },
+
+      setDisplayCurrency: (currency) =>
+        updateActive((ws) => ({ ...ws, settings: { ...ws.settings, displayCurrency: currency } })),
+      setRate: (rate) => {
+        if (!Number.isFinite(rate) || rate <= 0) return
+        updateActive((ws) => ({
+          ...ws,
+          settings: { ...ws.settings, eurUsdRate: rate, eurUsdRateDate: todayISODate(now()) },
+        }))
+      },
+
+      startDemo: (label) => set({ demo: createDemoWorkspace(label, now()) }),
+      exitDemo: () => set({ demo: null }),
+
+      mergeIntoPersonal: (incoming, adoptRate) =>
+        set((s) => {
+          const ws = s.personal
+          const assetIds = new Set(ws.assets.map((a) => a.id))
+          const liabilityIds = new Set(ws.liabilities.map((l) => l.id))
+          const snapshotIds = new Set(ws.snapshots.map((x) => x.id))
+          const remap = new Map<string, string>()
+          const assets = incoming.assets.map((a) => {
+            const id = assetIds.has(a.id) ? newId() : a.id
+            if (id !== a.id) remap.set(a.id, id)
+            assetIds.add(id)
+            return { ...a, id }
+          })
+          const liabilities = incoming.liabilities.map((l) => {
+            const id = liabilityIds.has(l.id) ? newId() : l.id
+            liabilityIds.add(id)
+            const linked = l.linkedAssetId ? (remap.get(l.linkedAssetId) ?? l.linkedAssetId) : undefined
+            return linked && assetIds.has(linked) ? { ...l, id, linkedAssetId: linked } : withoutLink({ ...l, id })
+          })
+          // Snapshots are immutable records: the same id means the same snapshot.
+          const snapshots = incoming.snapshots.filter((x) => !snapshotIds.has(x.id))
+          const settings =
+            ws.settings.eurUsdRate === null && adoptRate !== null
+              ? { ...ws.settings, eurUsdRate: adoptRate, eurUsdRateDate: todayISODate(now()) }
+              : ws.settings
+          return {
+            personal: {
+              assets: [...ws.assets, ...assets],
+              liabilities: [...ws.liabilities, ...liabilities],
+              snapshots: [...ws.snapshots, ...snapshots],
+              settings,
+            },
+          }
+        }),
+      replacePersonal: (next, reason, force = false) => {
+        const guard = guardedBackup(reason, force)
+        if (guard.ok) set({ personal: next })
+        return guard
+      },
+      clearPersonal: (force = false) => {
+        const guard = guardedBackup('beforeClear', force)
+        if (guard.ok) set((s) => ({ personal: { ...emptyWorkspace(), settings: s.personal.settings } }))
+        return guard
+      },
+      resolveBlocked: () => {
+        const p = get().persistence
+        if (p.status !== 'blocked') return true
+        const raw = readRaw(kv, p.key)
+        if (raw !== null) {
+          const backup = createBackup(kv, 'unreadable', raw, now())
+          if (!backup.ok) return false
+          removeKey(kv, p.key)
+        }
+        const saved = saveWorkspace(kv, get().personal, now())
+        set((s) => ({
+          persistence: saved.ok ? { status: 'ok' } : { status: 'error', reason: saved.reason },
+          backupsRevision: s.backupsRevision + 1,
+        }))
+        return true
+      },
+
+      syncFromStorage: () => {
+        if (get().persistence.status === 'blocked') return false
+        const result = loadWorkspace(kv, now())
+        const next = initialFrom(result, kv)
+        syncing = true
+        try {
+          set({ personal: next.personal, persistence: next.persistence, ...(next.notice ? { notice: next.notice } : {}) })
+        } finally {
+          syncing = false
+        }
+        return true
+      },
+
+      setHideAmounts: (hide) => {
+        set({ hideAmounts: hide })
+        savePrefs(kv, { hideAmounts: hide })
+      },
+      dismissNotice: () => set({ notice: null }),
+      touchBackups: () => set((s) => ({ backupsRevision: s.backupsRevision + 1 })),
+    }
+  })
+
+  store.subscribe((state, prev) => {
+    if (syncing || state.personal === prev.personal || state.persistence.status === 'blocked') return
+    const result = saveWorkspace(kv, state.personal, now())
+    const next: PersistenceState = result.ok ? { status: 'ok' } : { status: 'error', reason: result.reason }
+    const current = state.persistence
+    const changed =
+      current.status !== next.status ||
+      (current.status === 'error' && next.status === 'error' && current.reason !== next.reason)
+    if (changed) store.setState({ persistence: next })
+  })
+
+  return store
+}
+
+// ---------------------------------------------------------------------------
+// App singleton + hooks
+// ---------------------------------------------------------------------------
+
+export const appKV = getBrowserStorage()
+export const wealthStore = createWealthStore({ kv: appKV })
+
+export function useWealth<T>(selector: (state: WealthState) => T): T {
+  return useStore(wealthStore, selector)
+}
+
+/** The workspace currently on screen: demo when active, otherwise personal. */
+export const useWorkspace = () => useWealth((s) => s.demo ?? s.personal)
+export const useIsDemo = () => useWealth((s) => s.demo !== null)
+export const useSettings = () => useWealth((s) => (s.demo ?? s.personal).settings)

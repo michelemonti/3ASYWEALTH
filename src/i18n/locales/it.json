@@ -1,448 +1,606 @@
 {
-  "app": {
-    "name": "3ASYWEALTH",
-    "tagline": "Il Tuo Patrimonio, Solo Tuo",
-    "nav": {
-      "home": "Home",
-      "assets": "Asset",
-      "summary": "Riepilogo",
-      "about": "Info"
-    }
+  "common": {
+    "add": "Aggiungi",
+    "back": "Indietro",
+    "cancel": "Annulla",
+    "close": "Chiudi",
+    "delete": "Elimina",
+    "dismiss": "Chiudi avviso",
+    "duplicate": "Duplica",
+    "edit": "Modifica",
+    "notAvailable": "n.d.",
+    "save": "Salva",
+    "saveChanges": "Salva modifiche",
+    "undo": "Annulla",
+    "notifications": "Notifiche"
   },
-  "landing": {
-    "hero": {
-      "badge": "100% Privacy - Zero Raccolta Dati",
-      "title": "Il Tuo Patrimonio, Solo Tuo",
-      "subtitle": "Gestisci i tuoi asset finanziari con la massima privacy.<br />Nessun server. Nessun account. Nessuna registrazione.<br /><strong>I tuoi dati rimangono nel tuo browser.</strong>",
-      "cta_primary": "Inizia Subito (Gratis)",
-      "cta_secondary": "Come Funziona",
-      "badge_privacy": "100% Privacy",
-      "badge_opensource": "Open Source",
-      "badge_free": "Sempre Gratis"
-    },
-    "privacy": {
-      "title": "Perché Nessuna Registrazione?",
-      "text1": "Lo sappiamo: <strong>nessuno vuole condividere i propri dati finanziari</strong>. E avete ragione. Il vostro patrimonio sono affari vostri.",
-      "text2": "Per questo 3ASYWEALTH funziona <strong>interamente nel tuo browser</strong>. Non c'è nessun server che riceve i tuoi dati. Non c'è nessun database. Non c'è nessun account. Non c'è nessuna registrazione.<br /><span class=\"text-green-700 font-bold\">Zero dati condivisi. Zero tracciamento. Zero compromessi.</span>"
-    },
-    "howItWorks": {
-      "title": "Come Funziona",
-      "step1": {
-        "title": "1. Inserisci i Tuoi Asset",
-        "description": "Aggiungi partecipazioni, immobili, beni personali e liquidità. Tutto viene salvato <strong>solo nel tuo browser</strong> (localStorage)."
+  "nav": {
+    "overview": "Panoramica",
+    "holdings": "Patrimonio",
+    "history": "Storico",
+    "data": "Dati",
+    "home": "3ASYWEALTH, panoramica",
+    "main": "Navigazione principale",
+    "skip": "Vai al contenuto"
+  },
+  "footer": {
+    "local": "I tuoi dati restano in questo browser: niente server, niente account.",
+    "license": "Licenza MIT"
+  },
+  "language": {
+    "label": "Lingua"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "system": "Come il sistema"
+  },
+  "hide": {
+    "toggle": "Nascondi importi",
+    "label": "Nascondi importi",
+    "hideTitle": "Nascondi gli importi sullo schermo",
+    "showTitle": "Mostra di nuovo gli importi",
+    "hiddenAmount": "importo nascosto",
+    "explain": "Sostituisce le cifre con ••••• per usare l'app in pubblico. È solo un effetto visivo: i dati restano salvati in chiaro nel browser e negli export."
+  },
+  "welcome": {
+    "kicker": "3ASYWEALTH · un'utility di 3ASY.APP",
+    "title": "Il tuo patrimonio, finalmente chiaro.",
+    "body": "Inserisci ciò che possiedi e ciò che devi: in pochi minuti vedi quanto vale davvero la tua parte. Tutto resta in questo browser.",
+    "start": "Inizia",
+    "demo": "Prova con dati demo",
+    "points": {
+      "one": {
+        "title": "Niente account",
+        "body": "Nessuna registrazione, nessun server, nessuna connessione alla banca."
       },
-      "step2": {
-        "title": "2. Visualizza & Analizza",
-        "description": "Vedi il totale, la ripartizione per categoria e grafici interattivi. Capisci dove è concentrata la tua ricchezza."
+      "two": {
+        "title": "La tua quota, non il totale",
+        "body": "Casa al 50%? Società al 10%? Conta solo la parte che è tua."
       },
-      "step3": {
-        "title": "3. Esporta Quando Vuoi",
-        "description": "Scarica i tuoi dati in CSV o JSON. Conservali sul tuo PC, cloud personale, o chiavetta USB. <strong>Sono tuoi, per sempre.</strong>"
+      "three": {
+        "title": "Fotografie nel tempo",
+        "body": "Salva una fotografia quando vuoi e guarda come cambia."
       }
     },
-    "importExport": {
-      "title": "Torna Quando Vuoi",
-      "text": "Hai esportato i tuoi dati 6 mesi fa? Nessun problema.<br /><strong>Importa il file CSV o JSON e riparti da dove avevi lasciato.</strong><br /><br />Cambi dispositivo? Esporta su un PC e importa su un altro.<br />Vuoi fare un backup? Salva il file sul tuo cloud personale (Google Drive, Dropbox, iCloud...).<br /><span class=\"text-blue-700 font-bold\">I tuoi dati viaggiano con te, non attraverso i nostri server.</span>"
-    },
-    "features": {
-      "title": "Funzionalità Principali",
-      "asset_management": {
-        "title": "Gestione Completa Asset",
-        "description": "CRUD completo per Partecipazioni, Immobili, Beni personali e Liquidità"
-      },
-      "charts": {
-        "title": "Grafici Interattivi",
-        "description": "Visualizza ripartizione con grafici a torta e barre"
-      },
-      "import_export": {
-        "title": "Import/Export CSV/JSON",
-        "description": "Portabilità totale dei dati, compatibile con Excel/Google Sheets"
-      },
-      "privacy": {
-        "title": "Privacy Assoluta",
-        "description": "Tutto in localStorage del browser, nessun dato lascia il tuo dispositivo"
-      },
-      "views": {
-        "title": "Vista Tabella & Sintesi",
-        "description": "Doppia visualizzazione: dettaglio riga per riga o overview con totali"
-      },
-      "demo": {
-        "title": "Dati Demo Inclusi",
-        "description": "Carica dataset di esempio per provare l'app immediatamente"
-      }
-    },
-    "faq": {
-      "title": "Domande Frequenti",
-      "q1": {
-        "question": "💡 Come funziona il salvataggio dei dati?",
-        "answer": "Tutto viene salvato nel <strong>localStorage del tuo browser</strong>. È come un mini-database locale che funziona solo sul tuo dispositivo. I dati rimangono anche se chiudi il browser, ma sono <strong>accessibili solo a te</strong>."
-      },
-      "q2": {
-        "question": "🔄 Posso usare 3ASYWEALTH su più dispositivi?",
-        "answer": "Sì! Esporta i tuoi dati in CSV o JSON su un dispositivo, poi importali sull'altro. Puoi anche salvare il file su un cloud personale (Google Drive, iCloud, Dropbox) per averlo sempre sincronizzato."
-      },
-      "q3": {
-        "question": "🗑️ Cosa succede se cancello i dati del browser?",
-        "answer": "Se cancelli i dati di navigazione (cache, localStorage), <strong>perderai i tuoi asset</strong>. Per questo è importante <strong class=\"text-green-600\">esportare regolarmente</strong> un backup in CSV o JSON e salvarlo in un posto sicuro."
-      },
-      "q4": {
-        "question": "📊 Posso usare Excel con i file esportati?",
-        "answer": "Assolutamente! Il formato CSV è perfettamente compatibile con Excel, Google Sheets, Numbers e qualsiasi altro foglio di calcolo. Puoi fare analisi avanzate, grafici personalizzati o semplicemente tenere un backup leggibile."
-      },
-      "q5": {
-        "question": "🔐 È davvero sicuro? Come posso essere sicuro?",
-        "answer": "3ASYWEALTH è <strong>open source</strong>! Puoi controllare il codice su <a href=\"https://github.com/michelemonti/3asywealth\" class=\"text-blue-600 hover:underline\">GitHub</a>. Non c'è nessuna chiamata a server esterni. Puoi aprire gli strumenti del browser (F12) e vedere nella tab Network che <strong>non viene inviata nessuna richiesta</strong> quando inserisci i tuoi dati."
-      },
-      "q6": {
-        "question": "💰 È davvero gratis?",
-        "answer": "Sì, completamente gratis. Nessun costo nascosto, nessun piano premium, nessuna carta di credito richiesta. È un progetto <strong>open source (MIT License)</strong> creato per chi vuole privacy e semplicità."
-      }
-    },
-    "cta": {
-      "title": "Pronto a Riprendere il Controllo?",
-      "subtitle": "Nessun account. Nessuna carta di credito. Nessun dato condiviso.<br /><span class=\"text-green-400 font-semibold\">Solo tu e il tuo patrimonio.</span>",
-      "button": "Inizia Ora - È Gratis",
-      "note": "Funziona su Chrome, Firefox, Safari, Edge - Nessuna installazione richiesta",
-      "trust_nocreditcard": "Nessuna carta di credito richiesta",
-      "trust_nodata": "Nessun dato personale raccolto",
-      "trust_fast": "Inizia in 10 secondi",
-      "readyBadge": "Pronto in pochi secondi"
-    },
-    "footer": "Open Source • Licenza MIT •"
+    "restore": "Hai già un backup?",
+    "restoreLink": "Importalo da Dati"
   },
-  "dashboard": {
-    "title": "Dashboard",
-    "subtitle": "Panoramica del tuo patrimonio",
-    "total_wealth": "Patrimonio Totale",
-    "asset_count": "Asset Totali",
-    "quick_actions": "Azioni Rapide",
-    "view_assets": "Gestisci Asset",
-    "view_summary": "Visualizza Riepilogo",
-    "tabs": {
-      "assets": "Asset",
-      "summary": "Riepilogo"
-    },
-    "menu": {
-      "import": "Importa",
-      "export_csv": "Esporta CSV",
-      "export_json": "Esporta JSON",
-      "demo": "Carica Dati Demo",
-      "clear": "Cancella Tutto"
-    }
-  },
-  "assetsTable": {
-    "title": "Gestione Asset",
-    "filter": {
-      "all": "Tutte le Categorie",
-      "shareholdings": "Partecipazioni",
-      "realestate": "Immobili",
-      "personalassets": "Beni Personali",
-      "cash": "Liquidità"
-    },
-    "add": "Aggiungi Asset",
-    "table": {
-      "name": "Asset / Azienda",
-      "category": "Categoria",
-      "ownership": "Proprietà",
-      "value": "Valore",
-      "source": "Fonte",
-      "notes": "Note",
-      "actions": "Azioni"
-    },
-    "form": {
-      "title_add": "Aggiungi Nuovo Asset",
-      "title_edit": "Modifica Asset",
-      "name": "Nome Asset / Azienda",
-      "name_placeholder": "es. Azienda XYZ, Casa Principale, Bitcoin",
-      "name_required": "Il nome è obbligatorio",
-      "category": "Categoria",
-      "category_placeholder": "Seleziona una categoria",
-      "ownership": "Proprietà / Quantità",
-      "ownership_placeholder": "es. 10%, 100%, 2.5 BTC",
-      "value": "Valore",
-      "value_placeholder": "es. 50000",
-      "value_required": "Il valore deve essere maggiore di zero",
-      "source": "Fonte Valutazione",
-      "source_placeholder": "es. Stima 2025, Prezzo di mercato",
-      "notes": "Note",
-      "notes_placeholder": "Informazioni aggiuntive...",
-      "cancel": "Annulla",
-      "add": "Aggiungi Asset",
-      "save": "Salva Modifiche",
-      "validation_error": "Compila tutti i campi obbligatori",
-      "added": "Asset aggiunto con successo",
-      "updated": "Asset aggiornato con successo"
-    },
-    "empty": {
-      "title": "Nessun Asset Ancora",
-      "subtitle": "Aggiungi il tuo primo asset o importa dati da CSV/JSON",
-      "button": "Aggiungi Primo Asset"
-    },
-    "delete": {
-      "title": "Elimina Asset",
-      "confirm": "Sei sicuro di voler eliminare questo asset? Questa azione non può essere annullata.",
-      "success": "Asset eliminato",
-      "undone": "Eliminazione annullata",
-      "cancel": "Annulla",
-      "delete": "Elimina"
-    },
-    "search": {
-      "placeholder": "Cerca asset...",
-      "noResults": "Nessun asset corrisponde alla ricerca",
-      "showing": "Mostrando {{count}} di {{total}} asset",
-      "clearFilters": "Rimuovi filtri"
-    },
-    "sort": {
-      "name": "Nome",
-      "value": "Valore",
-      "category": "Categoria",
-      "updated": "Ultimo Aggiornamento"
-    },
-    "total": {
-      "label": "Valore Totale Portafoglio",
-      "assets": "{{count}} asset"
-    },
-    "notifications": {
-      "added": "Asset aggiunto con successo!",
-      "updated": "Asset aggiornato con successo!",
-      "deleted": "Asset eliminato con successo!",
-      "import_success": "{{count}} asset importati con successo!",
-      "import_error": "Errore nell'importazione del file. Assicurati che il formato sia corretto.",
-      "demo_loaded": "Dati demo caricati con successo!",
-      "clear_confirm": "Sei sicuro di voler eliminare TUTTI gli asset? Questa azione non può essere annullata.",
-      "clear_success": "Tutti gli asset sono stati cancellati."
+  "demo": {
+    "bannerTitle": "Stai esplorando dati di prova",
+    "bannerBody": "Persone e cifre sono inventate. Puoi modificare tutto: quando esci, la demo sparisce e i tuoi dati restano com'erano.",
+    "exit": "Esci dalla demo",
+    "items": {
+      "checking": "Conto corrente",
+      "savings": "Conto deposito",
+      "etf": "ETF azionario globale",
+      "usBroker": "Conto titoli in dollari",
+      "company": "Bottega Lumen Srl",
+      "home": "Casa in città",
+      "bike": "Bicicletta e attrezzatura",
+      "mortgage": "Mutuo casa",
+      "card": "Saldo carta di credito",
+      "homeNote": "Comproprietà al 50%: il valore inserito è quello dell'intera casa.",
+      "companyNote": "Quota del 10% su una valutazione di 500.000 €.",
+      "usNote": "Importo in USD, convertito con il cambio manuale della demo."
     }
   },
   "summary": {
-    "title": "Riepilogo Patrimonio",
-    "total": "Patrimonio Totale",
-    "by_category": "Ripartizione per Categoria",
-    "asset_count": "Asset Totali",
-    "category_distribution": "Distribuzione per Categoria",
-    "category_comparison": "Confronto per Categoria",
-    "empty": {
-      "title": "Nessun Dato da Visualizzare",
-      "message": "Questa pagina mostra una panoramica dei tuoi asset, ma non ne hai ancora aggiunti.",
-      "cta": "Vai alla Dashboard per aggiungere il tuo primo asset o importare dati da file CSV/JSON."
-    }
+    "netWorth": "Patrimonio netto",
+    "assets": "Attività",
+    "liabilities": "Debiti",
+    "liquidity": "Liquidità",
+    "liquidityHint": "Conti, contanti e depositi: denaro davvero disponibile.",
+    "items_one": "{{count}} voce",
+    "items_other": "{{count}} voci",
+    "items_many": "{{count}} voci",
+    "lastUpdated": "Dati aggiornati il {{date}}",
+    "oldestValuation": "valutazione più vecchia: {{date}}",
+    "negativeHint": "I debiti superano le attività. Succede, per esempio, nei primi anni di un mutuo: il numero serve a vedere la situazione, non a giudicarla.",
+    "composition": "Composizione delle attività",
+    "compositionHint": "Percentuali sul totale delle attività. I debiti sono a parte.",
+    "compositionAria": "Barra della composizione delle attività per categoria",
+    "topAssets": "Beni principali",
+    "noAssets": "Ancora nessuna attività.",
+    "seeAll": "Vedi tutto il patrimonio",
+    "lastSnapshot": "Ultima fotografia: {{date}}",
+    "sinceLastHint": "Differenza di patrimonio netto rispetto a quella fotografia (non è un rendimento).",
+    "noChange": "Nessuna variazione",
+    "noSnapshot": "Nessuna fotografia ancora. Salvane una per iniziare lo storico.",
+    "openHistory": "Apri lo storico"
   },
   "categories": {
-    "shareholdings": "Partecipazioni",
-    "realestate": "Immobili",
-    "personalassets": "Beni Personali",
-    "cash": "Liquidità"
-  },
-  "dataActions": {
-    "title": "Azioni Dati",
-    "import": {
-      "csv": "Importa CSV",
-      "json": "Importa JSON",
-      "loading": "Importazione in corso...",
-      "empty": "Nessun asset valido trovato nel file",
-      "success": "{{count}} asset importati con successo!",
-      "error": "Errore nell'importazione del file. Controlla il formato."
+    "cash": {
+      "label": "Liquidità",
+      "hint": "Conti, contanti, depositi",
+      "placeholder": "Es. Conto corrente"
     },
-    "export": {
-      "csv": "Esporta CSV",
-      "json": "Esporta JSON",
-      "empty": "Nessun asset da esportare",
-      "success": "Export completato"
+    "investments": {
+      "label": "Investimenti",
+      "hint": "Fondi, ETF, azioni, obbligazioni, previdenza",
+      "placeholder": "Es. ETF azionario"
     },
-    "demo": {
-      "load": "Carica Dati Demo",
-      "confirmTitle": "Carica Dati Demo",
-      "confirm": "Questo sostituirà tutti i dati esistenti con i dati di esempio. Vuoi continuare?",
-      "confirm_button": "Carica Demo",
-      "success": "Dati demo caricati con successo!"
+    "business": {
+      "label": "Partecipazioni societarie",
+      "hint": "Quote di società, startup, attività",
+      "placeholder": "Es. Quota in Rossi Srl"
     },
-    "clear": {
-      "title": "Cancella Tutti i Dati",
-      "empty": "Nessun dato da cancellare",
-      "confirm": "⚠️ ATTENZIONE: Questo cancellerà permanentemente tutti i tuoi asset e dati. Questa azione non può essere annullata. Sei sicuro di voler continuare?",
-      "confirm_button": "Cancella Tutto",
-      "success": "Tutti i dati sono stati cancellati."
+    "realestate": {
+      "label": "Immobili",
+      "hint": "Casa, appartamenti, terreni, box",
+      "placeholder": "Es. Casa al mare"
     },
-    "pdf": {
-      "generate": "Genera Report PDF",
-      "generating": "Generazione PDF...",
-      "success": "Report PDF generato con successo!",
-      "error": "Errore nella generazione del PDF."
+    "personal": {
+      "label": "Beni personali",
+      "hint": "Auto, gioielli, arte, collezioni",
+      "placeholder": "Es. Automobile"
     }
   },
-  "pdfReport": {
-    "title": "Report Patrimonio",
-    "generatedOn": "Generato il",
-    "page": "Pagina",
-    "privacy": {
-      "title": "100% Privacy Garantita",
-      "message": "Questo report è stato generato interamente nel tuo browser. Nessun dato è stato inviato a server esterni. Le tue informazioni finanziarie rimangono completamente private e sicure solo sul tuo dispositivo."
-    },
-    "summary": {
-      "title": "Riepilogo Patrimonio",
-      "totalWealth": "Patrimonio Totale",
-      "totalAssets": "Asset Totali",
-      "categories": "Categorie"
-    },
-    "categoryBreakdown": "Ripartizione per Categoria",
-    "visualBreakdown": "Distribuzione Visiva per Categoria",
-    "assets": {
-      "title": "Dettaglio Asset"
-    },
-    "table": {
-      "category": "Categoria",
-      "assets": "Asset",
-      "value": "Valore",
-      "percentage": "Percentuale",
-      "assetName": "Nome Asset",
-      "ownership": "Quota"
-    },
-    "footer": {
-      "generated": "Generato da",
-      "opensource": "Software Open Source",
-      "privacy": "100% Privacy"
-    },
-    "error": "Errore nella generazione del report PDF"
+  "liabilities": {
+    "label": "Debito",
+    "hint": "Mutui, prestiti, carte: quanto resta da restituire",
+    "placeholder": "Es. Mutuo casa"
   },
-  "privacyBadge": {
-    "title": "100% Elaborazione Browser",
-    "subtitle": "Nessun server. Nessun tracciamento. I dati restano qui."
+  "form": {
+    "chooseTitle": "Cosa vuoi aggiungere?",
+    "chooseHint": "Scegli una categoria: ti chiediamo solo i campi che servono.",
+    "addAsset": "Nuova attività",
+    "addLiability": "Nuovo debito",
+    "editAsset": "Modifica attività",
+    "editLiability": "Modifica debito",
+    "assetHint": "Indica il valore e quanta parte è tua: vedi subito quanto conta nel tuo patrimonio.",
+    "liabilityHint": "Inserisci solo il capitale residuo che devi tu. Non serve il piano di ammortamento.",
+    "category": "Categoria",
+    "name": "Nome",
+    "basis": {
+      "legend": "L'importo che inserisci è…",
+      "share": "Già la mia parte",
+      "shareHint": "Es. il saldo del tuo conto o il valore delle tue quote.",
+      "whole": "Il valore complessivo del bene",
+      "wholeHint": "Es. il valore dell'intera casa: poi indichi la percentuale che possiedi."
+    },
+    "amountShare": "Valore della tua parte",
+    "amountWhole": "Valore complessivo",
+    "amountLiability": "Capitale residuo a tuo carico",
+    "currency": "Valuta",
+    "percent": "Quota posseduta",
+    "rateNeeded": "Per includere questa voce nei totali in {{currency}} serve un cambio. Lo inserisci tu: non è una quotazione in tempo reale.",
+    "linked": "Collegato a un bene (facoltativo)",
+    "linkedHint": "Solo informativo: il debito viene sottratto una volta sola, collegato o no.",
+    "linkedNone": "Nessun collegamento",
+    "dateAsset": "Data della valutazione",
+    "dateLiability": "Saldo aggiornato al",
+    "moreAsset": "+ Aggiungi note e fonte",
+    "moreLiability": "+ Aggiungi note",
+    "notes": "Note",
+    "source": "Fonte della stima",
+    "sourcePlaceholder": "Es. perizia 2026, estratto conto",
+    "legacy": {
+      "title": "Dalla versione precedente: quota indicata «{{value}}»",
+      "body": "Nella versione precedente l'importo era già considerato la tua parte, e lo è ancora. Se invece era il valore complessivo, scegli «Il valore complessivo del bene» e inserisci la percentuale.",
+      "confirm": "Ho verificato"
+    },
+    "preview": {
+      "title": "Contributo al tuo patrimonio",
+      "empty": "Inserisci un importo valido per vedere l'anteprima.",
+      "whole": "{{pct}} di {{whole}}.",
+      "share": "L'importo è già la tua parte.",
+      "liability": "Viene sottratto dal patrimonio netto.",
+      "converted": "In valuta originale: {{original}}."
+    },
+    "errors": {
+      "nameRequired": "Dai un nome a questa voce.",
+      "amount": {
+        "required": "Inserisci un importo.",
+        "invalid": "Non riesco a leggere questo numero. Prova con 12500 o 12.500,50.",
+        "negative": "L'importo non può essere negativo. I debiti si inseriscono come debiti.",
+        "zero": "L'importo deve essere maggiore di zero."
+      },
+      "percent": {
+        "required": "Indica la percentuale che possiedi.",
+        "invalid": "Percentuale non valida.",
+        "range": "La percentuale deve essere maggiore di 0 e al massimo 100."
+      },
+      "date": "Inserisci una data valida."
+    },
+    "toast": {
+      "addedAsset": "Attività aggiunta.",
+      "addedLiability": "Debito aggiunto.",
+      "updated": "Modifiche salvate.",
+      "addAnother": "Aggiungi ancora"
+    }
   },
-  "pdfPrivacyBadge": {
-    "title": "PDF Generato Localmente",
-    "subtitle": "Zero upload server. I dati restano privati."
-  },
-  "common": {
-    "loading": "Caricamento...",
-    "error": "Errore",
-    "success": "Successo",
-    "close": "Chiudi",
-    "save": "Salva",
-    "cancel": "Annulla",
-    "delete": "Elimina",
-    "edit": "Modifica",
-    "add": "Aggiungi",
-    "back": "Indietro",
-    "next": "Avanti",
-    "confirm": "Conferma",
-    "undo": "Annulla",
-    "search": "Cerca...",
-    "total": "Totale",
+  "holdings": {
+    "addAsset": "Aggiungi un'attività",
+    "addLiability": "Aggiungi un debito",
+    "search": "Cerca per nome, note o categoria",
+    "filterCategory": "Filtra per categoria",
+    "allCategories": "Tutte le categorie",
     "sortBy": "Ordina per",
-    "noResults": "Nessun risultato trovato"
+    "sort": {
+      "value_desc": "Valore: dal più alto",
+      "value_asc": "Valore: dal più basso",
+      "name_asc": "Nome: A–Z",
+      "name_desc": "Nome: Z–A",
+      "date_desc": "Valutazione: più recente",
+      "date_asc": "Valutazione: meno recente"
+    },
+    "showing_one": "{{count}} voce su {{total}}",
+    "showing_other": "{{count}} voci su {{total}}",
+    "showing_many": "{{count}} voci su {{total}}",
+    "clearFilters": "Azzera filtri",
+    "noResults": "Nessuna voce corrisponde alla ricerca.",
+    "emptyAssets": "Qui ancora niente. Anche i patrimoni più ordinati sono partiti da una riga.",
+    "emptyLiabilities": "Nessun debito registrato. Se ne hai, aggiungili: il patrimonio netto sarà più realistico.",
+    "col": {
+      "name": "Nome",
+      "category": "Categoria",
+      "entered": "Valore inserito",
+      "yours": "A te",
+      "date": "Valutazione",
+      "linked": "Collegato a",
+      "original": "Importo",
+      "owed": "Residuo",
+      "actions": "Azioni",
+      "balanceDate": "Saldo al"
+    },
+    "toReview": "da verificare",
+    "actionsFor": "Azioni per {{name}}",
+    "deleted": "«{{name}}» eliminato.",
+    "copySuffix": "(copia)",
+    "total": "Totale",
+    "totalFiltered": "Totale delle voci filtrate"
+  },
+  "snapshot": {
+    "save": "Salva fotografia",
+    "dialogTitle": "Salva una fotografia",
+    "dialogBody": "Registra una copia datata e immutabile di attività, debiti, valori e cambio. Le modifiche successive non la cambieranno.",
+    "note": "Nota (facoltativa)",
+    "notePlaceholder": "Es. Fine anno, dopo la perizia…",
+    "confirm": "Salva fotografia",
+    "saved": "Fotografia salvata.",
+    "savedBody": "Il tuo patrimonio al {{date}} è al sicuro nello Storico.",
+    "missingRate": "Prima imposta il cambio: alcune voci non si possono convertire.",
+    "empty": "Non c'è niente da fotografare: aggiungi almeno una voce.",
+    "whereHint": "Trovi tutte le fotografie in"
+  },
+  "history": {
+    "title": "Storico",
+    "description": "Fotografie del tuo patrimonio nel tempo. Partono dalla prima che salvi: niente valori inventati.",
+    "emptyTitle": "Nessuna fotografia, per ora",
+    "emptyBody": "Salva la prima fotografia: è il punto di partenza. La prossima volta che aggiorni i valori, ne salvi un'altra e vedi la differenza.",
+    "trend": "Andamento",
+    "trendHint": "Patrimonio netto, attività e debiti in {{currency}}.",
+    "chartAria_one": "Grafico dell'andamento di {{count}} fotografia",
+    "chartAria_other": "Grafico dell'andamento di {{count}} fotografie",
+    "chartAria_many": "Grafico dell'andamento di {{count}} fotografie",
+    "notConvertible_one": "{{count}} fotografia non ha un cambio registrato e non compare nel grafico in questa valuta.",
+    "notConvertible_other": "{{count}} fotografie non hanno un cambio registrato e non compaiono nel grafico in questa valuta.",
+    "notConvertible_many": "{{count}} fotografie non hanno un cambio registrato e non compaiono nel grafico in questa valuta.",
+    "vsPrevious": "rispetto alla precedente",
+    "first": "Prima fotografia",
+    "diffUnavailable": "Differenza non disponibile in questa valuta",
+    "convertedNote": "convertita dal {{currency}} con il cambio di allora",
+    "view": "Vedi fotografia del {{date}}",
+    "delete": "Elimina fotografia del {{date}}",
+    "detailTitle": "Fotografia del {{date}}",
+    "detailCurrency": "Valori in {{currency}}, come al momento dello scatto",
+    "detailCaption": "Voci incluse nella fotografia",
+    "immutable": "Le fotografie non si modificano: rappresentano com'era il patrimonio in quel momento.",
+    "deleteTitle": "Eliminare questa fotografia?",
+    "deleteBody": "La fotografia verrà rimossa dallo storico. I dati attuali non cambiano.",
+    "deleted": "Fotografia eliminata.",
+    "conventionTitle": "Come leggere lo storico",
+    "conventionCurrency": "Ogni fotografia conserva la valuta e il cambio in vigore quando l'hai salvata. Se la guardi in un'altra valuta, viene convertita con quel cambio, non con quello di oggi: cambiare il cambio attuale non riscrive il passato.",
+    "conventionReturn": "La differenza tra due fotografie comprende tutto: nuovi beni, rimborsi, nuove stime e cambio. È una variazione di valore, non un rendimento finanziario."
+  },
+  "whatIf": {
+    "open": "E se…?",
+    "title": "E se…?",
+    "description": "Una prova al volo: i tuoi dati non cambiano.",
+    "purchase": {
+      "tab": "Acquisto",
+      "explain": "Compri un bene usando la liquidità: il valore passa dai conti al bene. Se ti manca liquidità, indica quanto finanzieresti con un debito.",
+      "price": "Prezzo ({{currency}})",
+      "financed": "Di cui finanziato ({{currency}})",
+      "financedHint": "Lascia vuoto se paghi tutto con la liquidità."
+    },
+    "revalue": {
+      "tab": "Nuova stima",
+      "explain": "Cambia la stima di un bene di una percentuale. Solo questo cambia il patrimonio netto.",
+      "asset": "Bene",
+      "change": "Variazione %",
+      "changeHint": "Es. -10 o 5",
+      "none": "Aggiungi prima almeno un'attività."
+    },
+    "repay": {
+      "tab": "Rimborso",
+      "explain": "Restituisci una parte del debito con la liquidità: scendono di pari importo sia la liquidità sia il debito.",
+      "debt": "Debito",
+      "amount": "Importo rimborsato ({{currency}})",
+      "none": "Non hai debiti da rimborsare. Bella notizia."
+    },
+    "before": "Prima",
+    "after": "Dopo",
+    "delta": "Differenza",
+    "tableCaption": "Confronto prima e dopo la simulazione",
+    "footnote": "Simulazione contabile semplice: niente tasse, costi, interessi o previsioni. Non è una consulenza finanziaria.",
+    "errors": {
+      "missingRate": "Imposta prima il cambio: alcune voci non si possono convertire.",
+      "invalidAmount": "Controlla gli importi: devono essere numeri validi.",
+      "notFound": "Voce non trovata.",
+      "financedExceedsPrice": "La parte finanziata non può superare il prezzo.",
+      "insufficientLiquidity": "La liquidità non basta: mancano {{shortfall}}. Per provare comunque, indica quanto finanzieresti con un debito.",
+      "exceedsDebt": "Il rimborso supera il debito residuo ({{outstanding}})."
+    }
+  },
+  "rate": {
+    "title": "Cambio EUR/USD",
+    "description": "Il cambio lo inserisci tu e resta quello finché non lo modifichi: non è una quotazione in tempo reale.",
+    "fieldLabel": "Cambio manuale",
+    "set": "Imposta cambio",
+    "saved": "Cambio aggiornato.",
+    "setOn": "Impostato il {{date}}.",
+    "dateUnknown": "Data non indicata (dalla versione precedente): verificalo.",
+    "notSet": "Nessun cambio impostato.",
+    "missingTitle_one": "{{count}} voce non è inclusa nei totali",
+    "missingTitle_other": "{{count}} voci non sono incluse nei totali",
+    "missingTitle_many": "{{count}} voci non sono incluse nei totali",
+    "missingBody": "Sono in un'altra valuta rispetto a {{currency}} e manca il cambio. Imposta il cambio per vederle nei totali.",
+    "errors": {
+      "required": "Inserisci il cambio.",
+      "invalid": "Numero non valido. Esempio: 1,10",
+      "range": "Il cambio deve essere un numero positivo."
+    }
+  },
+  "persistence": {
+    "quota": {
+      "title": "Spazio del browser esaurito: le ultime modifiche non sono salvate",
+      "body": "Se chiudi la pagina potresti perderle. Scarica subito un backup, poi libera spazio (per esempio eliminando vecchi backup locali in Dati)."
+    },
+    "unavailable": {
+      "title": "Questo browser non permette di salvare",
+      "body": "Succede in alcune finestre private o con i cookie bloccati. I dati resteranno solo finché la pagina è aperta: scarica un backup prima di chiudere."
+    },
+    "unknown": {
+      "title": "Il salvataggio non è riuscito",
+      "body": "Le ultime modifiche potrebbero non essere salvate. Scarica un backup per sicurezza."
+    }
+  },
+  "blocked": {
+    "title": {
+      "unreadable": "Non riesco a leggere i dati salvati",
+      "newerVersion": "I dati salvati vengono da una versione più recente dell'app",
+      "unrecognized": "I dati salvati hanno un formato sconosciuto",
+      "invalidNoBackup": "Alcune voci non sono leggibili e non riesco a salvarne una copia"
+    },
+    "body": "Non li ho toccati e non li sovrascriverò. Scarica una copia, poi puoi metterli da parte (restano nei backup locali) e ricominciare.",
+    "download": "Scarica i dati originali",
+    "setAside": "Metti da parte e ricomincia",
+    "resolved": "Dati originali spostati nei backup locali.",
+    "resolveFailed": "Non riesco a creare il backup: scarica prima i dati originali e libera spazio.",
+    "bodyInvalid": "Le altre voci sono visibili, ma non salvo modifiche finché i dati originali non sono al sicuro: scaricali, libera spazio (per esempio eliminando vecchi backup locali), poi mettili da parte."
+  },
+  "notice": {
+    "migrated": {
+      "title": "Abbiamo aggiornato i tuoi dati al nuovo formato",
+      "body": "Gli importi della versione precedente sono considerati già riferiti alla tua parte, quindi i totali non cambiano. Le vecchie indicazioni di quota sono segnate «da verificare». Una copia dei dati originali è nei backup locali."
+    },
+    "issues": {
+      "title": "Alcune voci salvate non erano leggibili",
+      "body": "Le altre sono state caricate normalmente. Una copia completa dei dati originali è nei backup locali."
+    },
+    "seeBackups": "Backup locali"
+  },
+  "issues": {
+    "kind": {
+      "asset": "Attività",
+      "liability": "Debito",
+      "snapshot": "Fotografia",
+      "settings": "Impostazioni"
+    },
+    "field": {
+      "record": "formato non valido",
+      "name": "nome mancante",
+      "category": "categoria non riconosciuta",
+      "currency": "valuta non supportata",
+      "amount": "importo non valido",
+      "percent": "quota non valida",
+      "date": "data non valida",
+      "link": "collegamento a un bene inesistente, rimosso",
+      "snapshot": "fotografia incompleta",
+      "settings": "cambio non valido, ignorato"
+    },
+    "skipped": "non importata",
+    "more_one": "…e ancora {{count}}",
+    "more_other": "…e altre {{count}}",
+    "more_many": "…e altre {{count}}"
+  },
+  "import": {
+    "previewTitle": "Anteprima dell'importazione",
+    "snapshots": "Fotografie",
+    "rejected": "Scartate",
+    "legacyFile": "File della versione precedente: gli importi sono considerati già riferiti alla tua parte.",
+    "errorsTitle_one": "{{count}} riga non verrà importata",
+    "errorsTitle_other": "{{count}} righe non verranno importate",
+    "errorsTitle_many": "{{count}} righe non verranno importate",
+    "line": "Riga {{line}}",
+    "field": {
+      "record": "riga non valida",
+      "name": "nome mancante",
+      "type": "tipo sconosciuto (usa «attività» o «debito»)",
+      "category": "categoria mancante o sconosciuta",
+      "currency": "valuta non supportata (EUR o USD)",
+      "amount": "importo mancante o non valido",
+      "basis": "base del valore sconosciuta",
+      "percent": "percentuale mancante o fuori intervallo",
+      "legacyOwnership": "quota non valida",
+      "date": "data non valida",
+      "notes": "note non valide",
+      "source": "fonte non valida",
+      "linked": "bene collegato non trovato: collegamento ignorato"
+    },
+    "ignoredColumns": "Colonne ignorate: {{columns}}",
+    "modeLegend": "Come vuoi importare?",
+    "mode": {
+      "add": "Aggiungi ai dati attuali",
+      "addHint": "Non elimina niente. Gli identificativi in conflitto vengono rinnovati.",
+      "replace": "Sostituisci",
+      "replaceHint": {
+        "csv": "Sostituisce attività e debiti. Storico e impostazioni restano.",
+        "json": "Ripristina tutto dal backup: attività, debiti, fotografie e impostazioni."
+      }
+    },
+    "duplicates_one": "Salta {{count}} voce che sembra già presente",
+    "duplicates_other": "Salta {{count}} voci che sembrano già presenti",
+    "duplicates_many": "Salta {{count}} voci che sembrano già presenti",
+    "duplicatesHint": "Stesso nome, importo e valuta. Se non spunti, vengono aggiunte comunque.",
+    "replaceWarning": "I dati attuali verranno sostituiti.",
+    "replaceBackup": "Prima di procedere salviamo automaticamente una copia nei backup locali. Puoi anche scaricarne una.",
+    "backupFailed": "Non sono riuscito a creare il backup locale (spazio esaurito?). Scarica un backup prima di continuare.",
+    "forceConfirm": "Ho scaricato un backup: procedi senza copia locale",
+    "resulting": "Patrimonio netto dopo l'importazione:",
+    "confirmAdd_one": "Importa {{count}} elemento",
+    "confirmAdd_other": "Importa {{count}} elementi",
+    "confirmAdd_many": "Importa {{count}} elementi",
+    "confirmReplace": "Sostituisci",
+    "done_one": "{{count}} voce importata.",
+    "done_other": "{{count}} voci importate.",
+    "done_many": "{{count}} voci importate.",
+    "replaced": "Dati sostituiti.",
+    "backupCreated": "Copia dei dati precedenti salvata nei backup locali.",
+    "failed": "Impossibile importare il file",
+    "errors": {
+      "tooLarge": "Il file è troppo grande (massimo 5 MB).",
+      "invalidJson": "Il file JSON non è valido.",
+      "unrecognized": "Non riconosco questo formato. Usa un backup di 3ASYWEALTH o un CSV.",
+      "newerVersion": "Il backup viene da una versione più recente dell'app.",
+      "empty": "Il file non contiene dati.",
+      "unterminatedQuote": "Virgolette non chiuse a partire dalla riga {{line}}.",
+      "missingColumns": "Mancano colonne obbligatorie: {{columns}}.",
+      "unreadable": "Il file non è leggibile."
+    }
+  },
+  "data": {
+    "description": "Backup, importazione, valuta e preferenze. Tutto avviene nel tuo browser.",
+    "backup": {
+      "title": "Backup ed esportazione",
+      "description": "Il backup JSON contiene tutto e si può reimportare. CSV e PDF servono per fogli di calcolo e stampa.",
+      "browserWarning": "I dati vivono solo in questo browser. Se cancelli i dati di navigazione o cambi dispositivo, li perdi: scarica un backup ogni tanto.",
+      "download": "Scarica backup (JSON)",
+      "import": "Importa file (JSON o CSV)",
+      "csv": "Esporta tabella (CSV)",
+      "pdf": "Report PDF",
+      "jsonHint": "JSON: attività, debiti, fotografie e impostazioni, in formato versionato.",
+      "csvHint": "CSV: attività e debiti, con intestazioni leggibili. I testi che sembrano formule vengono protetti.",
+      "pdfHint": "PDF: riepilogo stampabile, generato nel browser con gli stessi calcoli dell'app.",
+      "hiddenNote": "«Nascondi importi» vale solo sullo schermo: export e PDF contengono le cifre reali.",
+      "demoNote": "Sei nella demo: gli export contengono i dati di prova. L'importazione è disattivata."
+    },
+    "local": {
+      "title": "Backup locali",
+      "description": "Copie create automaticamente prima di aggiornamenti e operazioni che sostituiscono i dati. Restano in questo browser.",
+      "none": "Nessun backup locale.",
+      "reason": {
+        "migration": "Prima dell'aggiornamento di formato",
+        "beforeReplace": "Prima di una sostituzione",
+        "beforeClear": "Prima della cancellazione",
+        "beforeRestore": "Prima di un ripristino",
+        "invalidData": "Dati con voci illeggibili",
+        "unreadable": "Dati illeggibili messi da parte",
+        "legacy": "Dati della versione precedente"
+      },
+      "unknownDate": "data sconosciuta",
+      "download": "Scarica",
+      "restore": "Ripristina",
+      "delete": "Elimina backup",
+      "restoreTitle": "Ripristinare questo backup?",
+      "restoreBody": "I dati attuali verranno sostituiti. Prima salviamo una copia dei dati attuali nei backup locali.",
+      "restored": "Backup ripristinato.",
+      "restoreFailed": "Questo backup non è leggibile. Puoi comunque scaricarlo.",
+      "deleteTitle": "Eliminare questo backup locale?",
+      "deleteBody": "Non potrai più recuperarlo da qui. Se ti serve, scaricalo prima."
+    },
+    "currency": {
+      "title": "Valuta e cambio",
+      "description": "La valuta di visualizzazione cambia solo come vedi i totali: gli importi originali restano quelli inseriti.",
+      "display": "Mostra i totali in"
+    },
+    "appearance": {
+      "title": "Aspetto e lingua"
+    },
+    "danger": {
+      "title": "Cancella tutto",
+      "description": "Elimina attività, debiti e fotografie da questo browser. Prima viene salvata una copia nei backup locali.",
+      "clear": "Cancella tutti i dati",
+      "clearAnyway": "Cancella senza backup locale",
+      "confirmTitle": "Cancellare tutti i dati?",
+      "confirmBody": "Attività, debiti e fotografie verranno eliminati da questo browser. Salviamo prima una copia nei backup locali; per sicurezza puoi scaricarne una anche tu.",
+      "cleared": "Dati cancellati."
+    }
   },
   "about": {
-    "hero": {
-      "badge": "100% Privacy & Open Source",
-      "title": "Il Tuo Patrimonio, La Tua Privacy, Il Tuo Controllo",
-      "subtitle": "Un'applicazione moderna per il monitoraggio del patrimonio costruita con trasparenza, privacy e fiducia al centro. Nessun server, nessun tracciamento, nessun compromesso."
-    },
-    "features": {
-      "privacy": {
-        "title": "100% Privacy",
-        "description": "I tuoi dati non lasciano mai il browser. Tutto funziona localmente sul tuo dispositivo senza server esterni."
-      },
-      "noAccount": {
-        "title": "Nessuna Registrazione",
-        "description": "Nessun account, password o email richiesta. Inizia a monitorare il tuo patrimonio immediatamente."
-      },
-      "opensource": {
-        "title": "Open Source",
-        "description": "Codice sorgente completo disponibile su GitHub. Verifica ogni riga, suggerisci miglioramenti o fai il fork."
-      },
-      "free": {
-        "title": "Gratis Per Sempre",
-        "description": "Nessun costo nascosto, livelli premium o abbonamenti. Gratis oggi, gratis domani, gratis per sempre."
-      }
-    },
-    "opensource": {
-      "title": "Trasparenza Attraverso l'Open Source",
-      "description": "3ASYWEALTH è completamente open source. Ogni riga di codice è pubblicamente disponibile per revisione, audit e verifica. Non si tratta solo di trasparenza—si tratta di costruire fiducia attraverso la verificabilità.",
-      "challenge": {
-        "title": "🔍 Ti Sfidiamo",
-        "description": "Non fidarti solo di noi—verifica tu stesso! Rivedi il codice, controlla eventuali chiamate ai server, ispeziona il traffico di rete. Siamo sicuri che troverai esattamente ciò che promettiamo: un'applicazione completamente client-side con zero trasmissione dati."
-      },
-      "viewCode": "Vedi Codice Sorgente",
-      "reportIssue": "Segnala un Problema",
-      "benefits": {
-        "transparent": "Completamente Trasparente",
-        "transparentDesc": "Vedi esattamente come i tuoi dati vengono elaborati e salvati",
-        "auditable": "Sicurezza Verificabile",
-        "auditableDesc": "Chiunque può verificare l'assenza di backdoor o tracciamenti",
-        "community": "Guidato dalla Community",
-        "communityDesc": "Contributi e miglioramenti da sviluppatori in tutto il mondo"
-      }
-    },
+    "title": "Come funziona",
+    "body": "3ASYWEALTH è un piccolo strumento gratuito per capire il proprio patrimonio. Fa parte di 3ASY.APP. Niente account, niente server, niente collegamenti alla banca: lavora tutto nel tuo browser.",
     "faq": {
-      "title": "Domande Frequenti",
-      "dataSaving": {
-        "question": "💾 Come funziona il salvataggio dei dati?",
-        "answer": "I tuoi dati vengono salvati direttamente nel browser usando localStorage. Questo significa:\n\n✅ I dati rimangono solo sul tuo dispositivo\n✅ Nessun caricamento su server o sync cloud\n✅ Funziona completamente offline\n✅ Salvataggio/caricamento istantaneo\n\n⚠️ Importante: Se cancelli i dati del browser o usi la modalità incognito, i dati verranno persi. Esporta sempre i dati regolarmente come backup!"
+      "share": {
+        "q": "Valore complessivo o la mia parte?",
+        "a": "Per ogni attività scegli se l'importo è già la tua parte oppure il valore del bene intero con la tua percentuale. La percentuale si applica una volta sola."
       },
-      "multiDevice": {
-        "question": "🔄 Posso usare 3ASYWEALTH su più dispositivi?",
-        "answer": "Poiché tutto funziona localmente, i dati non si sincronizzano automaticamente tra dispositivi. Tuttavia puoi:\n\n📤 Esportare i dati come JSON o CSV da un dispositivo\n📥 Importare lo stesso file su un altro dispositivo\n💾 Mantenere un file di backup nel tuo cloud storage (Dropbox, Google Drive, etc.)\n\nQuesta sincronizzazione manuale ti dà il pieno controllo su dove vanno i tuoi dati!"
+      "liquidity": {
+        "q": "Cosa conta come liquidità?",
+        "a": "Solo la categoria Liquidità: conti, contanti, depositi. Case, quote societarie e investimenti non sono denaro disponibile."
       },
-      "safety": {
-        "question": "🔐 È davvero sicuro? Come posso esserne certo?",
-        "answer": "Assolutamente! Ecco come puoi verificare:\n\n🔍 Open Source: Rivedi tutto il codice su GitHub\n🌐 Network Inspector: Apri DevTools del browser (F12) → scheda Network\n   Vedrai ZERO richieste a server esterni\n📱 Modalità Offline: Disattiva internet - funziona ancora!\n🔒 Nessun Tracciamento: Niente analytics, cookie o fingerprinting\n✅ Storage Locale: I dati non lasciano mai il localStorage\n\nIncoraggiamo gli utenti tecnici a verificare il codice e segnalare qualsiasi problema!"
+      "debts": {
+        "q": "Come funzionano i debiti?",
+        "a": "Inserisci il capitale residuo che devi tu. Il patrimonio netto è attività meno debiti. Collegare un debito a un bene è solo un promemoria: non lo sottrae due volte."
       },
-      "free": {
-        "question": "💰 È davvero gratis?",
-        "answer": "Sì, 100% gratis per sempre!\n\n✅ Nessun costo nascosto\n✅ Nessuna funzione premium a pagamento\n✅ Nessuna \"prova gratuita\" che scade\n✅ Nessuna pubblicità\n✅ Nessuna vendita di dati\n\nPerché gratis?\n• È un progetto passionale\n• La privacy dovrebbe essere accessibile a tutti\n• L'open source prospera sulla community, non sul profitto\n• Nessun server = nessun costo di hosting da trasferire!"
+      "snapshots": {
+        "q": "A cosa servono le fotografie?",
+        "a": "Fissano il patrimonio in un momento preciso, con il cambio di allora. Così puoi confrontare nel tempo senza che le modifiche di oggi riscrivano il passato."
       },
-      "features": {
-        "question": "✨ Quali funzionalità sono disponibili?",
-        "answer": "Funzionalità attuali:\n\n📊 Gestione Asset: Traccia tutto il tuo patrimonio in un posto\n📈 Riepilogo Visivo: Grafici del tuo portafoglio\n📄 Report PDF: Genera report professionali localmente\n💾 Importa/Esporta: Supporto CSV e JSON\n🌍 Multilingua: Inglese, Italiano, Spagnolo\n🎨 UI Moderna: Interfaccia pulita e intuitiva\n\nProssimamente (aperti a suggerimenti!):\n• Altri tipi di grafici\n• Filtri e ricerca avanzata\n• Tracciamento storico\n• Altri formati di export"
-      },
-      "dataSecurity": {
-        "question": "🛡️ Cosa succede se perdo i miei dati?",
-        "answer": "La prevenzione è fondamentale:\n\n📤 Export Regolari: Usa 'Esporta JSON' frequentemente\n☁️ Backup Cloud: Salva gli export su Google Drive, Dropbox, etc.\n💾 Copie Multiple: Mantieni backup su dispositivi diversi\n📧 Email: Inviati una copia via email\n\nRecupero:\n• Se hai un file di export → Reimportalo\n• Se hai cancellato i dati del browser → Persi (nessun server per il recupero)\n• Se hai usato dati demo → Ricarica i dati demo\n\nRicorda: Local-first significa che TU controlli i backup!"
+      "privacy": {
+        "q": "Dove sono i miei dati?",
+        "a": "Nella memoria locale di questo browser, in chiaro. Non vengono inviati a nessuno e non sono cifrati: chi usa questo dispositivo può vederli. Fai backup regolari."
       }
     },
-    "technical": {
-      "title": "Stack Tecnico",
-      "description": "Costruito con tecnologie moderne e affidabili per massime prestazioni e sicurezza:",
-      "frontend": "Frontend",
-      "storage": "Storage",
-      "export": "Formati Export",
-      "i18n": "Lingue"
-    },
-    "cta": {
-      "title": "Pronto a Prendere il Controllo del Tuo Patrimonio?",
-      "subtitle": "Inizia a monitorare i tuoi asset oggi con privacy e trasparenza complete",
-      "start": "Inizia Ora",
-      "github": "Vedi su GitHub"
-    }
+    "credits": "Un'utility di"
+  },
+  "pdf": {
+    "title": "Riepilogo del patrimonio",
+    "generatedOn": "Generato il {{date}}",
+    "rateLine": "Valori in {{currency}} · cambio manuale 1 EUR = {{rate}} USD (impostato: {{date}})",
+    "currencyLine": "Valori in {{currency}}",
+    "dateUnknown": "data non indicata",
+    "dataLine": "Dati aggiornati il {{updated}} · valutazione più vecchia: {{oldest}}",
+    "missingRate": "Attenzione: {{count}} voci in altra valuta non sono incluse perché manca il cambio.",
+    "netExplain": "Patrimonio netto = attività attribuite a te − debiti residui a tuo carico. Liquidità = solo conti, contanti e depositi.",
+    "items": "Voci",
+    "value": "Valore",
+    "shareOfAssets": "% attività",
+    "share": "Quota",
+    "notesTitle": "Note",
+    "note1": "Gli importi sono stime inserite dall'utente. Ogni attività è conteggiata per la parte posseduta; i debiti per il capitale residuo personale, una sola volta.",
+    "note2": "Il cambio EUR/USD è inserito manualmente e non è una quotazione di mercato. Gli importi sono calcolati al centesimo.",
+    "note3": "Documento generato localmente nel browser da 3ASYWEALTH. Non è una consulenza finanziaria né un documento ufficiale.",
+    "footer": "3ASYWEALTH · wealth.3asy.app · generato nel browser",
+    "page": "Pagina {{page}} di {{total}}",
+    "done": "PDF creato.",
+    "error": "Non sono riuscito a creare il PDF."
   },
   "notFound": {
-    "title": "Pagina Non Trovata",
-    "subtitle": "La pagina che cerchi non esiste o è stata spostata.",
-    "goHome": "Vai alla Home",
-    "goAssets": "Vedi Asset"
+    "title": "Pagina non trovata",
+    "body": "Questa pagina non esiste. Il tuo patrimonio invece sì.",
+    "back": "Torna alla panoramica"
   },
-  "loading": {
-    "title": "Caricamento...",
-    "subtitle": "Preparazione dei dati"
+  "errorBoundary": {
+    "title": "Qualcosa è andato storto",
+    "body": "I dati salvati nel browser non sono stati toccati. Ricarica la pagina; se il problema continua, scarica un backup da Dati.",
+    "reload": "Ricarica",
+    "data": "Vai a Dati"
   },
-  "theme": {
-    "toggle": "Cambia tema",
-    "light": "Chiaro",
-    "dark": "Scuro",
-    "system": "Sistema"
-  },
-  "footer": {
-    "description": "La tua soluzione per il tracciamento del patrimonio con 100% privacy. Nessun server, nessun account, nessuna raccolta dati. I tuoi dati finanziari rimangono tuoi.",
-    "suite": "Suite 3ASU",
-    "privacy_title": "Privacy First",
-    "privacy_1": "Nessun server",
-    "privacy_2": "Nessun account richiesto",
-    "privacy_3": "Dati locali",
-    "privacy_4": "Open source"
-  },
-  "currency": {
-    "editRate": "Tasso di cambio",
-    "rateTitle": "Tasso di Cambio",
-    "rateDescription": "Imposta il tasso di conversione EUR → USD. Usato per normalizzare asset in valute diverse.",
-    "mixedImport": "{{count}} asset importati con valute miste (normalizzati in {{currency}})"
+  "sync": {
+    "updated": "Dati aggiornati da un'altra scheda."
   }
 }

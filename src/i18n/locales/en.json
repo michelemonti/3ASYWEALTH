@@ -1,448 +1,596 @@
 {
-  "app": {
-    "name": "3ASYWEALTH",
-    "tagline": "Your Wealth, Only Yours",
-    "nav": {
-      "home": "Home",
-      "assets": "Assets",
-      "summary": "Summary",
-      "about": "About"
-    }
+  "common": {
+    "add": "Add",
+    "back": "Back",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "dismiss": "Dismiss alert",
+    "duplicate": "Duplicate",
+    "edit": "Edit",
+    "notAvailable": "n/a",
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "undo": "Undo",
+    "notifications": "Notifications"
   },
-  "landing": {
-    "hero": {
-      "badge": "100% Privacy - Zero Data Collection",
-      "title": "Your Wealth, Only Yours",
-      "subtitle": "Manage your financial assets with maximum privacy.<br />No server. No account. No registration.<br /><strong>Your data stays in your browser.</strong>",
-      "cta_primary": "Start Now (Free)",
-      "cta_secondary": "How It Works",
-      "badge_privacy": "100% Privacy",
-      "badge_opensource": "Open Source",
-      "badge_free": "Always Free"
-    },
-    "privacy": {
-      "title": "Why No Registration?",
-      "text1": "We know: <strong>nobody wants to share their financial data</strong>. And you're right. Your wealth is your business.",
-      "text2": "That's why 3ASYWEALTH works <strong>entirely in your browser</strong>. There's no server receiving your data. No database. No account. No registration.<br /><span class=\"text-green-700 font-bold\">Zero shared data. Zero tracking. Zero compromises.</span>"
-    },
-    "howItWorks": {
-      "title": "How It Works",
-      "step1": {
-        "title": "1. Add Your Assets",
-        "description": "Add holdings, real estate, personal assets and liquidity. Everything is saved <strong>only in your browser</strong> (localStorage)."
+  "nav": {
+    "overview": "Overview",
+    "holdings": "Holdings",
+    "history": "History",
+    "data": "Data",
+    "home": "3ASYWEALTH, overview",
+    "main": "Main navigation",
+    "skip": "Skip to content"
+  },
+  "footer": {
+    "local": "Your data stays in this browser: no servers, no accounts.",
+    "license": "MIT License"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Use system setting"
+  },
+  "hide": {
+    "toggle": "Hide amounts",
+    "label": "Hide amounts",
+    "hideTitle": "Hide amounts on screen",
+    "showTitle": "Show amounts again",
+    "hiddenAmount": "hidden amount",
+    "explain": "Replaces figures with ••••• so you can use the app in public. It's only a visual effect: data is still saved in plain text in the browser and exports."
+  },
+  "welcome": {
+    "kicker": "3ASYWEALTH · a 3ASY.APP utility",
+    "title": "Your net worth, finally clear.",
+    "body": "Enter what you own and what you owe: in a few minutes you'll see what your share is really worth. Everything stays in this browser.",
+    "start": "Start",
+    "demo": "Try demo data",
+    "points": {
+      "one": {
+        "title": "No account",
+        "body": "No registration, no server, no bank connection."
       },
-      "step2": {
-        "title": "2. View & Analyze",
-        "description": "See the total, breakdown by category and interactive charts. Understand where your wealth is concentrated."
+      "two": {
+        "title": "Your share, not the total",
+        "body": "Home at 50%? Company at 10%? Only the part that's yours counts."
       },
-      "step3": {
-        "title": "3. Export Anytime",
-        "description": "Download your data in CSV or JSON. Keep it on your PC, personal cloud, or USB drive. <strong>They're yours, forever.</strong>"
+      "three": {
+        "title": "Snapshots over time",
+        "body": "Save a snapshot whenever you want and see what changes."
       }
     },
-    "importExport": {
-      "title": "Come Back Anytime",
-      "text": "Did you export your data 6 months ago? No problem.<br /><strong>Import the CSV or JSON file and pick up where you left off.</strong><br /><br />Switching devices? Export on one PC and import on another.<br />Want a backup? Save the file to your personal cloud (Google Drive, Dropbox, iCloud...).<br /><span class=\"text-blue-700 font-bold\">Your data travels with you, not through our servers.</span>"
-    },
-    "features": {
-      "title": "Key Features",
-      "asset_management": {
-        "title": "Complete Asset Management",
-        "description": "Full CRUD for Holdings, Real Estate, Personal Assets and Liquidity"
-      },
-      "charts": {
-        "title": "Interactive Charts",
-        "description": "Visualize breakdown with pie and bar charts"
-      },
-      "import_export": {
-        "title": "Import/Export CSV/JSON",
-        "description": "Total data portability, compatible with Excel/Google Sheets"
-      },
-      "privacy": {
-        "title": "Absolute Privacy",
-        "description": "Everything in browser localStorage, no data leaves your device"
-      },
-      "views": {
-        "title": "Table & Summary View",
-        "description": "Dual visualization: row-by-row detail or overview with totals"
-      },
-      "demo": {
-        "title": "Demo Data Included",
-        "description": "Load sample dataset to try the app immediately"
-      }
-    },
-    "faq": {
-      "title": "Frequently Asked Questions",
-      "q1": {
-        "question": "💡 How does data saving work?",
-        "answer": "Everything is saved in your browser's <strong>localStorage</strong>. It's like a local mini-database that works only on your device. Data remains even if you close the browser, but is <strong>accessible only to you</strong>."
-      },
-      "q2": {
-        "question": "🔄 Can I use 3ASYWEALTH on multiple devices?",
-        "answer": "Yes! Export your data in CSV or JSON on one device, then import it on another. You can also save the file to a personal cloud (Google Drive, iCloud, Dropbox) to have it always synced."
-      },
-      "q3": {
-        "question": "🗑️ What happens if I clear my browser data?",
-        "answer": "If you clear your browsing data (cache, localStorage), <strong>you'll lose your assets</strong>. That's why it's important to <strong class=\"text-green-600\">export regularly</strong> a backup in CSV or JSON and save it in a safe place."
-      },
-      "q4": {
-        "question": "📊 Can I use Excel with exported files?",
-        "answer": "Absolutely! The CSV format is perfectly compatible with Excel, Google Sheets, Numbers and any other spreadsheet. You can do advanced analysis, custom charts or simply keep a readable backup."
-      },
-      "q5": {
-        "question": "🔐 Is it really safe? How can I be sure?",
-        "answer": "3ASYWEALTH is <strong>open source</strong>! You can check the code on <a href=\"https://github.com/michelemonti/3asywealth\" class=\"text-blue-600 hover:underline\">GitHub</a>. There are no calls to external servers. You can open the browser tools (F12) and see in the Network tab that <strong>no requests are sent</strong> when you enter your data."
-      },
-      "q6": {
-        "question": "💰 Is it really free?",
-        "answer": "Yes, completely free. No hidden costs, no premium plans, no credit card required. It's an <strong>open source project (MIT License)</strong> created for those who want privacy and simplicity."
-      }
-    },
-    "cta": {
-      "title": "Ready to Take Control?",
-      "subtitle": "No account. No credit card. No data shared.<br /><span class=\"text-green-400 font-semibold\">Just you and your wealth.</span>",
-      "button": "Start Now - It's Free",
-      "note": "Works on Chrome, Firefox, Safari, Edge - No installation required",
-      "trust_nocreditcard": "No credit card required",
-      "trust_nodata": "No personal data collected",
-      "trust_fast": "Start in 10 seconds",
-      "readyBadge": "Ready in seconds"
-    },
-    "footer": "Open Source • MIT License •"
+    "restore": "Already have a backup?",
+    "restoreLink": "Import it from Data"
   },
-  "dashboard": {
-    "title": "Dashboard",
-    "subtitle": "Overview of your wealth",
-    "total_wealth": "Total Wealth",
-    "asset_count": "Total Assets",
-    "quick_actions": "Quick Actions",
-    "view_assets": "Manage Assets",
-    "view_summary": "View Summary",
-    "tabs": {
-      "assets": "Assets",
-      "summary": "Summary"
-    },
-    "menu": {
-      "import": "Import",
-      "export_csv": "Export CSV",
-      "export_json": "Export JSON",
-      "demo": "Load Demo Data",
-      "clear": "Clear All"
-    }
-  },
-  "assetsTable": {
-    "title": "Asset Management",
-    "filter": {
-      "all": "All Categories",
-      "shareholdings": "Holdings",
-      "realestate": "Real Estate",
-      "personalassets": "Personal Assets",
-      "cash": "Liquidity"
-    },
-    "add": "Add Asset",
-    "table": {
-      "name": "Asset / Company",
-      "category": "Category",
-      "ownership": "Ownership",
-      "value": "Value",
-      "source": "Source",
-      "notes": "Notes",
-      "actions": "Actions"
-    },
-    "form": {
-      "title_add": "Add New Asset",
-      "title_edit": "Edit Asset",
-      "name": "Asset / Company Name",
-      "name_placeholder": "e.g., Company XYZ, Main House, Bitcoin",
-      "name_required": "Name is required",
-      "category": "Category",
-      "category_placeholder": "Select a category",
-      "ownership": "Ownership / Quantity",
-      "ownership_placeholder": "e.g., 10%, 100%, 2.5 BTC",
-      "value": "Value",
-      "value_placeholder": "e.g., 50000",
-      "value_required": "Value must be greater than zero",
-      "source": "Valuation Source",
-      "source_placeholder": "e.g., 2025 Valuation, Market price",
-      "notes": "Notes",
-      "notes_placeholder": "Additional information...",
-      "cancel": "Cancel",
-      "add": "Add Asset",
-      "save": "Save Changes",
-      "validation_error": "Please fill in all required fields",
-      "added": "Asset added successfully",
-      "updated": "Asset updated successfully"
-    },
-    "empty": {
-      "title": "No Assets Yet",
-      "subtitle": "Add your first asset or import data from CSV/JSON",
-      "button": "Add First Asset"
-    },
-    "delete": {
-      "title": "Delete Asset",
-      "confirm": "Are you sure you want to delete this asset? This action cannot be undone.",
-      "success": "Asset deleted",
-      "undone": "Deletion undone",
-      "cancel": "Cancel",
-      "delete": "Delete"
-    },
-    "search": {
-      "placeholder": "Search assets...",
-      "noResults": "No assets match your search",
-      "showing": "Showing {{count}} of {{total}} assets",
-      "clearFilters": "Clear filters"
-    },
-    "sort": {
-      "name": "Name",
-      "value": "Value",
-      "category": "Category",
-      "updated": "Last Updated"
-    },
-    "total": {
-      "label": "Total Portfolio Value",
-      "assets": "{{count}} assets"
-    },
-    "notifications": {
-      "added": "Asset added successfully!",
-      "updated": "Asset updated successfully!",
-      "deleted": "Asset deleted successfully!",
-      "import_success": "{{count}} assets imported successfully!",
-      "import_error": "Error importing file. Make sure the format is correct.",
-      "demo_loaded": "Demo data loaded successfully!",
-      "clear_confirm": "Are you sure you want to delete ALL assets? This action cannot be undone.",
-      "clear_success": "All assets have been cleared."
+  "demo": {
+    "bannerTitle": "You're exploring sample data",
+    "bannerBody": "People and numbers are fictional. You can edit everything: when you exit, the demo disappears and your data stays as it was.",
+    "exit": "Exit demo",
+    "items": {
+      "checking": "Checking account",
+      "savings": "Savings account",
+      "etf": "Global equity ETF",
+      "usBroker": "Dollar brokerage account",
+      "company": "Lumen Workshop LLC",
+      "home": "City home",
+      "bike": "Bicycle and gear",
+      "mortgage": "Home mortgage",
+      "card": "Credit card balance",
+      "homeNote": "50% co-ownership: the entered value is for the whole home.",
+      "companyNote": "10% stake on a €500,000 valuation.",
+      "usNote": "Amount in USD, converted with the demo's manual exchange rate."
     }
   },
   "summary": {
-    "title": "Wealth Summary",
-    "total": "Total Wealth",
-    "by_category": "Breakdown by Category",
-    "asset_count": "Total Assets",
-    "category_distribution": "Category Distribution",
-    "category_comparison": "Comparison by Category",
-    "empty": {
-      "title": "No Data to Display",
-      "message": "This page shows an overview of your assets, but you haven't added any yet.",
-      "cta": "Go to Dashboard to add your first asset or import data from CSV/JSON files."
-    }
+    "netWorth": "Net worth",
+    "assets": "Assets",
+    "liabilities": "Debts",
+    "liquidity": "Cash",
+    "liquidityHint": "Accounts, cash, and deposits: money you can actually use.",
+    "items_one": "{{count}} item",
+    "items_other": "{{count}} items",
+    "lastUpdated": "Data updated on {{date}}",
+    "oldestValuation": "oldest valuation: {{date}}",
+    "negativeHint": "Debts exceed assets. It can happen, for example, in the first years of a mortgage: the number is here to show the situation, not to judge it.",
+    "composition": "Asset composition",
+    "compositionHint": "Percentages of total assets. Debts are separate.",
+    "compositionAria": "Asset composition bar by category",
+    "topAssets": "Main assets",
+    "noAssets": "No assets yet.",
+    "seeAll": "See all holdings",
+    "lastSnapshot": "Latest snapshot: {{date}}",
+    "sinceLastHint": "Net worth difference from that snapshot (not a return).",
+    "noChange": "No change",
+    "noSnapshot": "No snapshots yet. Save one to start your history.",
+    "openHistory": "Open history"
   },
   "categories": {
-    "shareholdings": "Holdings",
-    "realestate": "Real Estate",
-    "personalassets": "Personal Assets",
-    "cash": "Liquidity"
-  },
-  "dataActions": {
-    "title": "Data Actions",
-    "import": {
-      "csv": "Import CSV",
-      "json": "Import JSON",
-      "loading": "Importing...",
-      "empty": "No valid assets found in file",
-      "success": "{{count}} assets imported successfully!",
-      "error": "Error importing file. Please check the format."
+    "cash": {
+      "label": "Cash",
+      "hint": "Accounts, cash, deposits",
+      "placeholder": "E.g. Checking account"
     },
-    "export": {
-      "csv": "Export CSV",
-      "json": "Export JSON",
-      "empty": "No assets to export",
-      "success": "Export completed"
+    "investments": {
+      "label": "Investments",
+      "hint": "Funds, ETFs, stocks, bonds, retirement plans",
+      "placeholder": "E.g. Equity ETF"
     },
-    "demo": {
-      "load": "Load Demo Data",
-      "confirmTitle": "Load Demo Data",
-      "confirm": "This will replace all existing data with sample data. Do you want to continue?",
-      "confirm_button": "Load Demo",
-      "success": "Demo data loaded successfully!"
+    "business": {
+      "label": "Business stakes",
+      "hint": "Company shares, startups, businesses",
+      "placeholder": "E.g. Stake in Smith LLC"
     },
-    "clear": {
-      "title": "Clear All Data",
-      "empty": "No data to clear",
-      "confirm": "⚠️ WARNING: This will permanently delete all your assets and data. This action cannot be undone. Are you sure you want to continue?",
-      "confirm_button": "Delete All",
-      "success": "All data has been cleared."
+    "realestate": {
+      "label": "Real estate",
+      "hint": "Home, apartments, land, garages",
+      "placeholder": "E.g. Beach house"
     },
-    "pdf": {
-      "generate": "Generate PDF Report",
-      "generating": "Generating PDF...",
-      "success": "PDF report generated successfully!",
-      "error": "Error generating PDF report."
+    "personal": {
+      "label": "Personal belongings",
+      "hint": "Cars, jewelry, art, collections",
+      "placeholder": "E.g. Car"
     }
   },
-  "pdfReport": {
-    "title": "Wealth Report",
-    "generatedOn": "Generated on",
-    "page": "Page",
-    "privacy": {
-      "title": "100% Privacy Guaranteed",
-      "message": "This report was generated entirely in your browser. No data was sent to any server. Your financial information remains completely private and secure on your device only."
-    },
-    "summary": {
-      "title": "Wealth Summary",
-      "totalWealth": "Total Wealth",
-      "totalAssets": "Total Assets",
-      "categories": "Categories"
-    },
-    "categoryBreakdown": "Breakdown by Category",
-    "visualBreakdown": "Visual Distribution by Category",
-    "assets": {
-      "title": "Asset Details"
-    },
-    "table": {
-      "category": "Category",
-      "assets": "Assets",
-      "value": "Value",
-      "percentage": "Percentage",
-      "assetName": "Asset Name",
-      "ownership": "Ownership"
-    },
-    "footer": {
-      "generated": "Generated by",
-      "opensource": "Open Source Software",
-      "privacy": "100% Privacy"
-    },
-    "error": "Error generating PDF report"
+  "liabilities": {
+    "label": "Debt",
+    "hint": "Mortgages, loans, cards: how much is left to repay",
+    "placeholder": "E.g. Home mortgage"
   },
-  "privacyBadge": {
-    "title": "100% Browser Processing",
-    "subtitle": "No servers. No tracking. Your data stays here."
+  "form": {
+    "chooseTitle": "What do you want to add?",
+    "chooseHint": "Choose a category: we'll only ask for the fields you need.",
+    "addAsset": "New asset",
+    "addLiability": "New debt",
+    "editAsset": "Edit asset",
+    "editLiability": "Edit debt",
+    "assetHint": "Enter the value and how much is yours: you'll see right away how much it counts in your net worth.",
+    "liabilityHint": "Enter only the outstanding principal you owe. No amortization schedule needed.",
+    "category": "Category",
+    "name": "Name",
+    "basis": {
+      "legend": "The amount you enter is…",
+      "share": "Already my share",
+      "shareHint": "E.g. your account balance or the value of your shares.",
+      "whole": "The asset's full value",
+      "wholeHint": "E.g. the value of the whole home: then you enter the percentage you own."
+    },
+    "amountShare": "Value of your share",
+    "amountWhole": "Full value",
+    "amountLiability": "Outstanding principal you owe",
+    "currency": "Currency",
+    "percent": "Ownership share",
+    "rateNeeded": "To include this item in totals in {{currency}}, an exchange rate is needed. You enter it yourself: it's not a live quote.",
+    "linked": "Linked to an asset (optional)",
+    "linkedHint": "Informational only: the debt is subtracted once, linked or not.",
+    "linkedNone": "No link",
+    "dateAsset": "Valuation date",
+    "dateLiability": "Balance updated on",
+    "moreAsset": "+ Add notes and source",
+    "moreLiability": "+ Add notes",
+    "notes": "Notes",
+    "source": "Estimate source",
+    "sourcePlaceholder": "E.g. 2026 appraisal, statement",
+    "legacy": {
+      "title": "From the previous version: share shown as “{{value}}”",
+      "body": "In the previous version, the amount was already treated as your share, and it still is. If it was the full value instead, choose “The asset's full value” and enter the percentage.",
+      "confirm": "I've checked"
+    },
+    "preview": {
+      "title": "Contribution to your net worth",
+      "empty": "Enter a valid amount to see the preview.",
+      "whole": "{{pct}} of {{whole}}.",
+      "share": "The amount is already your share.",
+      "liability": "It is subtracted from net worth.",
+      "converted": "In original currency: {{original}}."
+    },
+    "errors": {
+      "nameRequired": "Give this item a name.",
+      "amount": {
+        "required": "Enter an amount.",
+        "invalid": "I can't read this number. Try 12500 or 12,500.50.",
+        "negative": "The amount can't be negative. Debts are entered as debts.",
+        "zero": "The amount must be greater than zero."
+      },
+      "percent": {
+        "required": "Enter the percentage you own.",
+        "invalid": "Invalid percentage.",
+        "range": "The percentage must be greater than 0 and at most 100."
+      },
+      "date": "Enter a valid date."
+    },
+    "toast": {
+      "addedAsset": "Asset added.",
+      "addedLiability": "Debt added.",
+      "updated": "Changes saved.",
+      "addAnother": "Add another"
+    }
   },
-  "pdfPrivacyBadge": {
-    "title": "PDF Generated Locally",
-    "subtitle": "Zero server upload. Your data stays private."
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "Error",
-    "success": "Success",
-    "close": "Close",
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit",
-    "add": "Add",
-    "back": "Back",
-    "next": "Next",
-    "confirm": "Confirm",
-    "undo": "Undo",
-    "search": "Search...",
-    "total": "Total",
+  "holdings": {
+    "addAsset": "Add an asset",
+    "addLiability": "Add a debt",
+    "search": "Search by name, notes, or category",
+    "filterCategory": "Filter by category",
+    "allCategories": "All categories",
     "sortBy": "Sort by",
-    "noResults": "No results found"
+    "sort": {
+      "value_desc": "Value: highest first",
+      "value_asc": "Value: lowest first",
+      "name_asc": "Name: A–Z",
+      "name_desc": "Name: Z–A",
+      "date_desc": "Valuation: newest first",
+      "date_asc": "Valuation: oldest first"
+    },
+    "showing_one": "{{count}} item of {{total}}",
+    "showing_other": "{{count}} items of {{total}}",
+    "clearFilters": "Clear filters",
+    "noResults": "No item matches your search.",
+    "emptyAssets": "Nothing here yet. Even the tidiest net worth started with one row.",
+    "emptyLiabilities": "No debts recorded. If you have any, add them: net worth will be more realistic.",
+    "col": {
+      "name": "Name",
+      "category": "Category",
+      "entered": "Entered value",
+      "yours": "Yours",
+      "date": "Valuation",
+      "linked": "Linked to",
+      "original": "Amount",
+      "owed": "Outstanding",
+      "actions": "Actions",
+      "balanceDate": "Balance as of"
+    },
+    "toReview": "to review",
+    "actionsFor": "Actions for {{name}}",
+    "deleted": "“{{name}}” deleted.",
+    "copySuffix": "(copy)",
+    "total": "Total",
+    "totalFiltered": "Total of filtered items"
+  },
+  "snapshot": {
+    "save": "Save snapshot",
+    "dialogTitle": "Save a snapshot",
+    "dialogBody": "Record a dated, immutable copy of assets, debts, values, and exchange rate. Later changes won't affect it.",
+    "note": "Note (optional)",
+    "notePlaceholder": "E.g. Year-end, after the appraisal…",
+    "confirm": "Save snapshot",
+    "saved": "Snapshot saved.",
+    "savedBody": "Your net worth on {{date}} is safe in History.",
+    "missingRate": "Set the exchange rate first: some items can't be converted.",
+    "empty": "There's nothing to snapshot: add at least one item.",
+    "whereHint": "You'll find all snapshots in"
+  },
+  "history": {
+    "title": "History",
+    "description": "Snapshots of your net worth over time. They start from the first one you save: no invented values.",
+    "emptyTitle": "No snapshots yet",
+    "emptyBody": "Save the first snapshot: it's your starting point. Next time you update values, save another one and see the difference.",
+    "trend": "Trend",
+    "trendHint": "Net worth, assets, and debts in {{currency}}.",
+    "chartAria_one": "Trend chart for {{count}} snapshot",
+    "chartAria_other": "Trend chart for {{count}} snapshots",
+    "notConvertible_one": "{{count}} snapshot has no recorded exchange rate and doesn't appear in the chart in this currency.",
+    "notConvertible_other": "{{count}} snapshots have no recorded exchange rate and don't appear in the chart in this currency.",
+    "vsPrevious": "vs. previous",
+    "first": "First snapshot",
+    "diffUnavailable": "Difference not available in this currency",
+    "convertedNote": "converted from {{currency}} with the exchange rate from then",
+    "view": "View snapshot from {{date}}",
+    "delete": "Delete snapshot from {{date}}",
+    "detailTitle": "Snapshot from {{date}}",
+    "detailCurrency": "Values in {{currency}}, as at the time it was taken",
+    "detailCaption": "Items included in the snapshot",
+    "immutable": "Snapshots can't be edited: they show what your net worth looked like at that moment.",
+    "deleteTitle": "Delete this snapshot?",
+    "deleteBody": "The snapshot will be removed from history. Current data won't change.",
+    "deleted": "Snapshot deleted.",
+    "conventionTitle": "How to read history",
+    "conventionCurrency": "Each snapshot keeps the currency and exchange rate in effect when you saved it. If you view it in another currency, it's converted with that exchange rate, not today's: changing the current exchange rate doesn't rewrite the past.",
+    "conventionReturn": "The difference between two snapshots includes everything: new assets, repayments, new estimates, and exchange rate. It's a change in value, not a financial return."
+  },
+  "whatIf": {
+    "open": "What if…?",
+    "title": "What if…?",
+    "description": "A quick test: your data won't change.",
+    "purchase": {
+      "tab": "Purchase",
+      "explain": "You buy an asset using cash: value moves from accounts to the asset. If you're short on cash, enter how much you'd finance with debt.",
+      "price": "Price ({{currency}})",
+      "financed": "Amount financed ({{currency}})",
+      "financedHint": "Leave blank if you pay entirely with cash."
+    },
+    "revalue": {
+      "tab": "New estimate",
+      "explain": "Change an asset's estimate by a percentage. Only this changes net worth.",
+      "asset": "Asset",
+      "change": "Change %",
+      "changeHint": "E.g. -10 or 5",
+      "none": "Add at least one asset first."
+    },
+    "repay": {
+      "tab": "Repayment",
+      "explain": "Repay part of the debt with cash: cash and debt both go down by the same amount.",
+      "debt": "Debt",
+      "amount": "Amount repaid ({{currency}})",
+      "none": "You have no debts to repay. Good news."
+    },
+    "before": "Before",
+    "after": "After",
+    "delta": "Difference",
+    "tableCaption": "Before and after simulation comparison",
+    "footnote": "Simple accounting simulation: no taxes, costs, interest, or forecasts. This is not financial advice.",
+    "errors": {
+      "missingRate": "Set the exchange rate first: some items can't be converted.",
+      "invalidAmount": "Check the amounts: they must be valid numbers.",
+      "notFound": "Item not found.",
+      "financedExceedsPrice": "The financed amount can't exceed the price.",
+      "insufficientLiquidity": "Cash isn't enough: {{shortfall}} is missing. To try anyway, enter how much you'd finance with debt.",
+      "exceedsDebt": "The repayment exceeds the outstanding debt ({{outstanding}})."
+    }
+  },
+  "rate": {
+    "title": "EUR/USD exchange rate",
+    "description": "You enter the exchange rate yourself and it stays the same until you change it: it's not a live quote.",
+    "fieldLabel": "Manual exchange rate",
+    "set": "Set exchange rate",
+    "saved": "Exchange rate updated.",
+    "setOn": "Set on {{date}}.",
+    "dateUnknown": "Date not specified (from the previous version): please check it.",
+    "notSet": "No exchange rate set.",
+    "missingTitle_one": "{{count}} item is not included in totals",
+    "missingTitle_other": "{{count}} items are not included in totals",
+    "missingBody": "They are in another currency than {{currency}} and the exchange rate is missing. Set the exchange rate to see them in totals.",
+    "errors": {
+      "required": "Enter the exchange rate.",
+      "invalid": "Invalid number. Example: 1.10",
+      "range": "The exchange rate must be a positive number."
+    }
+  },
+  "persistence": {
+    "quota": {
+      "title": "Browser storage is full: the latest changes were not saved",
+      "body": "If you close the page, you might lose them. Download a backup now, then free up space (for example by deleting old local backups in Data)."
+    },
+    "unavailable": {
+      "title": "This browser doesn't allow saving",
+      "body": "This can happen in some private windows or with cookies blocked. Data will only stay while the page is open: download a backup before closing."
+    },
+    "unknown": {
+      "title": "Saving failed",
+      "body": "The latest changes may not be saved. Download a backup to be safe."
+    }
+  },
+  "blocked": {
+    "title": {
+      "unreadable": "I can't read the saved data",
+      "newerVersion": "The saved data comes from a newer version of the app",
+      "unrecognized": "The saved data has an unknown format",
+      "invalidNoBackup": "Some records are unreadable and I can't save a copy of them"
+    },
+    "body": "I haven't touched it and won't overwrite it. Download a copy, then you can set it aside (it stays in local backups) and start over.",
+    "download": "Download original data",
+    "setAside": "Set aside and start over",
+    "resolved": "Original data moved to local backups.",
+    "resolveFailed": "I can't create the backup: download the original data first and free up space.",
+    "bodyInvalid": "The other records are shown, but nothing will be saved until the original data is safe: download it, free some space (for example by deleting old local backups), then set it aside."
+  },
+  "notice": {
+    "migrated": {
+      "title": "We've updated your data to the new format",
+      "body": "Amounts from the previous version are treated as already referring to your share, so totals don't change. Old ownership notes are marked “to review”. A copy of the original data is in local backups."
+    },
+    "issues": {
+      "title": "Some saved items were not readable",
+      "body": "The others were loaded normally. A complete copy of the original data is in local backups."
+    },
+    "seeBackups": "Local backups"
+  },
+  "issues": {
+    "kind": {
+      "asset": "Asset",
+      "liability": "Debt",
+      "snapshot": "Snapshot",
+      "settings": "Settings"
+    },
+    "field": {
+      "record": "invalid format",
+      "name": "missing name",
+      "category": "unrecognized category",
+      "currency": "unsupported currency",
+      "amount": "invalid amount",
+      "percent": "invalid share",
+      "date": "invalid date",
+      "link": "link to a non-existing asset, removed",
+      "snapshot": "incomplete snapshot",
+      "settings": "invalid exchange rate, ignored"
+    },
+    "skipped": "not imported",
+    "more_one": "…and {{count}} more",
+    "more_other": "…and {{count}} more"
+  },
+  "import": {
+    "previewTitle": "Import preview",
+    "snapshots": "Snapshots",
+    "rejected": "Rejected",
+    "legacyFile": "File from the previous version: amounts are treated as already referring to your share.",
+    "errorsTitle_one": "{{count}} row won't be imported",
+    "errorsTitle_other": "{{count}} rows won't be imported",
+    "line": "Line {{line}}",
+    "field": {
+      "record": "invalid row",
+      "name": "missing name",
+      "type": "unknown type (use “asset” or “debt”)",
+      "category": "missing or unknown category",
+      "currency": "unsupported currency (EUR or USD)",
+      "amount": "missing or invalid amount",
+      "basis": "unknown value basis",
+      "percent": "missing or out-of-range percentage",
+      "legacyOwnership": "invalid share",
+      "date": "invalid date",
+      "notes": "invalid notes",
+      "source": "invalid source",
+      "linked": "linked asset not found: link ignored"
+    },
+    "ignoredColumns": "Ignored columns: {{columns}}",
+    "modeLegend": "How do you want to import?",
+    "mode": {
+      "add": "Add to current data",
+      "addHint": "Doesn't delete anything. Conflicting identifiers are renewed.",
+      "replace": "Replace",
+      "replaceHint": {
+        "csv": "Replaces assets and debts. History and settings remain.",
+        "json": "Restores everything from the backup: assets, debts, snapshots, and settings."
+      }
+    },
+    "duplicates_one": "Skip {{count}} item that looks already present",
+    "duplicates_other": "Skip {{count}} items that look already present",
+    "duplicatesHint": "Same name, amount, and currency. If you don't check this, they'll be added anyway.",
+    "replaceWarning": "Current data will be replaced.",
+    "replaceBackup": "Before continuing, we automatically save a copy in local backups. You can also download one.",
+    "backupFailed": "I couldn't create the local backup (storage full?). Download a backup before continuing.",
+    "forceConfirm": "I've downloaded a backup: continue without local copy",
+    "resulting": "Net worth after import:",
+    "confirmAdd_one": "Import {{count}} item",
+    "confirmAdd_other": "Import {{count}} items",
+    "confirmReplace": "Replace",
+    "done_one": "{{count}} item imported.",
+    "done_other": "{{count}} items imported.",
+    "replaced": "Data replaced.",
+    "backupCreated": "Copy of previous data saved in local backups.",
+    "failed": "Unable to import the file",
+    "errors": {
+      "tooLarge": "The file is too large (maximum 5 MB).",
+      "invalidJson": "The JSON file is not valid.",
+      "unrecognized": "I don't recognize this format. Use a 3ASYWEALTH backup or a CSV.",
+      "newerVersion": "The backup comes from a newer version of the app.",
+      "empty": "The file contains no data.",
+      "unterminatedQuote": "Unclosed quotes starting from line {{line}}.",
+      "missingColumns": "Required columns are missing: {{columns}}.",
+      "unreadable": "The file isn't readable."
+    }
+  },
+  "data": {
+    "description": "Backups, import, currency, and preferences. Everything happens in your browser.",
+    "backup": {
+      "title": "Backup and export",
+      "description": "The JSON backup contains everything and can be imported again. CSV and PDF are for spreadsheets and printing.",
+      "browserWarning": "Data lives only in this browser. If you clear browsing data or change devices, you lose it: download a backup now and then.",
+      "download": "Download backup (JSON)",
+      "import": "Import file (JSON or CSV)",
+      "csv": "Export table (CSV)",
+      "pdf": "PDF report",
+      "jsonHint": "JSON: assets, debts, snapshots, and settings, in a versioned format.",
+      "csvHint": "CSV: assets and debts, with readable headers. Text that looks like formulas is protected.",
+      "pdfHint": "PDF: printable summary, generated in the browser with the same calculations as the app.",
+      "hiddenNote": "“Hide amounts” applies only on screen: exports and PDFs contain the real figures.",
+      "demoNote": "You're in the demo: exports contain sample data. Import is disabled."
+    },
+    "local": {
+      "title": "Local backups",
+      "description": "Copies created automatically before updates and operations that replace data. They stay in this browser.",
+      "none": "No local backups.",
+      "reason": {
+        "migration": "Before the format update",
+        "beforeReplace": "Before a replacement",
+        "beforeClear": "Before deletion",
+        "beforeRestore": "Before a restore",
+        "invalidData": "Data with unreadable items",
+        "unreadable": "Unreadable data set aside",
+        "legacy": "Data from the previous version"
+      },
+      "unknownDate": "unknown date",
+      "download": "Download",
+      "restore": "Restore",
+      "delete": "Delete backup",
+      "restoreTitle": "Restore this backup?",
+      "restoreBody": "Current data will be replaced. First we'll save a copy of current data in local backups.",
+      "restored": "Backup restored.",
+      "restoreFailed": "This backup isn't readable. You can still download it.",
+      "deleteTitle": "Delete this local backup?",
+      "deleteBody": "You won't be able to recover it from here. If you need it, download it first."
+    },
+    "currency": {
+      "title": "Currency and exchange rate",
+      "description": "The display currency only changes how you see totals: original amounts stay as entered.",
+      "display": "Show totals in"
+    },
+    "appearance": {
+      "title": "Appearance and language"
+    },
+    "danger": {
+      "title": "Clear everything",
+      "description": "Delete assets, debts, and snapshots from this browser. A copy is saved in local backups first.",
+      "clear": "Clear all data",
+      "clearAnyway": "Clear without local backup",
+      "confirmTitle": "Clear all data?",
+      "confirmBody": "Assets, debts, and snapshots will be deleted from this browser. First we'll save a copy in local backups; for safety, you can download one too.",
+      "cleared": "Data cleared."
+    }
   },
   "about": {
-    "hero": {
-      "badge": "100% Privacy & Open Source",
-      "title": "Your Wealth, Your Privacy, Your Control",
-      "subtitle": "A modern wealth tracking application built with transparency, privacy, and trust at its core. No servers, no tracking, no compromises."
-    },
-    "features": {
-      "privacy": {
-        "title": "100% Privacy",
-        "description": "Your data never leaves your browser. Everything runs locally on your device with zero external servers."
-      },
-      "noAccount": {
-        "title": "No Registration",
-        "description": "No accounts, no passwords, no email required. Start tracking your wealth immediately."
-      },
-      "opensource": {
-        "title": "Open Source",
-        "description": "Full source code available on GitHub. Audit every line, suggest improvements, or fork it."
-      },
-      "free": {
-        "title": "Forever Free",
-        "description": "No hidden fees, no premium tiers, no subscriptions. Free today, free tomorrow, free forever."
-      }
-    },
-    "opensource": {
-      "title": "Transparency Through Open Source",
-      "description": "3ASYWEALTH is completely open source. Every line of code is publicly available for review, audit, and verification. This is not just about transparency—it's about building trust through verifiability.",
-      "challenge": {
-        "title": "🔍 We Challenge You",
-        "description": "Don't just trust us—verify for yourself! Review the code, check for any server calls, inspect the network traffic. We're confident you'll find exactly what we promise: a completely client-side application with zero data transmission."
-      },
-      "viewCode": "View Source Code",
-      "reportIssue": "Report an Issue",
-      "benefits": {
-        "transparent": "Fully Transparent",
-        "transparentDesc": "See exactly how your data is processed and stored",
-        "auditable": "Security Auditable",
-        "auditableDesc": "Anyone can verify there are no backdoors or tracking",
-        "community": "Community Driven",
-        "communityDesc": "Contributions and improvements from developers worldwide"
-      }
-    },
+    "title": "How it works",
+    "body": "3ASYWEALTH is a small free tool for understanding your net worth. It's part of 3ASY.APP. No accounts, no servers, no bank connections: everything works in your browser.",
     "faq": {
-      "title": "Frequently Asked Questions",
-      "dataSaving": {
-        "question": "💾 How does data saving work?",
-        "answer": "Your data is saved directly in your browser using localStorage. This means:\n\n✅ Data stays on your device only\n✅ No server uploads or cloud sync\n✅ Works completely offline\n✅ Instant save/load (no waiting)\n\n⚠️ Important: If you clear your browser data or use incognito mode, your data will be lost. Always export your data regularly as backup!"
+      "share": {
+        "q": "Full value or my share?",
+        "a": "For each asset, choose whether the amount is already your share or the whole asset value with your percentage. The percentage is applied only once."
       },
-      "multiDevice": {
-        "question": "🔄 Can I use 3ASYWEALTH on multiple devices?",
-        "answer": "Since everything runs locally, your data doesn't automatically sync between devices. However, you can:\n\n📤 Export your data as JSON or CSV from one device\n📥 Import the same file on another device\n💾 Keep a backup file in your cloud storage (Dropbox, Google Drive, etc.)\n\nThis manual sync gives you full control over where your data goes!"
+      "liquidity": {
+        "q": "What counts as cash?",
+        "a": "Only the Cash category: accounts, cash, deposits. Homes, business stakes, and investments are not available money."
       },
-      "safety": {
-        "question": "🔐 Is it really safe? How can I be sure?",
-        "answer": "Absolutely! Here's how you can verify:\n\n🔍 Open Source: Review all code on GitHub\n🌐 Network Inspector: Open browser DevTools (F12) → Network tab\n   You'll see ZERO requests to external servers\n📱 Offline Mode: Turn off your internet - it still works!\n🔒 No Tracking: No analytics, no cookies, no fingerprinting\n✅ Local Storage: Data never leaves localStorage\n\nWe encourage technical users to audit the code and report any concerns!"
+      "debts": {
+        "q": "How do debts work?",
+        "a": "Enter the outstanding principal you owe. Net worth is assets minus debts. Linking a debt to an asset is only a reminder: it doesn't subtract it twice."
       },
-      "free": {
-        "question": "💰 Is it really free?",
-        "answer": "Yes, 100% free forever!\n\n✅ No hidden costs\n✅ No premium features locked behind paywall\n✅ No \"free trial\" that expires\n✅ No ads\n✅ No data selling\n\nWhy free? Because:\n• It's a passion project\n• Privacy should be accessible to everyone\n• Open source thrives on community, not profit\n• No servers = no hosting costs to pass on!"
+      "snapshots": {
+        "q": "What are snapshots for?",
+        "a": "They fix net worth at a precise moment, with the exchange rate from then. That way you can compare over time without today's changes rewriting the past."
       },
-      "features": {
-        "question": "✨ What features are available?",
-        "answer": "Current features:\n\n📊 Asset Management: Track all your wealth in one place\n📈 Visual Summary: Charts and graphs of your portfolio\n📄 PDF Reports: Generate professional reports locally\n💾 Import/Export: CSV and JSON support\n🌍 Multi-language: English, Italian, Spanish\n🎨 Modern UI: Clean, intuitive interface\n\nComing soon (open to suggestions!):\n• More chart types\n• Advanced filtering and search\n• Historical tracking\n• More export formats"
-      },
-      "dataSecurity": {
-        "question": "🛡️ What if I lose my data?",
-        "answer": "Prevention is key:\n\n📤 Regular Exports: Use 'Export JSON' frequently\n☁️ Cloud Backup: Save exports to Google Drive, Dropbox, etc.\n💾 Multiple Copies: Keep backups on different devices\n📧 Email: Send yourself a copy via email\n\nRecovery:\n• If you have an export file → Import it back\n• If you cleared browser data → Lost (no server to recover from)\n• If you used demo data → Reload demo data\n\nRemember: Local-first means YOU control backups!"
+      "privacy": {
+        "q": "Where is my data?",
+        "a": "In this browser's local storage, in plain text. It isn't sent to anyone and isn't encrypted: anyone using this device can see it. Make regular backups."
       }
     },
-    "technical": {
-      "title": "Technical Stack",
-      "description": "Built with modern, trusted technologies for maximum performance and security:",
-      "frontend": "Frontend",
-      "storage": "Storage",
-      "export": "Export Formats",
-      "i18n": "Languages"
-    },
-    "cta": {
-      "title": "Ready to Take Control of Your Wealth?",
-      "subtitle": "Start tracking your assets today with complete privacy and transparency",
-      "start": "Start Now",
-      "github": "View on GitHub"
-    }
+    "credits": "A utility by"
+  },
+  "pdf": {
+    "title": "Net worth summary",
+    "generatedOn": "Generated on {{date}}",
+    "rateLine": "Values in {{currency}} · manual exchange rate 1 EUR = {{rate}} USD (set: {{date}})",
+    "currencyLine": "Values in {{currency}}",
+    "dateUnknown": "date not specified",
+    "dataLine": "Data updated on {{updated}} · oldest valuation: {{oldest}}",
+    "missingRate": "Warning: {{count}} items in another currency are not included because the exchange rate is missing.",
+    "netExplain": "Net worth = assets attributed to you − outstanding debts you owe. Cash = only accounts, cash, and deposits.",
+    "items": "Items",
+    "value": "Value",
+    "shareOfAssets": "% assets",
+    "share": "Share",
+    "notesTitle": "Notes",
+    "note1": "Amounts are estimates entered by the user. Each asset is counted for the owned share; debts for the personal outstanding principal, only once.",
+    "note2": "The EUR/USD exchange rate is entered manually and is not a market quote. Amounts are calculated to the cent.",
+    "note3": "Document generated locally in the browser by 3ASYWEALTH. This is not financial advice or an official document.",
+    "footer": "3ASYWEALTH · wealth.3asy.app · generated in browser",
+    "page": "Page {{page}} of {{total}}",
+    "done": "PDF created.",
+    "error": "I couldn't create the PDF."
   },
   "notFound": {
-    "title": "Page Not Found",
-    "subtitle": "The page you're looking for doesn't exist or has been moved.",
-    "goHome": "Go Home",
-    "goAssets": "View Assets"
+    "title": "Page not found",
+    "body": "This page doesn't exist. Your net worth does, though.",
+    "back": "Back to overview"
   },
-  "loading": {
-    "title": "Loading...",
-    "subtitle": "Preparing your data"
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "body": "Saved data in the browser was not touched. Reload the page; if the problem continues, download a backup from Data.",
+    "reload": "Reload",
+    "data": "Go to Data"
   },
-  "theme": {
-    "toggle": "Toggle theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System"
-  },
-  "footer": {
-    "description": "Your personal wealth tracking solution with 100% privacy. No servers, no accounts, no data collection. Your financial data stays yours.",
-    "suite": "3ASU Suite",
-    "privacy_title": "Privacy First",
-    "privacy_1": "No server storage",
-    "privacy_2": "No account required",
-    "privacy_3": "Data stays local",
-    "privacy_4": "Open source"
-  },
-  "currency": {
-    "editRate": "Exchange rate",
-    "rateTitle": "Exchange Rate",
-    "rateDescription": "Set the EUR → USD conversion rate. Used to normalize mixed-currency assets.",
-    "mixedImport": "{{count}} assets imported with mixed currencies (normalized to {{currency}})"
+  "sync": {
+    "updated": "Data updated from another tab."
   }
 }
