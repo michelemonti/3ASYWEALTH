@@ -1,52 +1,24 @@
-/**
- * Language Switcher Component
- * 
- * Dropdown to switch between EN/IT/ES
- */
-
+import { Languages } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Globe } from 'lucide-react'
-
-const languages = [
-  { code: 'en', name: 'English' },
-  { code: 'it', name: 'Italiano' },
-  { code: 'es', name: 'Español' },
-]
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { LANGUAGES, setLanguage } from '@/i18n/config'
 
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation()
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-    localStorage.setItem('language', lng)
-  }
-
-  const currentLang = languages.find(l => l.code === i18n.language) || languages[0]
-
+  const { t, i18n } = useTranslation()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-1.5 px-2 sm:px-3 sm:gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentLang.name}</span>
-          <span className="sm:hidden text-xs uppercase">{currentLang.code}</span>
+        <Button variant="ghost" size="sm" className="gap-1.5 px-2.5" aria-label={t('language.label')}>
+          <Languages aria-hidden />
+          <span className="text-xs font-semibold uppercase">{i18n.language}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {languages.map((lang) => (
-          <DropdownMenuItem
-            key={lang.code}
-            onClick={() => changeLanguage(lang.code)}
-            className="cursor-pointer"
-          >
-            {lang.name}
+        {LANGUAGES.map((l) => (
+          <DropdownMenuItem key={l.code} onSelect={() => setLanguage(l.code)} lang={l.code}>
+            {l.label}
+            {i18n.language === l.code && <span className="ml-auto pl-4 text-xs text-primary">✓</span>}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

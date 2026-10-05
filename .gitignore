@@ -89,7 +89,6 @@ next-env.d.ts
 
 # Gatsby files
 .cache/
-public/
 
 # Storybook build outputs
 .out

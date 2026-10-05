@@ -1,57 +1,58 @@
-/**
- * Main App Component
- * 
- * Lazy-loaded routing for 3ASYWEALTH
- * 
- * @version 2.0
- */
-
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Toaster } from 'sonner'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { Toaster, type ToasterProps } from 'sonner'
+import { AppShell } from './components/AppShell'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { useTheme } from './hooks/useTheme'
+import Overview from './pages/Overview'
 
-const Landing = lazy(() => import('./pages/Landing'))
-const AssetsTable = lazy(() => import('./pages/AssetsTable'))
-const WealthSummary = lazy(() => import('./pages/WealthSummary'))
-const About = lazy(() => import('./pages/About'))
+const Holdings = lazy(() => import('./pages/Holdings'))
+const History = lazy(() => import('./pages/History'))
+const DataSettings = lazy(() => import('./pages/DataSettings'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-function LoadingFallback() {
-  return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-center animate-fade-in">
-        <div className="relative mb-6">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg mx-auto animate-pulse">
-            <span className="text-white font-bold text-xl">3W</span>
-          </div>
-        </div>
-        <div className="h-1 w-32 mx-auto rounded-full bg-muted overflow-hidden">
-          <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-shimmer" />
-        </div>
-      </div>
-    </div>
-  )
+function PageFallback() {
+  return <div className="h-40 animate-pulse rounded-xl bg-muted/60" aria-hidden />
 }
 
-// App Component
-const App = () => (
-  <ErrorBoundary>
-    <BrowserRouter>
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/assets" element={<AssetsTable />} />
-          <Route path="/summary" element={<WealthSummary />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+// Supported by sonner at runtime but missing from its 1.x type definitions.
+type LabelledToasterProps = ToasterProps & { containerAriaLabel?: string }
 
-    {/* Toast Notifications */}
-    <Toaster position="top-right" richColors closeButton />
-  </ErrorBoundary>
-)
+function ThemedToaster() {
+  const { t } = useTranslation()
+  const { resolvedTheme } = useTheme()
+  const props: LabelledToasterProps = {
+    position: 'bottom-center',
+    theme: resolvedTheme,
+    offset: 88,
+    toastOptions: { duration: 6000 },
+    containerAriaLabel: t('common.notifications'),
+  }
+  return <Toaster {...props} />
+}
 
-export default App
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route element={<AppShell />}>
+              <Route index element={<Overview />} />
+              <Route path="holdings" element={<Holdings />} />
+              <Route path="history" element={<History />} />
+              <Route path="data" element={<DataSettings />} />
+              {/* v1 routes */}
+              <Route path="assets" element={<Navigate to="/holdings" replace />} />
+              <Route path="summary" element={<Navigate to="/" replace />} />
+              <Route path="about" element={<Navigate to="/data#about" replace />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+      <ThemedToaster />
+    </ErrorBoundary>
+  )
+}

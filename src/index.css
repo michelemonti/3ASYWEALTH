@@ -2,197 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 3ASYAPP Template Design System (Light theme default) */
+/*
+ * 3ASYWEALTH — "paper & ink" design tokens.
+ * Warm paper background, ink-blue primary, one muted colour per asset category.
+ * Debts use a brick tone and are always shown separately from assets.
+ */
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 222 47% 11%;
-
+    --background: 40 33% 98%;
+    --foreground: 24 12% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-
+    --card-foreground: 24 12% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-
-    --primary: 221 83% 53%;
+    --popover-foreground: 24 12% 11%;
+    --primary: 228 62% 42%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 221 83% 46%;
-
-    --secondary: 262 83% 58%;
-    --secondary-foreground: 0 0% 100%;
-
-    --trust: 210 40% 96%;
-    --trust-foreground: 221 83% 44%;
-
-    --muted: 210 17% 95%;
-    --muted-foreground: 215 16% 47%;
-
-    --accent: 262 83% 96%;
-    --accent-foreground: 262 83% 42%;
-
-    --success: 142 72% 35%;
-    --success-foreground: 0 0% 100%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
+    --secondary: 40 18% 93%;
+    --secondary-foreground: 24 12% 15%;
+    --muted: 40 18% 94%;
+    --muted-foreground: 25 7% 37%;
+    --accent: 228 55% 95%;
+    --accent-foreground: 228 62% 30%;
+    --destructive: 2 64% 44%;
     --destructive-foreground: 0 0% 100%;
+    --positive: 152 56% 28%;
+    --negative: 2 64% 42%;
+    --warning: 36 92% 30%;
+    --warning-soft: 42 90% 93%;
+    --border: 36 14% 86%;
+    --input: 36 12% 76%;
+    --ring: 228 62% 42%;
+    --radius: 0.75rem;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 17% 95%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 221 83% 53%;
+    --cat-cash: 172 56% 30%;
+    --cat-investments: 228 58% 52%;
+    --cat-business: 36 78% 40%;
+    --cat-realestate: 14 58% 46%;
+    --cat-personal: 292 28% 46%;
+    --debt: 2 52% 46%;
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
+    --background: 30 6% 7%;
+    --foreground: 40 22% 93%;
+    --card: 30 5% 10%;
+    --card-foreground: 40 22% 93%;
+    --popover: 30 5% 11%;
+    --popover-foreground: 40 22% 93%;
+    --primary: 228 90% 76%;
+    --primary-foreground: 228 50% 12%;
+    --secondary: 30 5% 16%;
+    --secondary-foreground: 40 22% 93%;
+    --muted: 30 5% 14%;
+    --muted-foreground: 35 9% 68%;
+    --accent: 228 30% 20%;
+    --accent-foreground: 228 90% 84%;
+    --destructive: 2 70% 62%;
+    --destructive-foreground: 0 0% 8%;
+    --positive: 152 50% 58%;
+    --negative: 2 75% 70%;
+    --warning: 40 90% 66%;
+    --warning-soft: 38 40% 16%;
+    --border: 30 5% 20%;
+    --input: 30 5% 30%;
+    --ring: 228 90% 76%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 221 83% 60%;
-    --primary-foreground: 0 0% 0%;
-    --primary-hover: 221 83% 55%;
-
-    --secondary: 262 83% 60%;
-    --secondary-foreground: 0 0% 100%;
-
-    --trust: 0 0% 12%;
-    --trust-foreground: 221 83% 60%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 262 83% 20%;
-    --accent-foreground: 262 83% 60%;
-
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
-
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
-
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 215 28% 20%;
-    --input: 215 28% 20%;
-    --ring: 217 91% 60%;
-
-    --sidebar-background: 240 6% 10%;
-    --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 224 76% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 16%;
-    --sidebar-accent-foreground: 0 0% 96%;
-    --sidebar-border: 240 4% 16%;
-    --sidebar-ring: 217 91% 60%;
+    --cat-cash: 170 50% 52%;
+    --cat-investments: 228 80% 72%;
+    --cat-business: 40 80% 60%;
+    --cat-realestate: 14 70% 64%;
+    --cat-personal: 292 40% 70%;
+    --debt: 2 70% 66%;
   }
 }
 
 @layer base {
   * {
-    border-color: hsl(var(--border));
-  }
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    @apply border-border;
   }
   html {
-    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv11', 'ss03';
+  }
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight;
+  }
+  ::selection {
+    background-color: hsl(var(--primary) / 0.18);
   }
 }
 
 @layer utilities {
-  .bg-gradient-subtle {
-    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum', 'cv11';
   }
-  .animate-fade-in { 
-    animation: fadeIn 0.6s ease-in-out; 
-  }
-  .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
-  }
-  .animate-scale-in {
-    animation: scaleIn 0.4s ease-out;
-  }
-  .animate-shimmer {
-    animation: shimmer 2s ease-in-out infinite;
-  }
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  .stagger-1 { animation-delay: 0.1s; animation-fill-mode: backwards; }
-  .stagger-2 { animation-delay: 0.2s; animation-fill-mode: backwards; }
-  .stagger-3 { animation-delay: 0.3s; animation-fill-mode: backwards; }
-  .stagger-4 { animation-delay: 0.4s; animation-fill-mode: backwards; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes scaleIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  @keyframes shimmer {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
-/* Smooth page transitions */
-.page-enter {
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* Focus ring for keyboard navigation */
-:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-  border-radius: var(--radius);
-}
-
-/* Selection color */
-::selection {
-  background-color: hsl(var(--primary) / 0.2);
-  color: hsl(var(--foreground));
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.5);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
