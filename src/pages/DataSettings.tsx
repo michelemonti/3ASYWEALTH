@@ -287,7 +287,7 @@ function LocalBackupsSection() {
                   <RotateCcw aria-hidden />
                   {t('data.local.restore')}
                 </Button>
-                <Button size="sm" variant="ghost" onClick={() => setDeleting(b)} aria-label={t('data.local.delete')}>
+                <Button size="sm" variant="ghost" disabled={isDemo} onClick={() => setDeleting(b)} aria-label={t('data.local.delete')}>
                   <Trash2 aria-hidden />
                 </Button>
               </div>
